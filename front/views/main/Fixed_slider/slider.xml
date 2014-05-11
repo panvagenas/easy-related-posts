@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<template>
+	<name>Fixed slider</name>
+	<description>Display your related posts as a pop up frame</description>
+	<optionsArrayName>erpPROFixedSliderOptions</optionsArrayName>
+	<options>
+		<position>bottom</position>
+		<numOfPostsPerRow>3</numOfPostsPerRow>
+		<backgroundColor>#fefefe</backgroundColor>
+		<backgroundTransparency>0.8</backgroundTransparency>
+		<triggerAfter>0.8</triggerAfter></options>
+		<thumbCaption>false</thumbCaption>
+	<optionSaveValidation>
+		<file>optionSaveValidation.php</file>
+		<function>validateMainFixedSliderOptions</function>
+	</optionSaveValidation>
+	<settingsPageFilePath>settings.php</settingsPageFilePath>
+	<viewFilePath>slider.php</viewFilePath>
+	<jsFilePath>
+		<slider>
+			<path>assets/js/slider.js</path>
+			<deps>
+				<jquery>jquery</jquery>
+			</deps>
+		</slider>
+	</jsFilePath>
+	<cssFilePath>
+		<slider>assets/css/slider.css</slider>
+	</cssFilePath>
+	<preregisteredScripts>
+		<css>
+			<bootstrap>erp_pro-bootstrap</bootstrap>
+			<bootstrapText>erp_pro-bootstrap-text</bootstrapText>
+			<erpPROCaptionCSS>erp_pro-erpPROCaptionCSS</erpPROCaptionCSS>
+		</css>
+		<js>
+			<erpPROCaptionJS>erp_pro-erpPROCaptionJS</erpPROCaptionJS>
+		</js>
+	</preregisteredScripts>
+</template>

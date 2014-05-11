@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<template>
+    <name>List</name>
+    <description>A simple list template</description>
+    <optionsArrayName>erpPROListOptions</optionsArrayName>
+    <options>
+        <orderedList>true</orderedList>
+        <borderColor>#ffffff</borderColor>
+        <borderRadius>0</borderRadius>
+        <borderWeight>0</borderWeight>
+    </options>
+    <optionSaveValidation>
+        <file>optionSaveValidation.php</file>
+        <function>validateMainListOptions</function>
+    </optionSaveValidation>
+    <settingsPageFilePath>settings.php</settingsPageFilePath>
+    <viewFilePath>list.php</viewFilePath>
+    <jsFilePath></jsFilePath>
+    <cssFilePath></cssFilePath>
+</template>

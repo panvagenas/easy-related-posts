@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<template>
+    <name>Grid</name>
+    <description>A simple grid template fully responsive</description>
+    <optionsArrayName>erpPROGridOptions</optionsArrayName>
+    <options>
+        <numOfPostsPerRow>3</numOfPostsPerRow>
+        <thumbCaption>false</thumbCaption>
+        <backgroundColor>#ffffff</backgroundColor>
+        <borderColor>#ffffff</borderColor>
+        <borderRadius>0</borderRadius>
+        <borderWeight>0</borderWeight>
+    </options>
+    <optionSaveValidation>
+        <file>optionSaveValidation.php</file>
+        <function>validateMainGridOptions</function>
+    </optionSaveValidation>
+    <settingsPageFilePath>settings.php</settingsPageFilePath>
+    <viewFilePath>grid.php</viewFilePath>
+    <jsFilePath></jsFilePath>
+    <cssFilePath></cssFilePath>
+    <preregisteredScripts>
+        <css>
+            <bootstrap>erp_pro-bootstrap</bootstrap>
+            <bootstrapText>erp_pro-bootstrap-text</bootstrapText>
+            <erpPROCaptionCSS>erp_pro-erpPROCaptionCSS</erpPROCaptionCSS>
+            <wp-color-picker>wp-color-picker</wp-color-picker>
+        </css>
+        <js>
+            <erpPROCaptionJS>erp_pro-erpPROCaptionJS</erpPROCaptionJS>
+            <wp-color-picker>wp-color-picker</wp-color-picker>
+        </js>
+    </preregisteredScripts>
+</template>
