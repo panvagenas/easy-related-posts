@@ -452,7 +452,6 @@ abstract class erpTemplates {
 
 		erpPaths::requireOnce(erpPaths::$erpPostData);
 
-
 		$from = get_the_ID();
 
 		$this->setOptions($optionsObj->getOptions());

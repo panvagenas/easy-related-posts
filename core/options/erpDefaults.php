@@ -37,7 +37,7 @@ class erpDefaults {
      * @since 1.0.0
      * @var int
      */
-    const erpRelease = 0;
+    const erpRelease = 6;
 
     /**
      * Plugin subrelease.
@@ -53,7 +53,7 @@ class erpDefaults {
      * @since 1.0.0
      * @var string
      */
-    const erpVersionString = '1.0.0';
+    const erpVersionString = '1.6.0';
 
     /**
      * This should be upddated if widget class name change

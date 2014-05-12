@@ -23,7 +23,7 @@ class easyRelatedPosts {
      * @since 1.0.0
      * @var string
      */
-    const VERSION = '1.0.0'; // erpDefaults::erpVersionString;
+    const VERSION = '1.6.0';
 
     /**
      * Unique identifier for your plugin.
