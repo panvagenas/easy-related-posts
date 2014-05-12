@@ -6,7 +6,6 @@
  */
 class erpPaths {
 	// Helpers
-	public static $erpDBHelper = 'core/helpers/erpDBHelper.php';
 	public static $erpHTMLHelper = 'core/helpers/erpHTMLHelper.php';
 	public static $erpFileHelper = 'core/helpers/erpFileHelper.php';
 	// Display

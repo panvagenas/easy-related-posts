@@ -45,23 +45,6 @@ if (!defined('ERP_RELATIVE_TABLE')) {
 }
 
 /* ----------------------------------------------------------------------------*
- * Session functionality
- * ---------------------------------------------------------------------------- */
-if (!defined('WP_SESSION_COOKIE')) {
-    define('WP_SESSION_COOKIE', 'wp_erp_pro_session');
-}
-
-if (!class_exists('Recursive_ArrayAccess')) {
-    require_once ( plugin_dir_path(__FILE__) . 'core/session_manager/class-recursive-arrayaccess.php' );
-}
-
-// Only include the functionality if it's not pre-defined.
-if (!class_exists('WP_Session')) {
-    require_once ( plugin_dir_path(__FILE__) . 'core/session_manager/class-wp-session.php' );
-    require_once ( plugin_dir_path(__FILE__) . 'core/session_manager/wp-session.php' );
-}
-
-/* ----------------------------------------------------------------------------*
  * Core classes
  * ---------------------------------------------------------------------------- */
 

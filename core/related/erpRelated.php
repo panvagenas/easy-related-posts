@@ -51,14 +51,6 @@ class erpProRelated {
     private $dbActions;
 
     /**
-     * WP_Session obj
-     *
-     * @since 1.0.0
-     * @var WP_Session
-     */
-    private $wpSession;
-
-    /**
      * Instance of this class.
      *
      * @since 1.0.0
@@ -108,7 +100,6 @@ class erpProRelated {
         }
         $this->options = $options;
         $this->dbActions = erpDBActions::getInstance();
-        $this->wpSession = WP_Session::get_instance();
     }
 
     public function getRelated($pid) {
@@ -157,8 +148,7 @@ class erpProRelated {
         $ratingSystem->setWeights($weights);
         $ratingSystem->formRatingsArrays();
         $ratingSystem->sortRatingsArrays($this->options->getSortRelatedBy(true));
-        $postsToExclude = isset($this->wpSession ['visited']) ? unserialize($this->wpSession ['visited']) : array();
-        $slicedArray = $ratingSystem->getSlicedRatingsArrayFlat($this->options->getOffset(), $this->options->getNumberOfPostsToDiplay(), $postsToExclude);
+        $slicedArray = $ratingSystem->getSlicedRatingsArrayFlat($this->options->getOffset(), $this->options->getNumberOfPostsToDiplay());
 
         $qForm = new erpQueryFormater();
         $qForm->setMainArgs($pid);

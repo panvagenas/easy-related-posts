@@ -114,15 +114,6 @@ class easyRelatedPosts {
         $this->mainOpts = new erpMainOpts();
         $this->widOpts = new erpWidOpts();
 
-        /**
-         * Check if rating system is on in order to call tracker
-         */
-        // if ( $this->isRatingSystemOn() ) {
-        $tracker = new erpTracker($this->DB, $this->wpSession,  $this->mainOpts->getDisableTrackingSystem());
-        add_action('init', array(
-            $tracker,
-            'tracker'
-        ));
         // }
         /**
          * Call content modifier

@@ -451,13 +451,9 @@ abstract class erpTemplates {
 		}
 
 		erpPaths::requireOnce(erpPaths::$erpPostData);
-		erpPaths::requireOnce(erpPaths::$erpDBHelper);
 
 
 		$from = get_the_ID();
-
-		erpDBHelper::addDisplayed($from, array_keys($ratings));
-
 
 		$this->setOptions($optionsObj->getOptions());
 
