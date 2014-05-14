@@ -1,30 +1,30 @@
 <?php
 
 /**
- * Easy related posts PRO.
+ * Easy related posts .
  *
  * @package   Easy_Related_Posts_Options
  * @author    Panagiotis Vagenas <pan.vagenas@gmail.com>
  * @link      http://erp.xdark.eu
  * @copyright 2014 Panagiotis Vagenas <pan.vagenas@gmail.com>
  */
-erpPROPaths::requireOnce(erpPROPaths::$erpPROOptions);
+erpPaths::requireOnce(erpPaths::$erpOptions);
 /**
  * Widget options class.
  *
  * @package Easy_Related_Posts_Options
  * @author    Panagiotis Vagenas <pan.vagenas@gmail.com>
  */
-class erpPROWidOpts extends erpPROOptions {
+class erpWidOpts extends erpOptions {
 
 	public function __construct( Array $instance = NULL ) {
-		$this->optionsArrayName = 'widget_' . erpPRODefaults::erpPROWidgetOptionsArrayName;
+		$this->optionsArrayName = 'widget_' . erpDefaults::erpWidgetOptionsArrayName;
 
 		if ( $instance !== NULL && !empty( $instance ) ) {
 			$this->options = $instance;
 		}
 
-		$this->defaults = erpPRODefaults::$widOpts+erpPRODefaults::$comOpts;
+		$this->defaults = erpDefaults::$widOpts+erpDefaults::$comOpts;
 	}
 
 	/**
@@ -36,7 +36,7 @@ class erpPROWidOpts extends erpPROOptions {
 	 * @since 1.0.0
 	 */
 	public function validateWidgetOptions( Array $options ) {
-		return $this->switchValidationTypes($options, erpPRODefaults::$widOptsValidations);
+		return $this->switchValidationTypes($options, erpDefaults::$widOptsValidations);
 	}
 
 	public function saveOptions( $new_instance, $old_instance ) {

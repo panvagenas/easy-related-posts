@@ -110,7 +110,7 @@ class erpPostData {
         $this->ID = $post->ID;
         $this->setTitle();
         $this->rating = $rating;
-        $this->setPermalink($hostPost);
+        $this->setPermalink();
         $this->setPostDate('Y-m-d H:i:s');
         $this->setPositions($options);
     }
@@ -342,13 +342,8 @@ class erpPostData {
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
      * @since 1.0.0
      */
-    private function setPermalink($from) {
-        $link = get_permalink($this->ID);
-        if (strpos($link, '?') !== FALSE) {
-            $this->permalink = $link . '&erp_from=' . $from;
-        } else {
-            $this->permalink = $link . '?erp_from=' . $from;
-        }
+    private function setPermalink() {
+        $this->permalink = get_permalink($this->ID);
         return $this;
     }
 

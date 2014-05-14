@@ -34,6 +34,7 @@ if (!function_exists('erpTaxGrouping')) {
 }
 ?>
 
+
 <div id="erp-opt-general" class="wrap">
     <h2><?php echo esc_html(get_admin_page_title()); ?></h2>
     <form method="post" action="admin-post.php">
@@ -47,6 +48,7 @@ if (!function_exists('erpTaxGrouping')) {
                 <li><a href="#tabs-4">Excluded Categories</a></li>
                 <li><a href="#tabs-5">Excluded Tags</a></li>
                 <li><a href="#tabs-6">Excluded Post Types</a></li>
+                <li><a href="#tabs-7">Supporters</a></li>
             </ul>
             <div id="tabs-1">
                 <table class="gen-opt-table">
@@ -526,8 +528,8 @@ if (!function_exists('erpTaxGrouping')) {
                     browsing this post and of course it wont appear in related post of any other post.<br>
                     Please note that the selections of Categories, Tags or Post Types tabs, affects the main 
                     content plugin as much as widget and shortcode section of plugin.<br>
-                <strong>Built in post types should be left in default values. Please use them only if you are 
-                    experiencing post types relative issues.</strong>
+                    <strong>Built in post types should be left in default values. Please use them only if you are 
+                        experiencing post types relative issues.</strong>
                 </p>
                 <table class="type-opt-table">
                     <tr>
@@ -539,9 +541,9 @@ if (!function_exists('erpTaxGrouping')) {
                     $post_types = get_post_types(array(
                         '_builtin' => false
                             ), 'objects');
-                    if(!empty($post_types)){
+                    if (!empty($post_types)) {
                         ?>
-                        <?php 
+                        <?php
                         foreach ($post_types as $k => $v) {
                             ?>
                             <tr>
@@ -556,12 +558,12 @@ if (!function_exists('erpTaxGrouping')) {
                         }
                     } else {
                         ?>
-                            <tr>
-                                <td colspan="2" style="text-align: center;">
-                                    You don't have any custom post types
-                                </td>
-                            </tr>    
-                        <?php 
+                        <tr>
+                            <td colspan="2" style="text-align: center;">
+                                You don't have any custom post types
+                            </td>
+                        </tr>    
+                        <?php
                     }
                     ?>
                     <tr>
@@ -590,7 +592,9 @@ if (!function_exists('erpTaxGrouping')) {
                     ?>
                 </table>
             </div>
-            <!--</div>-->
+            <div id="tabs-7">
+
+            </div>
         </div>
         <?php echo get_submit_button('Update options', 'primary large', 'Save'); ?>
         <input id="tab-spec" type="hidden" name="tab-spec" value="0">
@@ -605,4 +609,25 @@ if ($tabSpec !== null && $tabSpec !== false) {
 ?>
         </script>
     </form>
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="WLGJ8L3ZJTFQQ">
+        <table>
+            <tr><td><input type="hidden" name="on0" value="Sponsorhip options">Sponsorhip options</td></tr><tr><td><select name="os0">
+                        <option value="Bronze supporter">Bronze supporter €5.00 EUR</option>
+                        <option value="Silver supporter">Silver supporter €10.00 EUR</option>
+                        <option value="Golden supporter">Golden supporter €20.00 EUR</option>
+                        <option value="Bronze sponsorship">Bronze sponsorship €50.00 EUR</option>
+                        <option value="Silver sponsorship">Silver sponsorship €100.00 EUR</option>
+                        <option value="Golden sponsorship">Golden sponsorship €150.00 EUR</option>
+                    </select> </td></tr>
+            <tr><td><input type="hidden" name="on1" value="Your site URL">Your site URL</td></tr><tr><td><input type="text" name="os1" maxlength="200" value="<?php echo get_site_url();  ?>"></td></tr>
+        </table>
+        <input type="hidden" name="currency_code" value="EUR">
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
+
+
 </div>

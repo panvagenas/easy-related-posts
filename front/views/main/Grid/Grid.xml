@@ -2,7 +2,7 @@
 <template>
     <name>Grid</name>
     <description>A simple grid template fully responsive</description>
-    <optionsArrayName>erpPROGridOptions</optionsArrayName>
+    <optionsArrayName>erpGridOptions</optionsArrayName>
     <options>
         <numOfPostsPerRow>3</numOfPostsPerRow>
         <thumbCaption>false</thumbCaption>
@@ -21,13 +21,13 @@
     <cssFilePath></cssFilePath>
     <preregisteredScripts>
         <css>
-            <bootstrap>erp_pro-bootstrap</bootstrap>
-            <bootstrapText>erp_pro-bootstrap-text</bootstrapText>
-            <erpPROCaptionCSS>erp_pro-erpPROCaptionCSS</erpPROCaptionCSS>
+            <bootstrap>erp-bootstrap</bootstrap>
+            <bootstrapText>erp-bootstrap-text</bootstrapText>
+            <erpCaptionCSS>erp-erpCaptionCSS</erpCaptionCSS>
             <wp-color-picker>wp-color-picker</wp-color-picker>
         </css>
         <js>
-            <erpPROCaptionJS>erp_pro-erpPROCaptionJS</erpPROCaptionJS>
+            <erpCaptionJS>erp-erpCaptionJS</erpCaptionJS>
             <wp-color-picker>wp-color-picker</wp-color-picker>
         </js>
     </preregisteredScripts>

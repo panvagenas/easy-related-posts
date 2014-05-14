@@ -36,7 +36,7 @@
 	 *
 	 * @param array $newOpts New options array
 	 * @param array $oldOpts Old options array, default to main options present in DB
-	 * @param string $optsName Options name, default to erp pro main options array
+	 * @param string $optsName Options name, default to erp main options array
 	 * @return boolean True if operation was succefull, false otherwise
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
 	 * @since 1.0.0
@@ -56,7 +56,7 @@
  	 * Inserts non existing widget options in DB that are present in $newOpts and not in $oldOpts
  	 * @param array $newOpts New options array
  	 * @param array $oldOpts Old options array, default to widget options present in DB
- 	 * @param string $optsName Options name, default to erp pro widget options array
+ 	 * @param string $optsName Options name, default to erp widget options array
  	 * @return boolean False if operation was successfull, false otherwise
  	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
  	 * @since 1.0.0

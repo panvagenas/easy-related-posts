@@ -26,7 +26,7 @@ class erpPaths {
 	public static $erpDefaults = 'core/options/erpDefaults.php';
 	// Related
 	public static $erpQueryFormater = 'core/related/erpQueryFormater.php';
-	public static $erpProRelated = 'core/related/erpProRelated.php';
+	public static $erpRelated = 'core/related/erpRelated.php';
 	public static $erpRelData = 'core/related/erpRelData.php';
 	public static $erpRatingSystem = 'core/related/erpRatingSystem.php';
 	// Front

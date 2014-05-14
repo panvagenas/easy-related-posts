@@ -15,7 +15,7 @@
  * @package Easy_Related_Posts_Related
  * @author    Panagiotis Vagenas <pan.vagenas@gmail.com>
  */
-class erpProRelated {
+class erpRelated {
 
     /**
      * Relative data obj
@@ -46,7 +46,7 @@ class erpProRelated {
      * Instance of this class.
      *
      * @since 1.0.0
-     * @var erpProRelated
+     * @var erpRelated
      */
     protected static $instance = null;
     
@@ -60,7 +60,7 @@ class erpProRelated {
      * Return an instance of this class.
      *
      * @since 1.0.0
-     * @return erpProRelated A single instance of this class.
+     * @return erpRelated A single instance of this class.
      */
     public static function get_instance(&$options) {
         // If the single instance hasn't been set, set it now.
@@ -91,6 +91,7 @@ class erpProRelated {
     }
 
     public function getRelated($pid) {
+        $relTable = null;
         /**
          * Check if we have a reldata obj with same query and if yes return it
          */
@@ -175,7 +176,7 @@ class erpProRelated {
                     ->exTags($this->options->getValue('tags'));
             $wpq = $this
                     ->relData
-                    ->setQueryLimit($queryLimit, 0)
+                    ->setQueryLimit($this->queryLimit, 0)
                     ->setWP_Query($qForm->getArgsArray(), $this->queryLimit, 0)
                     ->getResult();
             $postsArray = $wpq->posts;
@@ -202,7 +203,7 @@ class erpProRelated {
                     ->exTags($this->options->getValue('tags'));
             $wpq = $this
                     ->relData
-                    ->setQueryLimit($queryLimit, 0)
+                    ->setQueryLimit($this->queryLimit, 0)
                     ->setWP_Query($qForm->getArgsArray(), $this->queryLimit, 0)
                     ->getResult();
             $postsArray = $wpq->posts;

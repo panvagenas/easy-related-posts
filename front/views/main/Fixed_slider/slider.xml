@@ -2,7 +2,7 @@
 <template>
 	<name>Fixed slider</name>
 	<description>Display your related posts as a pop up frame</description>
-	<optionsArrayName>erpPROFixedSliderOptions</optionsArrayName>
+	<optionsArrayName>erpFixedSliderOptions</optionsArrayName>
 	<options>
 		<position>bottom</position>
 		<numOfPostsPerRow>3</numOfPostsPerRow>
@@ -29,12 +29,12 @@
 	</cssFilePath>
 	<preregisteredScripts>
 		<css>
-			<bootstrap>erp_pro-bootstrap</bootstrap>
-			<bootstrapText>erp_pro-bootstrap-text</bootstrapText>
-			<erpPROCaptionCSS>erp_pro-erpPROCaptionCSS</erpPROCaptionCSS>
+			<bootstrap>erp-bootstrap</bootstrap>
+			<bootstrapText>erp-bootstrap-text</bootstrapText>
+			<erpCaptionCSS>erp-erpCaptionCSS</erpCaptionCSS>
 		</css>
 		<js>
-			<erpPROCaptionJS>erp_pro-erpPROCaptionJS</erpPROCaptionJS>
+			<erpCaptionJS>erp-erpCaptionJS</erpCaptionJS>
 		</js>
 	</preregisteredScripts>
 </template>

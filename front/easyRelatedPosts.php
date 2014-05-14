@@ -141,9 +141,9 @@ class easyRelatedPosts {
         if ($this->isShowTime($post) && !$this->isInExcludedPostTypes($post) && !$this->isInExcludedTaxonomies($post) && (bool) $this->mainOpts->getValue('activate')) {
 
             erpPaths::requireOnce(erpPaths::$erpMainTemplates);
-            erpPaths::requireOnce(erpPaths::$erpProRelated);
+            erpPaths::requireOnce(erpPaths::$erpRelated);
 
-            $relatedObj = erpProRelated::get_instance($this->mainOpts);
+            $relatedObj = erpRelated::get_instance($this->mainOpts);
             $result = $relatedObj->getRelated($post->ID);
             $ratings = $relatedObj->getRatingsFromRelDataObj();
             if (empty($result) || empty($result->posts)) {

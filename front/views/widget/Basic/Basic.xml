@@ -2,7 +2,7 @@
 <template>
 	<name>Basic</name>
 	<description>A simple template</description>
-	<optionsArrayName>erpPROWidBasicOptions</optionsArrayName>
+	<optionsArrayName>erpWidBasicOptions</optionsArrayName>
 	<options>
 		<thumbCaption>false</thumbCaption>
 	</options>
@@ -14,12 +14,12 @@
 	<viewFilePath>basic.php</viewFilePath>
         <preregisteredScripts>
 		<css>
-			<bootstrap>erp_pro-bootstrap</bootstrap>
-			<bootstrapText>erp_pro-bootstrap-text</bootstrapText>
-			<erpPROCaptionCSS>erp_pro-erpPROCaptionCSS</erpPROCaptionCSS>
+			<bootstrap>erp-bootstrap</bootstrap>
+			<bootstrapText>erp-bootstrap-text</bootstrapText>
+			<erpCaptionCSS>erp-erpCaptionCSS</erpCaptionCSS>
 		</css>
 		<js>
-			<erpPROCaptionJS>erp_pro-erpPROCaptionJS</erpPROCaptionJS>
+			<erpCaptionJS>erp-erpCaptionJS</erpCaptionJS>
 		</js>
 	</preregisteredScripts>
 	</template>

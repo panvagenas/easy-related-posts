@@ -56,7 +56,7 @@ class erpWidget extends WP_Widget {
 				$instance = $instance + erpDefaults::$comOpts + erpDefaults::$widOpts;
 			}
 
-			erpPaths::requireOnce( erpPaths::$erpProRelated );
+			erpPaths::requireOnce( erpPaths::$erpRelated );
 			erpPaths::requireOnce( erpPaths::$erpMainOpts );
 			erpPaths::requireOnce(erpPaths::$erpWidOpts);
 
@@ -69,7 +69,7 @@ class erpWidget extends WP_Widget {
 			$widOpts = new erpWidOpts($instance);
 
 			// Get related
-			$relatedObj = erpProRelated::get_instance( $widOpts );
+			$relatedObj = erpRelated::get_instance( $widOpts );
 			$wpQ = $relatedObj->getRelated( $post->ID );
 			// If we have some posts to show
 			if ( $wpQ->have_posts() ) {
