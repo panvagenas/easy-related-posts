@@ -48,20 +48,12 @@ class erpDefaults {
     const erpSubRelease = 0;
 
     /**
-     * Plugin version, used for cache-busting of style and script file references.
-     *
-     * @since 1.0.0
-     * @var string
-     */
-    const erpVersionString = '1.6.0';
-
-    /**
      * This should be upddated if widget class name change
      *
      * @since 1.0.0
      * @var string
      */
-    const erpWidgetOptionsArrayName = 'erpprowidget';
+    const erpWidgetOptionsArrayName = 'erpwidget';
 
     /**
      * Version number is stored in DB as a WP option. 
@@ -80,17 +72,9 @@ class erpDefaults {
      */
     public static $sortRelatedByOptionSerialized = array(
         "a:1:{s:4:'date';a:2:{s:5:'order';s:4:'desc';s:4:'rank';i:1;}}", // date desc
-        "a:1:{s:4:'date';a:2:{s:5:'order';s:3:'asc';s:4:'rank';i:1;}}", // date asc
         "a:1:{s:6:'rating';a:2:{s:5:'order';s:4:'desc';s:4:'rank';i:1;}}", // rating desc
-        "a:1:{s:6:'rating';a:2:{s:5:'order';s:3:'asc';s:4:'rank';i:1;}}", // rating asc
         "a:2:{s:6:'rating';a:2:{s:5:'order';s:4:'desc';s:4:'rank';i:2;}s:4:'date';a:2:{s:5:'order';s:4:'desc';s:4:'rank';i:1;}}", // date desc rating desc
-        "a:2:{s:6:'rating';a:2:{s:5:'order';s:4:'desc';s:4:'rank';i:2;}s:4:'date';a:2:{s:5:'order';s:3:'asc';s:4:'rank';i:1;}}", // date asc rating desc
-        "a:2:{s:6:'rating';a:2:{s:5:'order';s:4:'asc';s:4:'rank';i:2;}s:4:'date';a:2:{s:5:'order';s:3:'desc';s:4:'rank';i:1;}}", // date desc rating asc
-        "a:2:{s:6:'rating';a:2:{s:5:'order';s:4:'asc';s:4:'rank';i:2;}s:4:'date';a:2:{s:5:'order';s:3:'asc';s:4:'rank';i:1;}}", // date asc rating asc
         "a:2:{s:6:'rating';a:2:{s:5:'order';s:4:'desc';s:4:'rank';i:1;}s:4:'date';a:2:{s:5:'order';s:4:'desc';s:4:'rank';i:2;}}", // rating desc date desc
-        "a:2:{s:6:'rating';a:2:{s:5:'order';s:4:'desc';s:4:'rank';i:1;}s:4:'date';a:2:{s:5:'order';s:4:'asc';s:4:'rank';i:2;}}", // rating desc date asc
-        "a:2:{s:6:'rating';a:2:{s:5:'order';s:4:'asc';s:4:'rank';i:1;}s:4:'date';a:2:{s:5:'order';s:4:'desc';s:4:'rank';i:2;}}", // rating asc date desc
-        "a:2:{s:6:'rating';a:2:{s:5:'order';s:4:'asc';s:4:'rank';i:1;}s:4:'date';a:2:{s:5:'order';s:4:'asc';s:4:'rank';i:2;}}"
     ); // rating asc date asc
 
     /**
@@ -107,20 +91,8 @@ class erpDefaults {
             )
         ),
         array(
-            'date' => array(
-                'order' => 'asc',
-                'rank' => 1
-            )
-        ),
-        array(
             'rating' => array(
                 'order' => 'desc',
-                'rank' => 1
-            )
-        ),
-        array(
-            'rating' => array(
-                'order' => 'asc',
                 'rank' => 1
             )
         ),
@@ -136,36 +108,6 @@ class erpDefaults {
         ),
         array(
             'date' => array(
-                'order' => 'asc',
-                'rank' => 1
-            ),
-            'rating' => array(
-                'order' => 'desc',
-                'rank' => 2
-            )
-        ),
-        array(
-            'date' => array(
-                'order' => 'desc',
-                'rank' => 1
-            ),
-            'rating' => array(
-                'order' => 'asc',
-                'rank' => 2
-            )
-        ),
-        array(
-            'date' => array(
-                'order' => 'asc',
-                'rank' => 1
-            ),
-            'rating' => array(
-                'order' => 'asc',
-                'rank' => 2
-            )
-        ),
-        array(
-            'date' => array(
                 'order' => 'desc',
                 'rank' => 2
             ),
@@ -174,36 +116,6 @@ class erpDefaults {
                 'rank' => 1
             )
         ),
-        array(
-            'date' => array(
-                'order' => 'asc',
-                'rank' => 2
-            ),
-            'rating' => array(
-                'order' => 'desc',
-                'rank' => 1
-            )
-        ),
-        array(
-            'date' => array(
-                'order' => 'desc',
-                'rank' => 2
-            ),
-            'rating' => array(
-                'order' => 'asc',
-                'rank' => 1
-            )
-        ),
-        array(
-            'date' => array(
-                'order' => 'asc',
-                'rank' => 2
-            ),
-            'rating' => array(
-                'order' => 'asc',
-                'rank' => 1
-            )
-        )
     );
 
     /**
@@ -214,17 +126,9 @@ class erpDefaults {
      */
     public static $sortKeys = array(
         'date_descending' => 0,
-        'date_ascending' => 1,
-        'rating_descending' => 2,
-        'rating_ascending' => 3,
-        'date_descending_then_rating_descending' => 4,
-        'date_ascending_then_rating_descending' => 5,
-        'date_descending_then_rating_ascending' => 6,
-        'date_ascending_then_rating_ascending' => 7,
-        'rating_descending_then_date_descending' => 8,
-        'rating_ascending_then_date_descending' => 9,
-        'rating_descending_then_date_ascending' => 10,
-        'rating_ascending_then_date_ascending' => 11
+        'rating_descending' => 1,
+        'date_descending_then_rating_descending' => 2,
+        'rating_descending_then_date_descending' => 3,
     );
 
     /**
@@ -235,9 +139,7 @@ class erpDefaults {
      */
     public static $fetchByOptions = array(
         'Categories',
-        'Tags',
-        'Categories first, then tags',
-        'Tags first, then categories'
+        'Tags'
     );
 
     /**
@@ -247,8 +149,6 @@ class erpDefaults {
     public static $fetchByOptionsWeights = array(
         'categories' => array('clicks' => 0.15, 'categories' => 0.85, 'tags' => 0.0),
         'tags' => array('clicks' => 0.15, 'categories' => 0.0, 'tags' => 0.85),
-        'categories_first_then_tags' => array('clicks' => 0.15, 'categories' => 0.60, 'tags' => 0.25),
-        'tags_first_then_categories' => array('clicks' => 0.15, 'categories' => 0.25, 'tags' => 0.60)
     );
 
     /**
@@ -335,9 +235,7 @@ class erpDefaults {
             'attachment',
             'nav_menu_item',
             'revision'
-        ),
-        'relPosition' => 'bottom',
-        'disableTrackingSystem' => false
+        )
     );
 
     /**
@@ -352,8 +250,6 @@ class erpDefaults {
         'categories' => array('type' => self::arrayFormal),
         'tags' => array('type' => self::arrayFormal),
         'postTypes' => array('type' => self::arrayFormal),
-        'relPosition' => array('type' => self::stringFormal),
-        'disableTrackingSystem' => array('type' => self::boolFormal)
     );
 
     /**

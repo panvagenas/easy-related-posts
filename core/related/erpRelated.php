@@ -158,9 +158,6 @@ class erpProRelated {
             $this->relData = new erpRelData($pid, erpDefaults::$criticalOpts);
         }
         $ratingSystem = erpRatingSystem::get_instance($this->relData);
-
-        // Check if a query limit is set.
-        $qLimit = (isset($queryLimit) && is_numeric($queryLimit)) ? $queryLimit : $this->queryLimit;
         
         $qForm->setMainArgs($pid);
         
@@ -179,7 +176,7 @@ class erpProRelated {
             $wpq = $this
                     ->relData
                     ->setQueryLimit($queryLimit, 0)
-                    ->setWP_Query($qForm->getArgsArray(), $qLimit, 0)
+                    ->setWP_Query($qForm->getArgsArray(), $this->queryLimit, 0)
                     ->getResult();
             $postsArray = $wpq->posts;
             if (!empty($postsArray)) {
@@ -190,7 +187,6 @@ class erpProRelated {
                     $relTable [$value->ID] ['score1_tags'] = $ratingSystem->rateBasedOnTags($value->ID, $pid);
                     $relTable [$value->ID] ['post_date1'] = get_the_time('Y-m-d', $pid);
                     $relTable [$value->ID] ['post_date2'] = get_the_time('Y-m-d', $value->ID);
-
                     $relTable [$value->ID] ['pid1'] = $pid;
                     $relTable [$value->ID] ['pid2'] = $value->ID;
                 }
@@ -207,7 +203,7 @@ class erpProRelated {
             $wpq = $this
                     ->relData
                     ->setQueryLimit($queryLimit, 0)
-                    ->setWP_Query($qForm->getArgsArray(), $qLimit, 0)
+                    ->setWP_Query($qForm->getArgsArray(), $this->queryLimit, 0)
                     ->getResult();
             $postsArray = $wpq->posts;
             if (!empty($postsArray)) {
@@ -230,52 +226,6 @@ class erpProRelated {
 
         wp_reset_postdata();
         return $relTable;
-    }
-
-    /**
-     * Returns the best rated posts for all options defined 
-     * in erpDefaults::$fetchByOptionsWeights, 
-     * erpDefaults::$sortRelatedByOption
-     *
-     * @param int $pid
-     * @param int $relTable
-     * @return array Array  with post ids of the best
-     * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
-     */
-    private function chooseTheBest($pid, $relTable) {
-        /**
-         * CHECK How we should set the best count?
-         * Maybe search for the biggest value in all
-         * options...
-         */
-        $bestCount = 15;
-
-        $relData = new erpRelData($pid, erpDefaults::$criticalOpts, $relTable);
-
-        $ratingSystem = erpRatingSystem::get_instance($relData);
-
-        $ratingsFlatenedPool = array();
-
-        /**
-         * Get the best for all sorting options
-         */
-        foreach (erpDefaults::$fetchByOptionsWeights as $option => $weights) {
-            $ratingSystem->setWeights($weights);
-            $ratingSystem->formRatingsArrays();
-            foreach (erpDefaults::$sortRelatedByOption as $key => $value) {
-                $ratingSystem->sortRatingsArrays($value);
-                foreach (array_keys($ratingSystem->getSlicedRatingsArrayFlatLoose($bestCount)) as $k => $v) {
-                    if (!in_array($v, $ratingsFlatenedPool)) {
-                        array_push($ratingsFlatenedPool, $v);
-                    }
-                }
-            }
-        }
-        /**
-         * return the result
-         */
-        return $ratingsFlatenedPool;
     }
 
     /**

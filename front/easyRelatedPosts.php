@@ -157,7 +157,7 @@ class easyRelatedPosts {
             }
             $relContent = $template->display($result, $this->mainOpts, $ratings, false);
 
-            return $this->mainOpts->getPosition() == 'top' ?  $relContent . $content : $content.$relContent;
+            return $content.$relContent;
         }
         return $content;
     }
@@ -372,10 +372,9 @@ class easyRelatedPosts {
     private static function single_activate() {
         erpPaths::requireOnce(erpPaths::$erpActivator);
 
-        $compareVersions = erpDefaults::compareVersion(get_option(ERP__SLUG . '_version'));
+        $compareVersions = erpDefaults::compareVersion(get_option(ERP_SLUG . '_version'));
         if ($compareVersions < 0) {
-            erpActivator::createERPTable();
-            erpActivator::addNonExistingMainOptions(erpDefaults::$comOpts + erpDefaults::$mainOpts, EPR__MAIN_OPTIONS_ARRAY_NAME);
+            erpActivator::addNonExistingMainOptions(erpDefaults::$comOpts + erpDefaults::$mainOpts, EPR_MAIN_OPTIONS_ARRAY_NAME);
             erpActivator::addNonExistingWidgetOptions(erpDefaults::$comOpts + erpDefaults::$widOpts, 'widget_' . erpDefaults::erpWidgetOptionsArrayName);
             erpDefaults::updateVersionNumbers();
         } elseif ($compareVersions === 0) {

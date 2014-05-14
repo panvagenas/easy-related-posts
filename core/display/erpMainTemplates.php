@@ -28,19 +28,6 @@ class erpMainTemplates extends erpTemplates {
 	function __destruct( ) {
 		parent::__destruct();
 	}
-	/**
-	 * (non-PHPdoc)
-	 * @see \display\erpTemplates::display()
-	 * @since 1.0.0
-	 */
-	public function display(WP_Query $wpq, erpOptions $optObj, $ratings = array()) {
-		// Check if we should return empty content
-		if (parent::areOthersSuppressed() === true) {
-			return '';
-		}
-		// Return content
-		return parent::display($wpq, $optObj, $ratings);
-	}
 	
 	public function deleteTemplateOptions() {
 	    if(!$this->isLoaded() || !isset($this->optionsArrayName)){

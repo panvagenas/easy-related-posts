@@ -68,22 +68,6 @@ if (!function_exists('erpTaxGrouping')) {
                     </tr>
                     <tr>
                         <td>
-                            <label for="disableTrackingSystem">Disable tracking system : </label>
-                        </td>
-                        <td>
-                            <input 
-                                id="disableTrackingSystem" 
-                                class="erp-optchbx" 
-                                type="checkbox" 
-                                <?php checked($erpOptions ['disableTrackingSystem']); ?> 
-                                data-tooltip
-                                title="When tracking system is disabled then plugin won’t store any info in user's browser (cookie)." 
-                                value="true" 
-                                name="disableTrackingSystem">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
                             <label for="title">Title to display : </label>
                         </td>
                         <td>
@@ -199,31 +183,6 @@ if (!function_exists('erpTaxGrouping')) {
                 <table class="lay-opt-table">
                     <tr>
                         <th colspan="2">Content</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            Position: 
-                        </td>
-                        <td>
-                            <select 
-                                class="" 
-                                id="relPosition" 
-                                name="relPosition"
-                                data-tooltip 
-                                title="Choose the position of the related posts in main content area"
-                                >
-                                <option
-                                    value="top"
-                                    <?php selected($erpOptions['relPosition'], 'top'); ?>>
-                                    Top
-                                </option>
-                                <option
-                                    value="bottom"
-                                    <?php selected($erpOptions['relPosition'], 'bottom'); ?>>
-                                    Bottom
-                                </option>
-                            </select>
-                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -635,8 +594,6 @@ if (!function_exists('erpTaxGrouping')) {
         </div>
         <?php echo get_submit_button('Update options', 'primary large', 'Save'); ?>
         <input id="tab-spec" type="hidden" name="tab-spec" value="0">
-        <input id="clearCacheButton" class="button" type="button" value="Clear cache" name="clearCacheButton">
-        <?php //<input id="rebuildCacheButton" class="button" type="button" value="Rebuild cache" name="rebuildCacheButton"> ?>
         <script type="text/javascript">
             var templateRoot = "<?php echo $temp->getTemplatesBasePath(); ?>";
             var options = {};

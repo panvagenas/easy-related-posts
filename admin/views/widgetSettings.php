@@ -76,30 +76,16 @@
 
                     Keep in mind that Number of posts to display and Offset options may affect the sort order.">
                         <?php
-                        $sortOptions = array(
-                            'Date descending',
-                            'Date ascending',
-                            'Rating descending',
-                            'Rating ascending',
-                            'Date descending then Rating descending',
-                            'Date ascending then Rating descending',
-                            'Date descending then Rating ascending',
-                            'Date ascending then Rating ascending',
-                            'Rating descending then Date descending',
-                            'Rating ascending then Date descending',
-                            'Rating descending then Date ascending',
-                            'Rating ascending then Date ascending',
-                        );
-                        foreach ($sortOptions as $key => $value) {
+                        foreach (erpDefaults::$sortKeys as $key => $value) {
                             ?>
-                    <option
-                        value="<?php echo strtolower(str_replace(' ', '_', $value)); ?>"
-                        <?php selected($options['sortRelatedBy'], strtolower(str_replace(' ', '_', $value))); ?>>
-                            <?php echo $value; ?>
-                    </option>
-                    <?php
-                }
-                ?>
+                        <option 
+                            value="<?php echo $key; ?>" 
+                            <?php selected($erpOptions['sortRelatedBy'], $key) ?>>
+                                <?php echo ucwords(str_replace('_', ' ', $key)); ?>
+                        </option>
+                        <?php
+                    }
+                    ?>
             </select>
         </td>
     </tr>

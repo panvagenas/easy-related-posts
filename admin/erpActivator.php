@@ -15,40 +15,6 @@
  * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
  */
  class erpActivator {
- 	/**
- 	 * Creates ERP  related table to DB
- 	 *
- 	 * @param string $tablePrefix The table prefix, default to current blog table prefix.
- 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
- 	 * @since 1.0.0
- 	 */
- 	public static function createERPTable( $tablePrefix = FALSE) {
- 		if (!$tablePrefix) {
- 			global $wpdb;
- 			$tablePrefix  = $wpdb->prefix;
- 		}
- 		
- 		require_once ( ABSPATH . 'wp-admin/includes/upgrade.php' );
-
- 		$sql = "CREATE TABLE IF NOT EXISTS " . $tablePrefix . ERP_RELATIVE_TABLE . " (
-			pid1 bigint(20) NOT NULL,
- 			post_date1 DATE NOT NULL,
-			score1_cats float NOT NULL,
-			score1_tags float NOT NULL,
-			displayed1 int(11) DEFAULT 0 NOT NULL,
-			clicks1 int(11) DEFAULT 0 NOT NULL,
-			pid2 bigint(20) NOT NULL,
- 			post_date2 DATE NOT NULL,
-			score2_cats float NOT NULL,
-			score2_tags float NOT NULL,
-			clicks2 int(11) DEFAULT 0 NOT NULL,
-			displayed2 int(11) DEFAULT 0 NOT NULL,
-			time TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-			UNIQUE KEY id (pid1,pid2),
-			PRIMARY KEY (pid1,pid2) );";
-
- 		dbDelta( $sql );
- 	}
 
 	/**
 	 * Checks the options names from array1 if they are pressent in array2

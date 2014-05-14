@@ -17,25 +17,6 @@
  */
 abstract class erpTemplates {
 	/**
-	 *
-	 * @var bool
-	 */
-	private static $supressOthers = false;
-	/**
-	 * Set suppressOthers field
-	 * @param bool $value Default is true
-	 */
-	public static function suppressOthers($value = true) {
-		self::$supressOthers = $value;
-	}
-	/**
-	 * Returns class field $supressOthers
-	 * @return bool
-	 */
-	public static function areOthersSuppressed() {
-		return self::$supressOthers;
-	}
-	/**
 	 * Absolute path to templates folder
 	 *
 	 * @since 1.0.0
@@ -124,7 +105,7 @@ abstract class erpTemplates {
 	 */
 	function __construct( ) {
 		erpPaths::requireOnce(erpPaths::$erpView);
-		$this->templatesBasePath = EPR__BASE_PATH . 'front/views';
+		$this->templatesBasePath = EPR_BASE_PATH . 'front/views';
 	}
 
 	/**

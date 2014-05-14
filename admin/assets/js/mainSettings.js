@@ -42,63 +42,6 @@
         $('.dsplLayout').trigger('change');
 
         /***********************************************************************
-         * Clear cache
-         **********************************************************************/
-        $('#clearCacheButton')
-                .click(
-                        function() {
-                            var r = confirm("This action will flush all Easy Related Posts plugin cache."
-                                    + "\nAre you sure you want to continue?");
-                            if (r === false) {
-                                return true;
-                            }
-                            $(this).addClass('loadingElement').prop('disabled', true);
-                            var data = {
-                                action: 'erpClearCache'
-                            };
-                            jQuery
-                                    .post(
-                                            ajaxurl,
-                                            data,
-                                            function(response) {
-                                                if (response == true) {
-                                                    alert('Cache cleared.');
-                                                } else {
-                                                    alert('There was an error. Action not completed.');
-                                                }
-                                                $('#clearCacheButton').removeClass('loadingElement').prop('disabled', false);
-                                            }, 'json');
-                        });
-        /***********************************************************************
-         * Rebuild cache
-         **********************************************************************/
-        $('#rebuildCacheButton')
-                .click(
-                        function() {
-                            var r = confirm("This may take a while. Are you sure you want to rebuild cache now?");
-                            if (r === false) {
-                                return true;
-                            }
-                            $(this).addClass('loadingElement').prop('disabled', true);
-                            var data = {
-                                action: 'erpRebuildCache'
-                            };
-                            jQuery
-                                    .post(
-                                            ajaxurl,
-                                            data,
-                                            function(response) {
-                                                if (response == true) {
-                                                    alert('Cache rebuild successfull.');
-                                                } else {
-                                                    alert('There was an error. Action not completed.');
-                                                }
-                                                $('#rebuildCacheButton').removeClass('loadingElement').prop('disabled', false);
-                                            }, 'json');
-                        });
-
-
-        /***********************************************************************
          * Check all checkboxes
          **********************************************************************/
         $('#select-all-custom').click(function() {

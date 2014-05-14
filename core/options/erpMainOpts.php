@@ -69,7 +69,7 @@ class erpMainOpts extends erpOptions {
         update_option($this->optionsArrayName, $this->options);
     }
 
-    /*     * **********************************************************************
+    /************************************************************************
      * Geters for options
      * ********************************************************************** */
 
@@ -87,14 +87,6 @@ class erpMainOpts extends erpOptions {
 
     public function getPostTypes() {
         return $this->getValue('postTypes');
-    }
-
-    public function getPosition() {
-        return $this->getValue('relPosition');
-    }
-
-    public function getDisableTrackingSystem() {
-        return $this->getValue('disableTrackingSystem');
     }
 
 }

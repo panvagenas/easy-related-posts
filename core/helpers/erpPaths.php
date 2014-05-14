@@ -6,7 +6,6 @@
  */
 class erpPaths {
 	// Helpers
-	public static $erpHTMLHelper = 'core/helpers/erpHTMLHelper.php';
 	public static $erpFileHelper = 'core/helpers/erpFileHelper.php';
 	// Display
 	public static $erpPostData = 'core/display/erpPostData.php';
@@ -32,7 +31,6 @@ class erpPaths {
 	public static $erpRatingSystem = 'core/related/erpRatingSystem.php';
 	// Front
 	public static $easyRelatedPosts = 'front/easyRelatedPosts.php';
-	public static $erpTracker = 'front/erpTracker.php';
 
 
 
