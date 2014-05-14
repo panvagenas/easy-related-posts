@@ -11,32 +11,38 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Displays related posts in the end of each post or/and in sidebar through a widget
 
 == Description ==
-This plugin will search and display posts relative to the posts you are curently reading.
-Through a realy simple configuration panel, you can have absolute control over the displayed content.
-Plugin also have a built in widget in case you want to display relative posts in sidebar.
+Easy Related Posts is a WordPress plugin that displays posts related to the one a user is reading.
+Easy Related Posts can display related posts in main content area or in sidebars through a widget.
+Equipped with 3 eye catching fully responsive themes, supports basic modifications on them from admin panel. It also has a theme system that let you modify or write your own themes to match you personal needs.
+Through an intuitive algorithm it creates “relations” between posts and rates them based on posts categories and/or tags in a way so these ratings are as much as accurate they can be.
+Last but not least in any way, Easy Related Posts uses the best coding standards and practices with mind in security. 
+
+This plugin has also a PRO version which you can purchase from [here](http://erp.xdark.eu/downloads/easy-related-posts-pro/).
+To see a full list of features and compare them to the PRO version please visit [this page](http://erp.xdark.eu/version-comparison/).
+**If you like this plugin please support the developers.** You can do so using the links inside  plugin settings page.
 
 
 Features:
 
+* Easy to setup
 * Choose displayed content: excerpt length, thumbnail resizing and many more.
 * Choose if related posts should be fetched by categories or by tags
 * Exclude posts that have certain categories and/or tags from related posts
-* Prevent related posts from spaning in certain categories or tags
-* Display related posts as an eyecatching pop up block
+* Prevent related posts from spawning in certain categories or tags
+* Display related posts as an eye-catching pop up block
 * Display related posts through a widget or/and in main content area
 * Options optimized before activation for most of the cases
-* Realy fast, not a single database entry (I realy love clean db's)
+* Really fast, not a single database entry (I really love clean DB's)
 * Responsive design
 
-
-#### Kudos
-To Tobias Ratschiller from [top.me](http://www.top.me/) for supporting V1.5.
+*Please report any bugs or features you'd like to see in feature releases [here](http://erp.xdark.eu/bugs/set_project.php?project_id=3)*
 
 == Installation ==
 
-1. Search for "Easy Related Posts" through add new plugin menu or upload `easy-related-posts.zip` to the `/wp-content/plugins/` directory
+1. Search for "Easy Related Posts" through add new plugin menu or upload `easy-related-posts.zip` to the `/wp-content/plugins/` directory and uncompress it
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Done!
+More information [here](http://erp.xdark.eu/documentation/installation/)
 
 == Frequently Asked Questions ==
 
@@ -71,7 +77,7 @@ Not at all! But you are free to send any donations to my PayPal account yotisvag
 = 1.5 =
 
 * You can now exclude post types from ERP.
-* Added minified js and css files for faster loading
+* Added minified js and CSS files for faster loading
 
 = 1.4.2.1 =
 
@@ -105,3 +111,10 @@ Not at all! But you are free to send any donations to my PayPal account yotisvag
 = 1.0 =
 
 Initial release
+
+
+== Upgrade Notice ==
+
+= 2.0.0 =
+This is a major release. You may have to review your settings after this
+update, specially if you are using the widget component.
