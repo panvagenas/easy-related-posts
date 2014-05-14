@@ -20,7 +20,7 @@ class erpPostData {
     /**
      * WP_Post var
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var WP_Post
      */
     private $post;
@@ -28,7 +28,7 @@ class erpPostData {
     /**
      * Post id
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var int
      */
     private $ID;
@@ -36,7 +36,7 @@ class erpPostData {
     /**
      * Post title
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var string
      */
     private $title;
@@ -44,7 +44,7 @@ class erpPostData {
     /**
      * Post excerpt
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var string
      */
     private $excerpt;
@@ -52,7 +52,7 @@ class erpPostData {
     /**
      * Rating
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var float
      */
     private $rating;
@@ -60,7 +60,7 @@ class erpPostData {
     /**
      * Post thumbnail url
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var string
      */
     private $thumbnail;
@@ -68,7 +68,7 @@ class erpPostData {
     /**
      * Post permalink
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var string
      */
     private $permalink;
@@ -76,7 +76,7 @@ class erpPostData {
     /**
      * Post date
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var string
      */
     private $postDate;
@@ -84,7 +84,7 @@ class erpPostData {
     /**
      * Compontent positions
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var array
      */
     private $positions = array();
@@ -102,7 +102,7 @@ class erpPostData {
      * @param float $rating
      * @param int $hostPost
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function __construct(WP_Post $post, erpOptions $options, $rating, $hostPost) {
         $this->options = $options;
@@ -120,7 +120,7 @@ class erpPostData {
      *
      * @return string
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function getTitle() {
         return $this->title;
@@ -132,7 +132,7 @@ class erpPostData {
      * @param string $timeFormat
      * @return string Formated time
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function getTheTime($timeFormat = 'Y-m-d H:i:s') {
         return date($timeFormat, strtotime($this->postDate));
@@ -144,7 +144,7 @@ class erpPostData {
      * @param string $postFormat
      * @return \display\erpPostData
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     private function setPostDate($postFormat = 'Y-m-d H:i:s') {
         $this->postDate = get_the_time($postFormat, $this->ID);
@@ -156,7 +156,7 @@ class erpPostData {
      *
      * @return \display\erpPostData
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     private function setTitle() {
         $size = $this->options->getPostTitleFontSize();
@@ -176,7 +176,7 @@ class erpPostData {
      *
      * @return string
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function getExcerpt() {
         if (!isset($this->excerpt)) {
@@ -193,7 +193,7 @@ class erpPostData {
      * @param string $moreText
      *        	More text to be displayed after post excerpt
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function setExcerpt($excLength, $moreText) {
         if (!empty($this->post->post_excerpt)) {
@@ -231,7 +231,7 @@ class erpPostData {
      *
      * @return float
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function getRating() {
         return $this->rating;
@@ -243,7 +243,7 @@ class erpPostData {
      * @param float $rating
      * @return \display\erpPostData
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     private function setRating($rating) {
         $this->rating = $rating;
@@ -261,7 +261,7 @@ class erpPostData {
      *        	Crop thumbnail
      * @return string URL path to generated thumb
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function getThumbnail($height, $width, $crop) {
         if (!isset($this->thumbnail)) {
@@ -286,7 +286,7 @@ class erpPostData {
      * @param bool $crop
      * @return string
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     private function resize($url, $width = NULL, $height = NULL, $crop = true) {
         erpPaths::requireOnce(erpPaths::$bfiResizer);
@@ -298,7 +298,7 @@ class erpPostData {
      *
      * @return boolean
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function hasThumbnail() {
         return has_post_thumbnail($this->ID);
@@ -313,7 +313,7 @@ class erpPostData {
      *        	Optional, default is 'single-post-thumbnail'
      * @return erpPostData
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function setThumbnail($defaultThumbnail, $size = 'single-post-thumbnail') {
         $thumbnail = wp_get_attachment_image_src(get_post_thumbnail_id($this->ID), $size);
@@ -326,7 +326,7 @@ class erpPostData {
      *
      * @return string Permalink URL
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function getPermalink() {
         return $this->permalink;
@@ -340,7 +340,7 @@ class erpPostData {
      *        	Host post id
      * @return \display\erpPostData
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     private function setPermalink() {
         $this->permalink = get_permalink($this->ID);
@@ -353,7 +353,7 @@ class erpPostData {
      * @param array $options
      *        	Assoc array
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     private function setPositions($options) {
         if (!$this->options->getContentPositioning() || !is_array($this->options->getContentPositioning())) {
@@ -379,7 +379,7 @@ class erpPostData {
      * @param int $position
      * @return string
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function getContentAtPosition($position) {
         return $position [$position - 1];

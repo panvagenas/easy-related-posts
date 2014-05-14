@@ -20,7 +20,7 @@ class erpRelated {
     /**
      * Relative data obj
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var erpRelData
      */
     private $relData;
@@ -28,7 +28,7 @@ class erpRelated {
     /**
      * Pool of reldata objects
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var array
      */
     private $relDataPool = array();
@@ -37,7 +37,7 @@ class erpRelated {
      * Options array.
      * All critical must be set
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var erpOptions
      */
     private $options = array();
@@ -45,7 +45,7 @@ class erpRelated {
     /**
      * Instance of this class.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var erpRelated
      */
     protected static $instance = null;
@@ -59,7 +59,7 @@ class erpRelated {
     /**
      * Return an instance of this class.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @return erpRelated A single instance of this class.
      */
     public static function get_instance(&$options) {
@@ -75,7 +75,7 @@ class erpRelated {
      *
      * @param array $options
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     protected function __construct($options) {
         if (!class_exists('erpQueryFormater')) {
@@ -238,7 +238,7 @@ class erpRelated {
      *
      * @return array Assoc array (categories,tags,clicks)
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     private function calcWeights() {
         return isset(erpDefaults::$fetchByOptionsWeights[$this->options->getFetchBy()]) ? erpDefaults::$fetchByOptionsWeights[$this->options->getFetchBy()] : erpDefaults::$fetchByOptionsWeights['categories'];

@@ -37,7 +37,7 @@ class erpWidget extends WP_Widget {
 	 *        	Widget arguments.
 	 * @param array $instance
 	 *        	Saved values from database.
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
 	 */
 	public function widget( $args, $instance ) {
@@ -133,7 +133,7 @@ class erpWidget extends WP_Widget {
 	 * @param array $old_instance
 	 *        	Previously saved values from database.
 	 * @return array Updated safe values to be saved.
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
 	 */
 	public function update( $new_instance, $old_instance ) {
@@ -167,7 +167,7 @@ class erpWidget extends WP_Widget {
 	 * @param array $args
 	 * @param array $instance
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
 	 */
 	private function displayEmptyWidget( $args, $instance ) {

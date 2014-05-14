@@ -27,7 +27,7 @@ class erpView {
 	 * @param bool $echo If set to true echoes the out. Default is to return it
 	 * @return string Rendered content
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public static function render( $filePath, $viewData = null, $echo = FALSE ) {
 		( $viewData ) ? extract( $viewData ) : null;

@@ -23,7 +23,7 @@
 	 * @param array $array2 Associative options array (optionName => optionValue)
 	 * @return array An array containing the options names that are present only in array1
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
  	public static function optionArraysDiff(Array $array1, Array $array2) {
  		$keys1 = array_keys($array1);
@@ -39,7 +39,7 @@
 	 * @param string $optsName Options name, default to erp main options array
 	 * @return boolean True if operation was succefull, false otherwise
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
  	public static function addNonExistingMainOptions(Array $newOpts, $optsName, Array $oldOpts = NULL) {
  		if (!is_string($optsName)) {
@@ -59,7 +59,7 @@
  	 * @param string $optsName Options name, default to erp widget options array
  	 * @return boolean False if operation was successfull, false otherwise
  	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
- 	 * @since 1.0.0
+ 	 * @since 2.0.0
  	 */
  	public static function addNonExistingWidgetOptions(Array $newOpts, $optsName, Array $oldOpts = NULL ) {
  		if (!is_string($optsName)) {

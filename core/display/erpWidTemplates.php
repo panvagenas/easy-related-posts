@@ -8,7 +8,7 @@ class erpWidTemplates extends erpTemplates {
 	/**
 	 * Widget number
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var int
 	 */
 	private $widIDNumber;
@@ -27,7 +27,7 @@ class erpWidTemplates extends erpTemplates {
 	/**
 	 * Render setting for given instance
 	 * @see erpTemplates::renderSettings()
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function renderSettings($widInstance = false) {
 		$widIns = array('widgetInstance'=>$widInstance);
@@ -36,7 +36,7 @@ class erpWidTemplates extends erpTemplates {
 	/**
 	 * Render contend for wid insance
 	 * @see \display\erpTemplates::render()
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function render($postData, $echo = FALSE){
 		$postData['widIDNumber'] = $this->widIDNumber;
@@ -45,7 +45,7 @@ class erpWidTemplates extends erpTemplates {
 	/**
 	 * Save options for given instance
 	 * @see \display\erpTemplates::saveTemplateOptions()
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function saveTemplateOptions($newOptions) {
 		if (empty($newOptions) ) {

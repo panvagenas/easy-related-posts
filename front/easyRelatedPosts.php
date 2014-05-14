@@ -20,7 +20,7 @@ class easyRelatedPosts {
     /**
      * Plugin version, used for cache-busting of style and script file references.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var string
      */
     const VERSION = '1.6.0';
@@ -31,7 +31,7 @@ class easyRelatedPosts {
      * of text. Its value should match the Text Domain file header in the main
      * plugin file.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var string
      */
 
@@ -40,7 +40,7 @@ class easyRelatedPosts {
     /**
      * Instance of this class.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var object
      */
     protected static $instance = null;
@@ -48,7 +48,7 @@ class easyRelatedPosts {
     /**
      * Main options class.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var erpMainOpts
      */
     protected $widOpts;
@@ -56,7 +56,7 @@ class easyRelatedPosts {
     /**
      * Widget options class.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var erpMainOpts
      */
     protected $mainOpts;
@@ -66,7 +66,7 @@ class easyRelatedPosts {
      *
      * @deprecated
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var erpDefaults
      */
     protected $defOpts;
@@ -74,7 +74,7 @@ class easyRelatedPosts {
     /**
      * If rating system is in use then this should be true
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var boolean
      */
     // protected $ratingSystem;
@@ -83,7 +83,7 @@ class easyRelatedPosts {
      * Initialize the plugin by setting localization and loading public scripts
      * and styles.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     private function __construct() {
         // Dependencies
@@ -131,7 +131,7 @@ class easyRelatedPosts {
      * @param string $content
      * @return string
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function contentFilter($content) {
         global $post;
@@ -167,7 +167,7 @@ class easyRelatedPosts {
      * Returns true iff post is of excluded types defined in main options
      *
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function isInExcludedPostTypes($post) {
         $postType = get_post_type($post);
@@ -183,7 +183,7 @@ class easyRelatedPosts {
      * or all post tags are in excluded ones
      *
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function isInExcludedTaxonomies($post) {
         if (is_a($post, 'WP_Post')) {
@@ -226,7 +226,7 @@ class easyRelatedPosts {
      * Checks if it's time to display related
      *
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function isShowTime($post) {
         if (empty($post) || !is_single($post->ID) || !is_main_query() || !in_the_loop()) {
@@ -238,7 +238,7 @@ class easyRelatedPosts {
     /**
      * Return the plugin slug.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @return Plugin slug variable.
      */
     public function get_plugin_slug() {
@@ -248,7 +248,7 @@ class easyRelatedPosts {
     /**
      * Return an instance of this class.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @return easyRelatedPosts A single instance of this class.
      */
     public static function get_instance() {
@@ -264,7 +264,7 @@ class easyRelatedPosts {
     /**
      * Fired when the plugin is activated.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @param boolean $network_wide
      *        	True if WPMU superadmin uses
      *        	"Network Activate" action, false if
@@ -297,7 +297,7 @@ class easyRelatedPosts {
     /**
      * Fired when the plugin is deactivated.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @param boolean $network_wide
      *        	True if WPMU superadmin uses
      *        	"Network Deactivate" action, false if
@@ -330,7 +330,7 @@ class easyRelatedPosts {
     /**
      * Fired when a new site is activated with a WPMU environment.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @param int $blog_id
      *        	ID of the new blog.
      */
@@ -350,7 +350,7 @@ class easyRelatedPosts {
      * - not spam
      * - not deleted
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @return array false blog ids, false if no matches.
      */
     private static function get_blog_ids() {
@@ -367,7 +367,7 @@ class easyRelatedPosts {
     /**
      * Fired for each blog when the plugin is activated.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     private static function single_activate() {
         erpPaths::requireOnce(erpPaths::$erpActivator);
@@ -436,7 +436,7 @@ class easyRelatedPosts {
     /**
      * Fired for each blog when the plugin is deactivated.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     private static function single_deactivate() {
     }
@@ -444,7 +444,7 @@ class easyRelatedPosts {
     /**
      * Load the plugin text domain for translation.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function load_plugin_textdomain() {
         $domain = $this->plugin_slug;
@@ -457,7 +457,7 @@ class easyRelatedPosts {
     /**
      * Register and enqueue public-facing style sheet.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function enqueue_styles() {
         wp_enqueue_style($this->plugin_slug . '-plugin-styles', plugins_url('assets/css/public.min.css', __FILE__), array(), self::VERSION);
@@ -469,7 +469,7 @@ class easyRelatedPosts {
     /**
      * Register and enqueues public-facing JavaScript files.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function enqueue_scripts() {
         wp_enqueue_script($this->plugin_slug . '-plugin-script', plugins_url('assets/js/public.min.js', __FILE__), array('jquery'), self::VERSION);

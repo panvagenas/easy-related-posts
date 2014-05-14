@@ -24,7 +24,7 @@ class easyRelatedPostsAdmin {
     /**
      * Instance of this class.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var easyRelatedPostsAdmin
      */
     protected static $instance = null;
@@ -32,7 +32,7 @@ class easyRelatedPostsAdmin {
     /**
      * Slug of the plugin screen.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var string
      */
     protected $plugin_screen_hook_suffix = null;
@@ -47,7 +47,7 @@ class easyRelatedPostsAdmin {
      * Initialize the plugin by loading admin scripts & styles and adding a
      * settings page and menu.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     private function __construct() {
 
@@ -123,7 +123,7 @@ class easyRelatedPostsAdmin {
     /**
      * Return an instance of this class.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @return object A single instance of this class.
      */
     public static function get_instance() {
@@ -146,7 +146,7 @@ class easyRelatedPostsAdmin {
     /**
      * Register and enqueue admin-specific style sheet.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @return null Return early if no settings page is registered.
      */
     public function enqueue_admin_styles() {
@@ -164,7 +164,7 @@ class easyRelatedPostsAdmin {
     /**
      * Register and enqueue admin-specific JavaScript.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @return null Return early if no settings page is registered.
      */
     public function enqueue_admin_scripts() {
@@ -205,7 +205,7 @@ class easyRelatedPostsAdmin {
     /**
      * Register the administration menu for this plugin into the WordPress Dashboard menu.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function add_plugin_admin_menu() {
 	$this->plugin_screen_hook_suffix = add_options_page(__('Easy Related Posts Settings', $this->plugin_slug), __('Easy Related Posts Settings', $this->plugin_slug), 'manage_options', $this->plugin_slug . '_settings', array(
@@ -217,7 +217,7 @@ class easyRelatedPostsAdmin {
     /**
      * Render the settings page for this plugin.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function display_plugin_admin_page() {
 	if (!class_exists('erpView')) {
@@ -236,7 +236,7 @@ class easyRelatedPostsAdmin {
     /**
      * Add settings action link to the plugins page.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function add_action_links($links) {
 	return array_merge(array(
@@ -249,7 +249,7 @@ class easyRelatedPostsAdmin {
      * This is called through a hook
      *
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function saveOptions() {
 	if (!current_user_can('manage_options')) {
@@ -283,7 +283,7 @@ class easyRelatedPostsAdmin {
      * This is called through ajax hook and returns the plugin options as defined in template settings file
      *
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function loadTemplateOptions() {
 	if (!isset($_POST ['template']) || !isset($_POST ['templateRoot'])) {

@@ -18,49 +18,49 @@ class erpRatingSystem {
 	/**
 	 * Categories weight
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var float
 	 */
 	private $catWeight;
 	/**
 	 * Tags weight
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var float
 	 */
 	private $tagWeight;
 	/**
 	 * Clicks per displayed weight
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var float
 	 */
 	private $clickWeight;
 	/**
 	 * Ratings array ()
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var array
 	 */
 	private $ratingsArray;
 	/**
 	 * Flatened ratings array (pid=>rating)
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var array
 	 */
 	private $ratingsArrayFlat;
 	/**
 	 * Rel data obj
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var erpRelData
 	 */
 	private $relData;
 	/**
 	 * Post dates
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var array
 	 */
 	private $post_date;
@@ -68,7 +68,7 @@ class erpRatingSystem {
 	/**
 	 * Instance of this class.
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var erpRatingSystem
 	 */
 	protected static $instance = null;
@@ -77,7 +77,7 @@ class erpRatingSystem {
 	 * Initialize the plugin by setting localization and loading public scripts
 	 * and styles.
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	protected function __construct( &$relData) {
 		$this->relData = $relData;
@@ -86,7 +86,7 @@ class erpRatingSystem {
 	/**
 	 * Return an instance of this class.
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @return erpRatingSystem
 	 */
 	public static function get_instance( erpRelData $relData) {
@@ -127,7 +127,7 @@ class erpRatingSystem {
 	 * @param int $pid2 Guest post id
 	 * @return number
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function rateBasedOnCats($pid1, $pid2) {
 		// get posts categories
@@ -159,7 +159,7 @@ class erpRatingSystem {
 	 * @param int $pid2 Guest post id
 	 * @return number
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function rateBasedOnTags( $pid1, $pid2 ) {
 		$hostTags = get_the_tags( $pid1 );
@@ -217,7 +217,7 @@ class erpRatingSystem {
 	 *
 	 * @return erpRatingSystem
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function formRatingsArrays() {
 		if (!empty($this->relData->relTable)) {
@@ -257,7 +257,7 @@ class erpRatingSystem {
 	 *        Default (ratings => (order => desc, rank => 1), date => (order => desc, rank => 2))
 	 * @return boolean True on success, false otherwise
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 *
 	 */
 	public function sortRatingsArrays( $order = array() ) {
@@ -300,7 +300,7 @@ class erpRatingSystem {
 	 * @param array $postsToExlude
 	 * @return array Sliced array
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function getSlicedRatingsArrayFlat($offset, $length, Array $postsToExlude = array()){
 		$ratings = $this->ratingsArrayFlat;

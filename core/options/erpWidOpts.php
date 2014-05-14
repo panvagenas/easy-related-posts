@@ -33,7 +33,7 @@ class erpWidOpts extends erpOptions {
 	 * @param array $options New options
 	 * @return array Assoc array containg only the validated options
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function validateWidgetOptions( Array $options ) {
 		return $this->switchValidationTypes($options, erpDefaults::$widOptsValidations);

@@ -23,7 +23,7 @@ abstract class erpOptions {
     /**
      * @deprecated
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var bool
      */
     protected $ratingSytem = NULL;
@@ -42,7 +42,7 @@ abstract class erpOptions {
      * Get option array
      *
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      * @return array Options array
      */
     public function getOptions() {
@@ -57,7 +57,7 @@ abstract class erpOptions {
      *        	New options as associative array
      * @return erpOptions
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function setOptions($options) {
         $this->options = array_merge(isset($this->options) ? (array) $this->options : array(), $options);
@@ -76,7 +76,7 @@ abstract class erpOptions {
      * @param string $optionName
      * @return null string NULL if option not found, option value otherwise (uses default value if avail)
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function getValue($optionName) {
         if ($this->isOptionSet($optionName)) {
@@ -92,7 +92,7 @@ abstract class erpOptions {
      * Just unsets option value if present in objects instance options array
      *
      * @return boolean Deleted option value if exists, NULL otherwise
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function deleteOption($optionName) {
         if (array_key_exists($optionName, $this->options)) {
@@ -106,10 +106,10 @@ abstract class erpOptions {
     /**
      * Returns rating system field value.
      * Instance scope
-     * @deprecated since version 1.0.0 This no longer should be considered since all posts are rated
+     * @deprecated since version 2.0.0 This no longer should be considered since all posts are rated
      * @return boolean
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function isRatingSystemOn() {
         return $this->ratingSytem === NULL ? FALSE : $this->ratingSytem;
@@ -121,7 +121,7 @@ abstract class erpOptions {
      * @param string $optName
      * @return boolean True if option is set, false otherwise
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function isOptionSet($optName) {
         return isset($this->options [$optName]);
@@ -174,7 +174,7 @@ abstract class erpOptions {
      * @param array $options New options
      * @return array Assoc array containg only the validated options
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function validateCommonOptions(Array $options) {
         return $this->switchValidationTypes($options, erpDefaults::$comOptsValidations);
@@ -187,7 +187,7 @@ abstract class erpOptions {
      * @param array $types
      * @return array
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     protected function switchValidationTypes($options, $types) {
         $validated = array();
@@ -268,7 +268,7 @@ abstract class erpOptions {
      * If we have to display the post thumb
      * @return boolean
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function haveToShowThumbnail() {
         return isset($this->options['content']) && in_array('thumbnail', $this->options['content']);
@@ -278,7 +278,7 @@ abstract class erpOptions {
      * If we have to display the post excerpt
      * @return boolean
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function haveToShowExcerpt() {
         return $this->isOptionSet('content') && in_array('excerpt', $this->options['content']);
@@ -289,7 +289,7 @@ abstract class erpOptions {
      *
      * @return string|null
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function getTitle() {
         return $this->getValue('title');
@@ -300,7 +300,7 @@ abstract class erpOptions {
      *
      * @return int|null
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function getNumberOfPostsToDiplay() {
         return $this->getValue('numberOfPostsToDisplay');
@@ -311,7 +311,7 @@ abstract class erpOptions {
      *
      * @return string|NULL
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function getFetchBy() {
         return $this->getValue('fetchBy');
@@ -322,7 +322,7 @@ abstract class erpOptions {
      *
      * @return int|NULL
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function getOffset() {
         return $this->getValue('offset');
@@ -333,7 +333,7 @@ abstract class erpOptions {
      *
      * @return array|NULL
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function getContentPositioning() {
         return $this->getValue('content');
@@ -343,7 +343,7 @@ abstract class erpOptions {
      * Get default thumb url
      * @return string|NULL
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function getDefaultThumbnail() {
         if ($this instanceof erpMainOpts) {
@@ -360,7 +360,7 @@ abstract class erpOptions {
      * Get rel post title font size
      * @return int|NULL
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function getPostTitleFontSize() {
         return $this->getValue('postTitleFontSize');
@@ -370,7 +370,7 @@ abstract class erpOptions {
      * Get rel post exc font size
      * @return int|NULL
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function getExcFontSize() {
         return $this->getValue('excFontSize');
@@ -380,7 +380,7 @@ abstract class erpOptions {
      * Get rel post exc length
      * @return int|NULL
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function getExcLength() {
         return $this->getValue('excLength');
@@ -391,7 +391,7 @@ abstract class erpOptions {
      *
      * @return string|NULL
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function getMoreTxt() {
         return $this->getValue('moreTxt');
@@ -402,7 +402,7 @@ abstract class erpOptions {
      *
      * @return int|NULL
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function getThumbnailHeight() {
         return $this->getValue('thumbnailHeight');
@@ -413,7 +413,7 @@ abstract class erpOptions {
      *
      * @return int|NULL
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function getThumbnailWidth() {
         return $this->getValue('thumbnailWidth');
@@ -423,7 +423,7 @@ abstract class erpOptions {
      * Get crop thumb value
      * @return bool|NULL
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function getCropThumbnail() {
         return $this->getValue('cropThumbnail');
@@ -433,7 +433,7 @@ abstract class erpOptions {
      * Get display layout value
      * @return string|NULL
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public function getDsplLayout() {
         return $this->getValue('dsplLayout');

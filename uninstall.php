@@ -20,7 +20,7 @@ class erpUninstall {
     /**
      * Fired when the plugin is deactivated.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public static function uninstall() {
 	if (function_exists('is_multisite') && is_multisite()) {
@@ -45,7 +45,7 @@ class erpUninstall {
      * - not spam
      * - not deleted
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @return array false blog ids, false if no matches.
      */
     private static function get_blog_ids() {
@@ -62,13 +62,9 @@ class erpUninstall {
     /**
      * Fired for each blog when the plugin is deactivated.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      */
     private static function single_uninstall() {
-	/**
-	 * Delete rel table
-	 */
-	self::delRelTable();
 	
 	/**
 	 * Del main options
@@ -89,13 +85,6 @@ class erpUninstall {
          * Del version numbers
          */
         self::deleteVersionNumbers();
-    }
-    
-    private static function delRelTable() {
-	global $wpdb;
-	$relTableName  = $wpdb->prefix . ERP_RELATIVE_TABLE;
-	$sql = "DROP TABLE IF EXISTS " . $relTableName . ";";
-	$wpdb->query($sql);
     }
     
     private static function delMainOptions() {

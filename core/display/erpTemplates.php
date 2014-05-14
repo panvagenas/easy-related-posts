@@ -19,84 +19,84 @@ abstract class erpTemplates {
 	/**
 	 * Absolute path to templates folder
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var string
 	 */
 	protected $templatesBasePath;
 	/**
 	 * Name readen from xml
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var string
 	 */
 	protected $name;
 	/**
 	 * Description as readen from xml
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var string
 	 */
 	protected $description;
 	/**
 	 * Absolute path of settings options file
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var string
 	 */
 	protected $settingsFilePath;
 	/**
 	 * Absolute path to the file that represents the public face of the template
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var string
 	 */
 	protected $viewFilePath;
 	/**
 	 * Template options array as readen from xml file
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var array
 	 */
 	protected $options = array();
 	/**
 	 * Array name of the template options that will be used to store them in DB
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var string
 	 */
 	protected $optionsArrayName;
 	/**
 	 * Absolute path to the css file as readen from xml
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var string
 	 */
 	protected $cssFilePath;
 	/**
 	 * Absolute path to the js file as readen from xml
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var string
 	 */
 	protected $jsFilePath;
 	/**
 	 * Assoc array containing the validation function and path as readen from xml
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var array
 	 */
 	protected $optionSaveValidation;
 	/**
 	 * Absolute path to the tepmplate root folder
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var string
 	 */
 	protected $basePath;
 	/**
 	 * A unique number defined per instance
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var string
 	 */
 	protected $uniqueInstanceID = null;
@@ -121,7 +121,7 @@ abstract class erpTemplates {
 	 * @param string $templateName
 	 * @return string absolute path to the template folder
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function getTemplatePath($templateName){
 		// Get dirs in templates root folder
@@ -166,7 +166,7 @@ abstract class erpTemplates {
 	 * Returns an array containg the name of folders in templates base path
 	 * @return array
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function getTemplateNames() {
 		// Load file helper
@@ -179,7 +179,7 @@ abstract class erpTemplates {
 	 * @param string $templateName
 	 * @return erpTemplates|null
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function load($templateName){
 		// define template base path
@@ -291,7 +291,7 @@ abstract class erpTemplates {
 	 * @param string $templateXMLPath
 	 * @return SimpleXMLElement|NULL
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	protected function getSimpleXMLInstc($templateXMLPath) {
 		// Read xml file
@@ -310,7 +310,7 @@ abstract class erpTemplates {
 	 * @param SimpleXMLElement $xml
 	 * @return array
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	protected function xmlToArray($xml){
             // JSON_NUMERIC_CHECK not avail before php V 5.3.3
@@ -326,7 +326,7 @@ abstract class erpTemplates {
 	 * Enques all css files as specified in xml file
 	 * @return \display\erpTemplates
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	protected function enqueCSS(){
 		if (isset($this->cssFilePath) && is_array($this->cssFilePath) && is_admin_bar_showing() && !is_admin() || !is_admin()) {
@@ -346,7 +346,7 @@ abstract class erpTemplates {
 	 * @param string $templateFileRelativePath Relative path from the template base path
 	 * @return string Url
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	protected function getUrl($templateFileRelativePath){
 		// Convert to absolute path
@@ -366,7 +366,7 @@ abstract class erpTemplates {
 	 * Enques all js files as specified in xml file
 	 * @return \display\erpTemplates
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	protected function enqueJS(){
 		if (isset($this->jsFilePath) && is_array($this->jsFilePath) && is_admin_bar_showing() && !is_admin() || !is_admin()) {
@@ -394,7 +394,7 @@ abstract class erpTemplates {
 	 * @param bool $echo Whether to echo result or not
 	 * @return string|NULL HTML string or null
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function renderSettings($echo = false) {
 		if (isset($this->settingsFilePath)) {
@@ -424,7 +424,7 @@ abstract class erpTemplates {
 	 * @param array $additionalOptions
 	 * @param array $ratings
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function display(WP_Query $wpq, erpOptions $optionsObj, $ratings = array()){
 		if (!$this->isLoaded()) {
@@ -472,7 +472,7 @@ abstract class erpTemplates {
 	 * @param array $newOptions Assoc array
 	 * @return boolean
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function saveTemplateOptions($newOptions) {
 		if (empty($newOptions)) {
@@ -495,7 +495,7 @@ abstract class erpTemplates {
 	 * @param array $options Assoc array of new opotions
 	 * @return \display\erpTemplates
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function setOptions($options){
 		$this->options = array_merge((array)$this->options, (array)$options);
@@ -505,7 +505,7 @@ abstract class erpTemplates {
 	 * Returns template name
 	 * @return string
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function getName() {
 		return $this->name;
@@ -514,7 +514,7 @@ abstract class erpTemplates {
 	 * Returns template description
 	 * @return string
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function getDescription() {
 		return $this->description;
@@ -523,7 +523,7 @@ abstract class erpTemplates {
 	 * Returns template settigs file path
 	 * @return string
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function getSettingsFilePath() {
 		return $this->settingsFilePath;
@@ -532,7 +532,7 @@ abstract class erpTemplates {
 	 * Returns template public view file path
 	 * @return string
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function getViewFilePath() {
 		return $this->viewFilePath;
@@ -541,7 +541,7 @@ abstract class erpTemplates {
 	 * Returns template options
 	 * @return array Assoc array
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function getOptions() {
 		return $this->options;

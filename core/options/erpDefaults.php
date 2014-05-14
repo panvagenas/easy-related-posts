@@ -26,7 +26,7 @@ class erpDefaults {
     /**
      * Plugin version.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var int
      */
     const erpVersion = 1;
@@ -34,7 +34,7 @@ class erpDefaults {
     /**
      * Plugin release.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var int
      */
     const erpRelease = 6;
@@ -42,7 +42,7 @@ class erpDefaults {
     /**
      * Plugin subrelease.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var int
      */
     const erpSubRelease = 0;
@@ -50,7 +50,7 @@ class erpDefaults {
     /**
      * This should be upddated if widget class name change
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var string
      */
     const erpWidgetOptionsArrayName = 'erpwidget';
@@ -59,7 +59,7 @@ class erpDefaults {
      * Version number is stored in DB as a WP option. 
      * This is the name of the option
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var string
      */
     const versionNumOptName = 'erpVersionNumbers';
@@ -67,7 +67,7 @@ class erpDefaults {
     /**
      * Sorting options
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var array
      */
     public static $sortRelatedByOptionSerialized = array(
@@ -80,7 +80,7 @@ class erpDefaults {
     /**
      * Options available for related storting
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var array
      */
     public static $sortRelatedByOption = array(
@@ -121,7 +121,7 @@ class erpDefaults {
     /**
      * Sortkeys (sort_key_string => $indexInSortOptionsArrays)
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var array
      */
     public static $sortKeys = array(
@@ -134,7 +134,7 @@ class erpDefaults {
     /**
      * Options for related fetching options
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var array
      */
     public static $fetchByOptions = array(
@@ -168,7 +168,7 @@ class erpDefaults {
     /**
      * Common options used from all components.
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var array
      */
     public static $comOpts = array(
@@ -197,7 +197,7 @@ class erpDefaults {
     /**
      * Used for options validation. Does not contain values for options but types
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var array
      */
     public static $comOptsValidations = array(
@@ -222,7 +222,7 @@ class erpDefaults {
     /**
      * Main plugin options
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var array
      */
     public static $mainOpts = array(
@@ -241,7 +241,7 @@ class erpDefaults {
     /**
      * Used for options validation. Does not contain values for options but types
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var array
      */
     public static $mainOptsValidations = array(
@@ -255,7 +255,7 @@ class erpDefaults {
     /**
      * Widget options
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var array
      */
     public static $widOpts = array(
@@ -266,7 +266,7 @@ class erpDefaults {
     /**
      * Used for options validation. Does not contain values for options but types
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var array
      */
     public static $widOptsValidations = array(
@@ -277,7 +277,7 @@ class erpDefaults {
     /**
      * Critical options, related result depends on them
      *
-     * @since 1.0.0
+     * @since 2.0.0
      * @var array
      */
     public static $criticalOpts = array(
@@ -293,7 +293,7 @@ class erpDefaults {
      * @param string $version
      * @return number -1 if input isn't string, else 0 if version differs, else 1 if release differs, else 2 if subrelease differs, else 3
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public static function compareVersion($version) {
         if (!is_string($version)) {
@@ -319,7 +319,7 @@ class erpDefaults {
      *
      * @return boolean
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
+     * @since 2.0.0
      */
     public static function updateVersionNumbers() {
         return update_option(self::versionNumOptName, self::erpVersion . '.' . self::erpRelease . '.' . self::erpSubRelease);

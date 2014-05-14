@@ -19,56 +19,56 @@ class erpRelData {
 	/**
 	 * Post id that concerns this object
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var int
 	 */
 	public $pid;
 	/**
 	 * Relative table
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var array
 	 */
 	public $relTable = array();
 	/**
 	 * WP_Query result
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var WP_Query
 	 */
 	private $wpQuery;
 	/**
 	 * Count of fould posts
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var int
 	 */
 	private $postCount;
 	/**
 	 * Offset of query result
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var int
 	 */
 // 	private $offset = 0;
 	/**
 	 * query limit
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var int
 	 */
 	private $queryLimit = 10;
 	/**
 	 * Query offset
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var int
 	 */
 	private $queryOffset = 0;
 	/**
 	 * Array containig query arguments
 	 *
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 * @var array
 	 */
 	private $qArgs = array();
@@ -90,7 +90,7 @@ class erpRelData {
 	 * @param int $offset
          * @return erpRelData
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function setWP_Query($arguments, $limit, $offset, $q = null) {
 		$this->wpQuery = $q;
@@ -105,7 +105,7 @@ class erpRelData {
 	 * Return result
 	 * @return WP_Query
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function getResult(){
 		if ( !has_filter('post_limits', array ( $this,  'limitPosts' )) ) {
@@ -130,7 +130,7 @@ class erpRelData {
 	 * @param int $limit
 	 * @return string
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function limitPosts( $limit ) {
 		if ( $this->queryLimit > 0 ) {
@@ -150,7 +150,7 @@ class erpRelData {
 	 * @param int $offset
 	 * @return erpRelData
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function setQueryLimit($limit, $offset ) {
 		$this->queryLimit = $limit;
@@ -163,7 +163,7 @@ class erpRelData {
 	 * @param int $pid
 	 * @return <boolean : int> False if post not found, index int otherwise
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function getIndexFromRelTable($pid) {
 		foreach ($this->relTable as $key => $value) {
@@ -178,7 +178,7 @@ class erpRelData {
 	 * @param int $i Index
 	 * @return <boolean, array> False if index is't set, row otherwise
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function getRowFromRelTable($i) {
 		return isset($this->relTable[$i]) ? $this->relTable[$i] : false;
@@ -189,7 +189,7 @@ class erpRelData {
 	 * @param array $postIDs
 	 * @return WP_Query
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function sortWPQuery(Array $postIDs) {
 		if ( empty( $this->wpQuery->posts ) || empty( $postIDs ) ) {
@@ -212,7 +212,7 @@ class erpRelData {
 	 *        	Options array, all critical options must be defined
 	 * @return array An array containing the options that don't match, or empty array if all match
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public function criticalOptionsMismatch( Array $options ) {
 		$critical = erpDefaults::$criticalOpts;

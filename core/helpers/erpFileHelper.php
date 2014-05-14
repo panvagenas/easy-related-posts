@@ -24,7 +24,7 @@ class erpFileHelper {
 	 * @param string $path
 	 * @return array
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public static function dirToArrayRecursive( $path ) {
 		$contents = array ();
@@ -54,7 +54,7 @@ class erpFileHelper {
 	 * @param string $path
 	 * @return array
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public static function dirToArray( $path ) {
 		$contents = array ();
@@ -78,7 +78,7 @@ class erpFileHelper {
 	 * @param string $path
 	 * @return array
 	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 1.0.0
+	 * @since 2.0.0
 	 */
 	public static function filesToArray( $path ) {
 		if ( empty( $path ) ) {
