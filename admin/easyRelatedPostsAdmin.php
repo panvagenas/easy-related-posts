@@ -10,11 +10,6 @@
  */
 
 /**
- * Plugin class.
- * This class should ideally be used to work with the
- * administrative side of the WordPress site.
- * If you're interested in introducing public-facing
- * functionality, then refer to `class-plugin-name.php`
  *
  * @package Easy_Related_Posts_Admin
  * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
@@ -94,7 +89,7 @@ class easyRelatedPostsAdmin {
          * *****************************************************
          */
         $plugin_basename = plugin_basename(plugin_dir_path(__DIR__) . $this->plugin_slug . '.php');
-        add_filter('plugin_action_links_' . $plugin_basename, array(
+        add_filter('plugin_action_links', array(
             $this,
             'add_action_links'
         ));
@@ -208,7 +203,7 @@ class easyRelatedPostsAdmin {
      * @since 2.0.0
      */
     public function add_plugin_admin_menu() {
-        $this->plugin_screen_hook_suffix = add_options_page(__('Easy Related Posts Settings', $this->plugin_slug), __('Easy Related Posts Settings', $this->plugin_slug), 'manage_options', $this->plugin_slug . '_settings', array(
+        $this->plugin_screen_hook_suffix = add_options_page(__('Easy Related Posts', $this->plugin_slug), __('Easy Related Posts', $this->plugin_slug), 'manage_options', $this->plugin_slug . '_settings', array(
             $this,
             'display_plugin_admin_page'
         ));
@@ -240,7 +235,7 @@ class easyRelatedPostsAdmin {
      */
     public function add_action_links($links) {
         return array_merge(array(
-            'settings' => '<a href="' . admin_url('options-general.php?page=' . $this->plugin_slug) . '">' . __('Settings', $this->plugin_slug) . '</a>'
+            'settings' => '<a href="' . admin_url('options-general.php?page=' . $this->plugin_slug . '_settings') . '">' . __('Settings', $this->plugin_slug) . '</a>'
                 ), $links);
     }
 

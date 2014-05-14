@@ -36,7 +36,7 @@ if (!function_exists('erpTaxGrouping')) {
 
 
 <div id="erp-opt-general" class="wrap">
-    <h2><?php echo esc_html(get_admin_page_title()); ?></h2>
+    <h2><img src="<?php echo EPR_BASE_URL . 'admin/assets/img/ERP.LOGO.png' ?>" style="height: 1em;">  <?php echo esc_html(get_admin_page_title()); ?></h2>
     <form method="post" action="admin-post.php">
 
         <input type="hidden" name="action" value="save_<?php echo EPR_MAIN_OPTIONS_ARRAY_NAME; ?>" />
@@ -48,7 +48,6 @@ if (!function_exists('erpTaxGrouping')) {
                 <li><a href="#tabs-4">Excluded Categories</a></li>
                 <li><a href="#tabs-5">Excluded Tags</a></li>
                 <li><a href="#tabs-6">Excluded Post Types</a></li>
-                <li><a href="#tabs-7">Supporters</a></li>
             </ul>
             <div id="tabs-1">
                 <table class="gen-opt-table">
@@ -160,10 +159,7 @@ if (!function_exists('erpTaxGrouping')) {
                                 class="erp-optsel" 
                                 id="sortRelatedBy" 
                                 name="sortRelatedBy"
-                                data-tooltip 
-                                title="This is another critical field in Easy Related Posts. It describes how related posts will be sorted in order to display them in the front-end. Options are very descriptive and you should be able to understand in a glance their scope.
-
-                                Keep in mind that Number of posts to display and Offset options may affect the sort order."
+                                disabled=""
                                 >
                                     <?php
                                     foreach (erpDefaults::$sortKeys as $key => $value) {
@@ -592,9 +588,6 @@ if (!function_exists('erpTaxGrouping')) {
                     ?>
                 </table>
             </div>
-            <div id="tabs-7">
-
-            </div>
         </div>
         <?php echo get_submit_button('Update options', 'primary large', 'Save'); ?>
         <input id="tab-spec" type="hidden" name="tab-spec" value="0">
@@ -609,25 +602,41 @@ if ($tabSpec !== null && $tabSpec !== false) {
 ?>
         </script>
     </form>
-
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-        <input type="hidden" name="cmd" value="_s-xclick">
-        <input type="hidden" name="hosted_button_id" value="WLGJ8L3ZJTFQQ">
-        <table>
-            <tr><td><input type="hidden" name="on0" value="Sponsorhip options">Sponsorhip options</td></tr><tr><td><select name="os0">
-                        <option value="Bronze supporter">Bronze supporter €5.00 EUR</option>
-                        <option value="Silver supporter">Silver supporter €10.00 EUR</option>
-                        <option value="Golden supporter">Golden supporter €20.00 EUR</option>
-                        <option value="Bronze sponsorship">Bronze sponsorship €50.00 EUR</option>
-                        <option value="Silver sponsorship">Silver sponsorship €100.00 EUR</option>
-                        <option value="Golden sponsorship">Golden sponsorship €150.00 EUR</option>
-                    </select> </td></tr>
-            <tr><td><input type="hidden" name="on1" value="Your site URL">Your site URL</td></tr><tr><td><input type="text" name="os1" maxlength="200" value="<?php echo get_site_url(); ?>"></td></tr>
-        </table>
-        <input type="hidden" name="currency_code" value="EUR">
-        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-    </form>
-
+    <div style="margin: auto; display: table;">
+        <div class="get-template" style="">
+            <a href="http://erp.xdark.eu/need-a-template/" target="blank">
+                <img src="<?php echo EPR_BASE_URL . 'admin/assets/img/getTemplate.png'; ?>">
+            </a>
+        </div>
+        <div class="paypal-support" style="">
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="WLGJ8L3ZJTFQQ">
+                <table>
+                    <tr><td><input type="hidden" name="on0" value="Sponsorhip options"><strong>Support the development of this plugin</strong></td></tr><tr><td><select name="os0">
+                                <option value="My 2 cents">My 2 cents €2.00 EUR</option>
+                                <option value="Buy me a coffee">Buy me a coffee €5.00 EUR</option>
+                                <option value="Buy me a beer">Buy me a beer €8.00 EUR</option>
+                                <option value="Buy me a pizza">Buy me a pizza €10.00 EUR</option>
+                                <option value="Lets go to the movies tonight">Lets go to the movies tonight €15.00 EUR</option>
+                                <option value="We will get some popcorn too">We will get some popcorn too €20.00 EUR</option>
+                                <option value="A brand new game for my kids">A brand new game for my kids €30.00 EUR</option>
+                                <option value="We're all going to the movies tonight">We're all going to the movies tonight €40.00 EUR</option>
+                                <option value="Hall of fame silver badge">Hall of fame silver badge €60.00 EUR</option>
+                                <option value="Hall of fame gold badge">Hall of fame gold badge €100.00 EUR</option>
+                            </select> </td></tr>
+                    <tr><td><input type="hidden" name="on1" value="Your site URL">Your site URL</td></tr><tr><td><input type="text" name="os1" maxlength="200" value="<?php echo get_site_url(); ?>"></td></tr>
+                </table>
+                <input type="hidden" name="currency_code" value="EUR">
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+            </form>
+        </div>
+        <div class="get-pro" style="">
+            <a href="http://erp.xdark.eu/downloads/easy-related-posts-pro/" target="blank">
+                <img src="<?php echo EPR_BASE_URL . 'admin/assets/img/getPRO.png'; ?>">
+            </a>
+        </div>
+    </div>
 
 </div>

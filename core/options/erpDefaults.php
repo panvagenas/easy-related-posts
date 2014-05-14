@@ -72,10 +72,7 @@ class erpDefaults {
      */
     public static $sortRelatedByOptionSerialized = array(
         "a:1:{s:4:'date';a:2:{s:5:'order';s:4:'desc';s:4:'rank';i:1;}}", // date desc
-        "a:1:{s:6:'rating';a:2:{s:5:'order';s:4:'desc';s:4:'rank';i:1;}}", // rating desc
-        "a:2:{s:6:'rating';a:2:{s:5:'order';s:4:'desc';s:4:'rank';i:2;}s:4:'date';a:2:{s:5:'order';s:4:'desc';s:4:'rank';i:1;}}", // date desc rating desc
-        "a:2:{s:6:'rating';a:2:{s:5:'order';s:4:'desc';s:4:'rank';i:1;}s:4:'date';a:2:{s:5:'order';s:4:'desc';s:4:'rank';i:2;}}", // rating desc date desc
-    ); // rating asc date asc
+    ); 
 
     /**
      * Options available for related storting
@@ -89,33 +86,7 @@ class erpDefaults {
                 'order' => 'desc',
                 'rank' => 1
             )
-        ),
-        array(
-            'rating' => array(
-                'order' => 'desc',
-                'rank' => 1
-            )
-        ),
-        array(
-            'date' => array(
-                'order' => 'desc',
-                'rank' => 1
-            ),
-            'rating' => array(
-                'order' => 'desc',
-                'rank' => 2
-            )
-        ),
-        array(
-            'date' => array(
-                'order' => 'desc',
-                'rank' => 2
-            ),
-            'rating' => array(
-                'order' => 'desc',
-                'rank' => 1
-            )
-        ),
+        )
     );
 
     /**
@@ -126,9 +97,6 @@ class erpDefaults {
      */
     public static $sortKeys = array(
         'date_descending' => 0,
-        'rating_descending' => 1,
-        'date_descending_then_rating_descending' => 2,
-        'rating_descending_then_date_descending' => 3,
     );
 
     /**

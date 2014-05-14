@@ -228,7 +228,7 @@ class erpRelated {
                 }
             }
         }
-        var_dump(count($relTable));
+
         wp_reset_postdata();
         return $relTable;
     }

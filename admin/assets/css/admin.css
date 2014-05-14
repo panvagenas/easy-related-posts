@@ -9,11 +9,8 @@
 #erp-opt-general table{
     vertical-align: top;
     width:70%;
-    max-width: 500px;
 }
-#erp-opt-general .cat-opt-table tr,
-#erp-opt-general .tag-opt-table tr,
-#erp-opt-general .type-opt-table tr {
+#erp-opt-general table tr{
     background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.05), rgba(0,0,0,0));
     background-image: -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.05), rgba(0,0,0,0));
     background-image: -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.05), rgba(0,0,0,0));
@@ -61,4 +58,35 @@
 .erp-wid-table tr td:last-child{
     width: 65%;
     text-align: left;
+}
+
+.paypal-support,
+.get-pro,
+.get-template{
+	display:inline-block;
+	vertical-align:middle;
+	text-align:center;
+	border:1px solid gray;
+	border-radius:5px;
+	padding:8px;
+    width: auto;
+    height: 200px;
+    margin-left:10px;
+}
+
+.paypal-support{
+}
+
+.get-pro{
+	margin-left:10px;
+}
+
+.get-pro a img,
+.get-template a img{
+    width:auto;
+    height:200px;
+}
+
+.ui-tooltip{
+    background-color:white;
 }
