@@ -72,22 +72,6 @@ class easyRelatedPosts {
     protected $defOpts;
 
     /**
-     * Session object;
-     *
-     * @since 1.0.0
-     * @var WP_Session
-     */
-    protected $wpSession;
-
-    /**
-     * DB actions object
-     *
-     * @since 1.0.0
-     * @var erpDBActions
-     */
-    protected $DB;
-
-    /**
      * If rating system is in use then this should be true
      *
      * @since 1.0.0
@@ -103,13 +87,8 @@ class easyRelatedPosts {
      */
     private function __construct() {
         // Dependencies
-        erpPaths::requireOnce(erpPaths::$erpDBActions);
         erpPaths::requireOnce(erpPaths::$erpMainOpts);
         erpPaths::requireOnce(erpPaths::$erpWidOpts);
-        erpPaths::requireOnce(erpPaths::$erpTracker);
-
-        $this->wpSession = WP_Session::get_instance();
-        $this->DB = erpDBActions::getInstance();
 
         $this->mainOpts = new erpMainOpts();
         $this->widOpts = new erpWidOpts();
@@ -406,9 +385,6 @@ class easyRelatedPosts {
         } elseif ($compareVersions === 2) {
             // Minor update
         }
-
-        // Cron jobs
-        wp_schedule_event(time(), 'weekly', 'erp_weekly_event_hook');
     }
 
     /**
@@ -417,7 +393,6 @@ class easyRelatedPosts {
      * @since 1.0.0
      */
     private static function single_deactivate() {
-        wp_clear_scheduled_hook('erp_weekly_event_hook');
     }
 
     /**
@@ -454,34 +429,4 @@ class easyRelatedPosts {
         wp_enqueue_script($this->plugin_slug . '-plugin-script', plugins_url('assets/js/public.min.js', __FILE__), array('jquery'), self::VERSION);
         wp_enqueue_script($this->plugin_slug . '-erpCaptionJS', plugins_url('assets/js/jquery.caption.min.js', __FILE__), array('jquery'), self::VERSION);
     }
-
-    /**
-     * Adds once weekly to the existing schedules
-     *
-     * @param array $schedules
-     * @return array
-     * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
-     */
-    public static function addWeeklyCron($schedules) {
-        $schedules ['weekly'] = array(
-            'interval' => 604800,
-            'display' => __('Once Weekly')
-        );
-        return $schedules;
-    }
-
-    /**
-     * Weekly cron job actions
-     *
-     * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
-     */
-    public static function weeklyCronJob() {
-        // Clean up table
-        global $wpdb;
-        $query = 'DELETE FROM ' . $wpdb->prefix . ERP_RELATIVE_TABLE . ' WHERE time < "' . date('Y-m-d H:i:s', time() - 2419200) . '"';
-        return $wpdb->query($query);
-    }
-
 }

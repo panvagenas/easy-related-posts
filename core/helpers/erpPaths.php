@@ -18,8 +18,6 @@ class erpPaths {
 	public static $easyRelatedPostsAdmin = 'admin/easyRelatedPostsAdmin.php';
 	public static $erpActivator = 'admin/erpActivator.php';
 	public static $erpWidget = 'admin/erpWidget.php';
-	// Cache
-	public static $erpDBActions = 'core/cache/erpDBActions.php';
 	// Includes
 	public static $bfiResizer = 'includes/bfi_thumb.php';
 	// Options

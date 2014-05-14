@@ -43,14 +43,6 @@ class erpProRelated {
     private $options = array();
 
     /**
-     * DB actions obj
-     *
-     * @since 1.0.0
-     * @var erpDBActions
-     */
-    private $dbActions;
-
-    /**
      * Instance of this class.
      *
      * @since 1.0.0
@@ -89,9 +81,6 @@ class erpProRelated {
         if (!class_exists('erpQueryFormater')) {
             erpPaths::requireOnce(erpPaths::$erpQueryFormater);
         }
-        if (!class_exists('erpDBActions')) {
-            erpPaths::requireOnce(erpPaths::$erpDBActions);
-        }
         if (!class_exists('erpRatingSystem')) {
             erpPaths::requireOnce(erpPaths::$erpRatingSystem);
         }
@@ -99,7 +88,6 @@ class erpProRelated {
             erpPaths::requireOnce(erpPaths::$erpRelData);
         }
         $this->options = $options;
-        $this->dbActions = erpDBActions::getInstance();
     }
 
     public function getRelated($pid) {
@@ -120,17 +108,13 @@ class erpProRelated {
                 break;
             }
         }
-        // If we couldn't get a relTable search in cache
-        if (!isset($relTable)) {
-            $relTable = $this->dbActions->getAllOccurrences($pid);
-        }
 
         $criticalOptions = array_intersect_key($this->options->getOptions(), array_flip(erpDefaults::$criticalOpts));
         $this->relData = new erpRelData($pid, $criticalOptions, $relTable);
         /**
          * If no cached ratings or not the required number of posts
          */
-        if (empty($relTable) || count($relTable) < $this->options->getNumberOfPostsToDiplay() || !$this->isPostProcesed($pid, $relTable)) {
+        if (empty($relTable) || count($relTable) < $this->options->getNumberOfPostsToDiplay()) {
             $relTable = $this->doRating($pid);
         }
 
@@ -164,18 +148,6 @@ class erpProRelated {
         array_push($this->relDataPool, $this->relData);
 
         return $this->relData->getResult();
-    }
-
-    public function isPostProcesed($pid, $relTable = null) {
-        if (empty($relTable)) {
-            $relTable = $this->dbActions->getAllOccurrences($pid);
-        }
-        foreach ($relTable as $key => $value) {
-            if ($value ['pid1'] == $pid) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public function doRating($pid) {
@@ -219,8 +191,6 @@ class erpProRelated {
                     $relTable [$value->ID] ['post_date1'] = get_the_time('Y-m-d', $pid);
                     $relTable [$value->ID] ['post_date2'] = get_the_time('Y-m-d', $value->ID);
 
-                    $this->dbActions->insertRecToRel($pid, $value->ID, $relTable [$value->ID]);
-
                     $relTable [$value->ID] ['pid1'] = $pid;
                     $relTable [$value->ID] ['pid2'] = $value->ID;
                 }
@@ -251,8 +221,6 @@ class erpProRelated {
                         $relTable [$value->ID] ['post_date1'] = get_the_time('Y-m-d H:i:s', $pid);
                         $relTable [$value->ID] ['post_date2'] = get_the_time('Y-m-d H:i:s', $value->ID);
 
-                        $this->dbActions->insertRecToRel($pid, $value->ID, $relTable [$value->ID]);
-
                         $relTable [$value->ID] ['pid1'] = $pid;
                         $relTable [$value->ID] ['pid2'] = $value->ID;
                     }
@@ -260,20 +228,6 @@ class erpProRelated {
             }
         }
 
-        /**
-         * As things are right now in 90% of cases this
-         * returns all posts, so no actual interest in using
-         * this. Just leaving it here for future reference
-         */
-//        $best = $this->chooseTheBest($pid, $relTable);
-//        
-//        foreach ($relTable as $key => $value) {
-//            if (in_array($value['pid2'], $best)) {
-//                $this->dbActions->insertRecToRel($pid, $value['pid2'], $relTable[$value['pid2']]);
-//            } else {
-//                unset($relTable[$value['pid2']]);
-//            }
-//        }
         wp_reset_postdata();
         return $relTable;
     }
@@ -333,10 +287,6 @@ class erpProRelated {
      */
     private function calcWeights() {
         return isset(erpDefaults::$fetchByOptionsWeights[$this->options->getFetchBy()]) ? erpDefaults::$fetchByOptionsWeights[$this->options->getFetchBy()] : erpDefaults::$fetchByOptionsWeights['categories'];
-    }
-
-    private function getCachedRatings($pid) {
-        return $this->dbActions->getAllOccurrences($pid);
     }
 
     public function isInPool($pid) {

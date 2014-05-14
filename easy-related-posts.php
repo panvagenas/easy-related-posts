@@ -69,11 +69,6 @@ register_activation_hook(__FILE__, array('easyRelatedPosts', 'activate'));
 register_deactivation_hook(__FILE__, array('easyRelatedPosts', 'deactivate'));
 
 /**
- * Define cron job actions
- */
-add_filter('cron_schedules', array('easyRelatedPosts', 'addWeeklyCron'));
-add_action('erp_weekly_event_hook', array('easyRelatedPosts', 'weeklyCronJob'));
-/**
  * Register plugin and widget
  */
 add_action('plugins_loaded', array('easyRelatedPosts', 'get_instance'));

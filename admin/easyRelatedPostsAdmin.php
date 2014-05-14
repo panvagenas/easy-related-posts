@@ -109,22 +109,6 @@ class easyRelatedPostsAdmin {
 	    'saveOptions'
 	));
 
-	// Do rating when saving posts
-	add_action('transition_post_status', array(
-	    $this,
-	    'doRating'
-		), 10, 3);
-
-	/**
-	 * ******************************************************
-	 * Delete cache entries when a post is deleted
-	 * *****************************************************
-	 */
-	add_action('delete_post', array(
-	    $this,
-	    'deletePostInCache'
-		), 10);
-
 	/**
 	 * ******************************************************
 	 * Ajax hooks
@@ -133,25 +117,6 @@ class easyRelatedPostsAdmin {
 	add_action('wp_ajax_loadTemplateOptions', array(
 	    $this,
 	    'loadTemplateOptions'
-	));
-
-	add_action('wp_ajax_erpClearCache', array(
-	    $this,
-	    'clearCache'
-	));
-
-	add_action('wp_ajax_erpRebuildCache', array(
-	    $this,
-	    'rebuildCache'
-	));
-
-
-	/**
-	 * MCE Helper
-	 */
-	add_action('init', array(
-	    $this,
-	    'erpButtonHook'
 	));
     }
 
@@ -178,39 +143,6 @@ class easyRelatedPostsAdmin {
 	return self::$instance;
     }
 
-    public function doRating($newStatus, $oldStatus, $post) {
-	// If a revision get the pid from parent
-	$revision = wp_is_post_revision($post->ID);
-	if ($revision) {
-	    $pid = $revision;
-	} else {
-	    $pid = $post->ID;
-	}
-
-	if ($oldStatus == 'publish' && $newStatus != 'publish') {
-	    // Post is now unpublished, we should remove cache entries
-	    $this->deletePostInCache($pid);
-	} elseif ($newStatus == 'publish') {
-	    $this->deletePostInCache($pid);
-	    $plugin = easyRelatedPosts::get_instance();
-
-	    if ($plugin->isInExcludedPostTypes($pid) || $plugin->isInExcludedTaxonomies($pid)) {
-		return;
-	    }
-	    erpPaths::requireOnce(erpPaths::$erpProRelated);
-	    erpPaths::requireOnce(erpPaths::$erpMainOpts);
-
-	    $opts = new erpMainOpts();
-
-	    $opts->setOptions(array(
-		'queryLimit' => 1000
-	    ));
-	    $rel = erpProRelated::get_instance($opts);
-
-	    $rel->doRating($pid);
-	}
-    }
-
     /**
      * Register and enqueue admin-specific style sheet.
      *
@@ -226,11 +158,6 @@ class easyRelatedPostsAdmin {
 	if ($this->plugin_screen_hook_suffix == $screen->id || 'widgets' == $screen->id) {
 	    wp_enqueue_style('wp-color-picker');
 	    wp_enqueue_style($this->plugin_slug . '-admin-styles', plugins_url('assets/css/admin.min.css', __FILE__), array(), easyRelatedPosts::VERSION);
-	}
-	if ($screen->id === 'post') {
-	    wp_enqueue_style('wp-color-picker');
-	    wp_enqueue_style($this->plugin_slug . '-admin-styles', plugins_url('assets/css/admin.min.css', __FILE__), array(), easyRelatedPosts::VERSION);
-	    wp_enqueue_style($this->plugin_slug . '-SCHelper-styles', plugins_url('assets/css/SCHelper.css', __FILE__), array(), easyRelatedPosts::VERSION);
 	}
     }
 
@@ -271,20 +198,6 @@ class easyRelatedPostsAdmin {
 	if ('widgets' == $screen->id) {
 	    wp_enqueue_script($this->plugin_slug . '-widget-settings', plugins_url('assets/js/widgetSettings.min.js', __FILE__), array(
 		$this->plugin_slug . '-admin-script'
-		    ), easyRelatedPosts::VERSION);
-	}
-	if ($screen->id === 'post') {
-	    wp_enqueue_script('jquery');
-	    wp_enqueue_script('jquery-ui-core');
-	    wp_enqueue_script('wp-color-picker');
-	    wp_enqueue_script('jquery-ui-tabs');
-	    wp_enqueue_script('jquery-ui-dialog');
-	    wp_enqueue_script('jquery-ui-tooltip');
-	    wp_enqueue_script('jquery-ui-accordion');
-	    wp_enqueue_script('jquery-ui-slider');
-
-	    wp_enqueue_script($this->plugin_slug . '-jq-form', plugins_url('assets/js/jq.form.min.js', __FILE__), array(
-		'jquery'
 		    ), easyRelatedPosts::VERSION);
 	}
     }
@@ -364,72 +277,6 @@ class easyRelatedPostsAdmin {
 	    'tab-spec' => wp_strip_all_tags($_POST ['tab-spec'])
 			), admin_url('options-general.php')));
 	exit();
-    }
-
-    /**
-     * Clears cache.
-     * !IMPORTAND! Not to be called directly. Only through ajax
-     *
-     * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
-     */
-    public function clearCache() {
-	if (!user_can_access_admin_page() || !current_user_can('manage_options')) {
-	    echo json_encode(false);
-	    die();
-	}
-	erpPaths::requireOnce(erpPaths::$erpDBActions);
-	$db = erpDBActions::getInstance();
-	$db->emptyRelTable();
-	echo json_encode(true);
-	die();
-    }
-
-    public function deletePostInCache($pid) {
-	erpPaths::requireOnce(erpPaths::$erpDBActions);
-	$db = erpDBActions::getInstance();
-	$db->deleteAllOccurrences($pid);
-    }
-
-    /**
-     * This is for a future release.
-     * It should be called through ajax and rebuild cache for all posts in that are cached
-     * 
-     * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since 1.0.0
-     */
-    public function rebuildCache() {
-	if (!user_can_access_admin_page() || !current_user_can('manage_options')) {
-	    echo json_encode(false);
-	    die();
-	}
-	// This may take a while so set time limit to 0
-	set_time_limit(0);
-
-	erpPaths::requireOnce(erpPaths::$erpDBActions);
-	erpPaths::requireOnce(erpPaths::$erpMainOpts);
-	erpPaths::requireOnce(erpPaths::$erpProRelated);
-
-	$db = erpDBActions::getInstance();
-	$mainOpts = new erpMainOpts();
-	$rel = erpProRelated::get_instance($mainOpts);
-
-	$allCached = $db->getUniqueIds();
-	$db->emptyRelTable();
-
-	$plugin = easyRelatedPosts::get_instance();
-	global $wpdb, $wp_actions;
-	foreach ($allCached as $key => $value) {
-	    $pid = (int) $value ['pid'];
-
-	    if ($plugin->isInExcludedPostTypes($pid) || $plugin->isInExcludedTaxonomies($pid)) {
-		continue;
-	    }
-	    $rel->doRating($pid);
-	}
-
-	echo json_encode(true);
-	die();
     }
 
     /**
