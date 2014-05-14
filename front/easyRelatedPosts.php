@@ -372,9 +372,20 @@ class easyRelatedPosts {
     private static function single_activate() {
         erpPaths::requireOnce(erpPaths::$erpActivator);
 
-        $compareVersions = erpDefaults::compareVersion(get_option(ERP_SLUG . '_version'));
+        $compareVersions = erpDefaults::compareVersion(get_option(erpDefaults::versionNumOptName));
         if ($compareVersions < 0) {
-            erpActivator::addNonExistingMainOptions(erpDefaults::$comOpts + erpDefaults::$mainOpts, EPR_MAIN_OPTIONS_ARRAY_NAME);
+            /**
+             * If an old version is present translate options
+             */
+            if(get_option('erpVersion')){
+                delete_option('erpVersion');
+                delete_option('erpSubVersion');
+                $mainOpts = self::translateMainOptions();
+                // TODO Set a message to be displayed
+            } else {
+                $mainOpts = erpDefaults::$comOpts + erpDefaults::$mainOpts;
+            }
+            erpActivator::addNonExistingMainOptions($mainOpts, EPR_MAIN_OPTIONS_ARRAY_NAME);
             erpActivator::addNonExistingWidgetOptions(erpDefaults::$comOpts + erpDefaults::$widOpts, 'widget_' . erpDefaults::erpWidgetOptionsArrayName);
             erpDefaults::updateVersionNumbers();
         } elseif ($compareVersions === 0) {
@@ -384,6 +395,42 @@ class easyRelatedPosts {
         } elseif ($compareVersions === 2) {
             // Minor update
         }
+    }
+    
+    private static function translateMainOptions() {
+        $oldOptions = get_option('erpOpts');
+        if(empty($oldOptions)){
+            return erpDefaults::$comOpts + erpDefaults::$mainOpts;
+        }
+        $defOptions = erpDefaults::$comOpts + erpDefaults::$mainOpts;
+        
+        $opt = array();
+        
+        $opt['title'] = $oldOptions ['titletd'] ;
+        $opt['activate'] = $opt ['activate_plugin'];
+        $opt['numberOfPostsToDisplay'] = $oldOptions ['num_of_p_t_dspl'];
+        $opt['fetchBy'] = $oldOptions ['getPostsBy'];
+        if ($oldOptions['erpcontent']=='post_title') {
+            $opt['content'] = array('title');
+        } else {
+            $opt['content'] = array('title','excerpt');
+        }
+        if($oldOptions['display_thumbnail']){
+            array_push($opt['content'], 'thumbnail');
+        }
+        $opt['excLength'] = $oldOptions ['exc_len'];
+        $opt['postTitleFontSize'] = $oldOptions ['ttl_sz'];
+        $opt['excFontSize'] = $oldOptions ['exc_sz'];
+        $opt['moreTxt'] = $oldOptions ['more_txt'];
+        $opt['dsplLayout'] = 'grid';
+        
+        $opt['thumbnailHeight'] = $oldOptions ['thumbnail_height'];
+        $opt['thumbnailWidth'] = $oldOptions ['thumbnail_width'];
+        $opt ['categories'] = $oldOptions['categories'];
+        $opt ['tags'] = $oldOptions['tags'];
+        $opt['postTypes'] = $oldOptions ['post_types'];
+        
+        return array_merge($defOptions, $opt);
     }
 
     /**

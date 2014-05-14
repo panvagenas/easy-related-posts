@@ -54,7 +54,7 @@ class erpRelated {
      * Deafult query limit when rating posts
      * @var int Default 100
      */
-    private $queryLimit = 500;
+    private $queryLimit = 100;
 
     /**
      * Return an instance of this class.
@@ -116,7 +116,10 @@ class erpRelated {
          * If no cached ratings or not the required number of posts
          */
         if (empty($relTable) || count($relTable) < $this->options->getNumberOfPostsToDiplay()) {
-            $relTable = $this->doRating($pid);
+            $relTable = $this->doRating($pid, true);
+            if((count($relTable) - $this->options->getOffset()) < $this->options->getNumberOfPostsToDiplay()){
+                $relTable = $this->doRating($pid, false);
+            }
         }
 
         /**
@@ -151,7 +154,8 @@ class erpRelated {
         return $this->relData->getResult();
     }
 
-    public function doRating($pid) {
+    public function doRating($pid, $best = false) {
+        $taxoOperator = $best ? 'and' : 'in';
         $qForm = new erpQueryFormater();
         // Make sure relData is populated, this can happen when do rating
         // is called outside of $this->getRelated
@@ -169,7 +173,7 @@ class erpRelated {
             $qForm->clearTags()
                     ->clearPostInParam()
                     ->clearPostTypes()
-                    ->setCategories($postCats);
+                    ->setCategories($postCats, $taxoOperator);
 
             $qForm->exPostTypes($this->options->getValue('postTypes'))
                     ->exCategories($this->options->getValue('categories'))
@@ -197,7 +201,7 @@ class erpRelated {
             $qForm->clearCategories()
                     ->clearPostInParam()
                     ->clearPostTypes()
-                    ->setTags($postTags);
+                    ->setTags($postTags, $taxoOperator);
             $qForm->exPostTypes($this->options->getValue('postTypes'))
                     ->exCategories($this->options->getValue('categories'))
                     ->exTags($this->options->getValue('tags'));
@@ -224,7 +228,7 @@ class erpRelated {
                 }
             }
         }
-
+        var_dump(count($relTable));
         wp_reset_postdata();
         return $relTable;
     }
