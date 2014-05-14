@@ -88,7 +88,7 @@ class erpPostData {
      * @var array
      */
     private $positions = array();
-    
+
     /**
      *
      * @var erpOptions 
@@ -161,13 +161,13 @@ class erpPostData {
     private function setTitle() {
         $size = $this->options->getPostTitleFontSize();
         $color = $this->options->getPostTitleColor();
-        
-        $fontColor = $color !== '#ffffff' ? ' color: '.$color.'; ' : '';
+
+        $fontColor = $color !== '#ffffff' ? ' color: ' . $color . '; ' : '';
         $fontSize = $size !== 0 ? ' font-size: ' . $size . 'px; ' : '';
-        $openTag = '<span style="'.$fontColor.$fontSize.'">';
+        $openTag = '<span style="' . $fontColor . $fontSize . '">';
         $closeTag = '</span>';
-        
-        $this->title = $openTag.$this->post->post_title.$closeTag;
+
+        $this->title = $openTag . $this->post->post_title . $closeTag;
         return $this;
     }
 
@@ -205,14 +205,14 @@ class erpPostData {
         $exc = strip_shortcodes($exc);
         $exc = str_replace(']]>', ']]&gt;', $exc);
         $exc = wp_strip_all_tags($exc);
-        
-        
+
+
         $size = $this->options->getExcFontSize();
         $color = $this->options->getExcColor();
-        
-        $fontColor = $color !== '#ffffff' ? ' color: '.$color.'; ' : '';
+
+        $fontColor = $color !== '#ffffff' ? ' color: ' . $color . '; ' : '';
         $fontSize = $size !== 0 ? ' font-size: ' . $size . 'px; ' : '';
-        $openTag = '<span style="'.$fontColor.$fontSize.'">';
+        $openTag = '<span style="' . $fontColor . $fontSize . '">';
         $closeTag = '</span>';
 
         $tokens = explode(' ', $exc, $excLength + 1);
@@ -223,7 +223,7 @@ class erpPostData {
 
         array_push($tokens, ' ' . $moreText);
         $exc = implode(' ', $tokens);
-        $this->excerpt = $openTag.$exc.$closeTag;
+        $this->excerpt = $openTag . $exc . $closeTag;
     }
 
     /**
@@ -274,7 +274,7 @@ class erpPostData {
                 return $image;
             }
         }
-        
+
         return $this->thumbnail;
     }
 

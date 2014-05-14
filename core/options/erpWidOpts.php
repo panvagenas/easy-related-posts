@@ -9,6 +9,7 @@
  * @copyright 2014 Panagiotis Vagenas <pan.vagenas@gmail.com>
  */
 erpPaths::requireOnce(erpPaths::$erpOptions);
+
 /**
  * Widget options class.
  *
@@ -17,45 +18,46 @@ erpPaths::requireOnce(erpPaths::$erpOptions);
  */
 class erpWidOpts extends erpOptions {
 
-	public function __construct( Array $instance = NULL ) {
-		$this->optionsArrayName = 'widget_' . erpDefaults::erpWidgetOptionsArrayName;
+    public function __construct(Array $instance = NULL) {
+        $this->optionsArrayName = 'widget_' . erpDefaults::erpWidgetOptionsArrayName;
 
-		if ( $instance !== NULL && !empty( $instance ) ) {
-			$this->options = $instance;
-		}
+        if ($instance !== NULL && !empty($instance)) {
+            $this->options = $instance;
+        }
 
-		$this->defaults = erpDefaults::$widOpts+erpDefaults::$comOpts;
-	}
+        $this->defaults = erpDefaults::$widOpts + erpDefaults::$comOpts;
+    }
 
-	/**
-	 * Validates widget options
-	 *
-	 * @param array $options New options
-	 * @return array Assoc array containg only the validated options
-	 * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-	 * @since 2.0.0
-	 */
-	public function validateWidgetOptions( Array $options ) {
-		return $this->switchValidationTypes($options, erpDefaults::$widOptsValidations);
-	}
+    /**
+     * Validates widget options
+     *
+     * @param array $options New options
+     * @return array Assoc array containg only the validated options
+     * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
+     * @since 2.0.0
+     */
+    public function validateWidgetOptions(Array $options) {
+        return $this->switchValidationTypes($options, erpDefaults::$widOptsValidations);
+    }
 
-	public function saveOptions( $new_instance, $old_instance ) {
-		return $this->validateCommonOptions($new_instance)+$this->validateWidgetOptions($new_instance);
-	}
+    public function saveOptions($new_instance, $old_instance) {
+        return $this->validateCommonOptions($new_instance) + $this->validateWidgetOptions($new_instance);
+    }
 
-	/************************************************************************
-	 * Geters for options
-	************************************************************************/
+    /*     * **********************************************************************
+     * Geters for options
+     * ********************************************************************** */
 
-	public function getPostTitleColor() {
-		return $this->getValue('postTitleColor');
-	}
+    public function getPostTitleColor() {
+        return $this->getValue('postTitleColor');
+    }
 
-	public function getExcColor() {
-		return $this->getValue('excColor');
-	}
+    public function getExcColor() {
+        return $this->getValue('excColor');
+    }
 
-	public function getHideIfNoPosts() {
-		return $this->getValue('hideIfNoPosts');
-	}
+    public function getHideIfNoPosts() {
+        return $this->getValue('hideIfNoPosts');
+    }
+
 }

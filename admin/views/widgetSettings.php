@@ -78,14 +78,14 @@
                         <?php
                         foreach (erpDefaults::$sortKeys as $key => $value) {
                             ?>
-                        <option 
-                            value="<?php echo $key; ?>" 
-                            <?php selected($erpOptions['sortRelatedBy'], $key) ?>>
-                                <?php echo ucwords(str_replace('_', ' ', $key)); ?>
-                        </option>
-                        <?php
-                    }
-                    ?>
+                    <option 
+                        value="<?php echo $key; ?>" 
+                        <?php selected($erpOptions['sortRelatedBy'], $key) ?>>
+                            <?php echo ucwords(str_replace('_', ' ', $key)); ?>
+                    </option>
+                    <?php
+                }
+                ?>
             </select>
         </td>
     </tr>

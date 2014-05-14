@@ -49,7 +49,7 @@ class erpRelated {
      * @var erpRelated
      */
     protected static $instance = null;
-    
+
     /**
      * Deafult query limit when rating posts
      * @var int Default 100
@@ -117,7 +117,7 @@ class erpRelated {
          */
         if (empty($relTable) || count($relTable) < $this->options->getNumberOfPostsToDiplay()) {
             $relTable = $this->doRating($pid, true);
-            if((count($relTable) - $this->options->getOffset()) < $this->options->getNumberOfPostsToDiplay()){
+            if ((count($relTable) - $this->options->getOffset()) < $this->options->getNumberOfPostsToDiplay()) {
                 $relTable = $this->doRating($pid, false);
             }
         }
@@ -159,13 +159,13 @@ class erpRelated {
         $qForm = new erpQueryFormater();
         // Make sure relData is populated, this can happen when do rating
         // is called outside of $this->getRelated
-        if($this->relData == null){
+        if ($this->relData == null) {
             $this->relData = new erpRelData($pid, erpDefaults::$criticalOpts);
         }
         $ratingSystem = erpRatingSystem::get_instance($this->relData);
-        
+
         $qForm->setMainArgs($pid);
-        
+
         $postCats = get_the_category($pid);
         $postTags = get_the_tags($pid);
         $relTable = array();

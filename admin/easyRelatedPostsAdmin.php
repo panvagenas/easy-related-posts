@@ -51,73 +51,73 @@ class easyRelatedPostsAdmin {
      */
     private function __construct() {
 
-	/**
-	 * *****************************************************
-	 * admin class should only be available for super admins
-	 * *****************************************************
-	 */
-	if (!is_super_admin()) {
-	    return;
-	}
+        /**
+         * *****************************************************
+         * admin class should only be available for super admins
+         * *****************************************************
+         */
+        if (!is_super_admin()) {
+            return;
+        }
 
-	/**
-	 * ******************************************************
-	 * Call $plugin_slug from public plugin class.
-	 * *****************************************************
-	 */
-	$plugin = easyRelatedPosts::get_instance();
-	$this->plugin_slug = $plugin->get_plugin_slug();
+        /**
+         * ******************************************************
+         * Call $plugin_slug from public plugin class.
+         * *****************************************************
+         */
+        $plugin = easyRelatedPosts::get_instance();
+        $this->plugin_slug = $plugin->get_plugin_slug();
 
-	// Load admin style sheet and JavaScript.
-	add_action('admin_enqueue_scripts', array(
-	    $this,
-	    'enqueue_admin_styles'
-	));
-	add_action('admin_enqueue_scripts', array(
-	    $this,
-	    'enqueue_admin_scripts'
-	));
+        // Load admin style sheet and JavaScript.
+        add_action('admin_enqueue_scripts', array(
+            $this,
+            'enqueue_admin_styles'
+        ));
+        add_action('admin_enqueue_scripts', array(
+            $this,
+            'enqueue_admin_scripts'
+        ));
 
-	/**
-	 * ******************************************************
-	 * Add the options page and menu item.
-	 * *****************************************************
-	 */
-	add_action('admin_menu', array(
-	    $this,
-	    'add_plugin_admin_menu'
-	));
+        /**
+         * ******************************************************
+         * Add the options page and menu item.
+         * *****************************************************
+         */
+        add_action('admin_menu', array(
+            $this,
+            'add_plugin_admin_menu'
+        ));
 
-	/**
-	 * ******************************************************
-	 * Add an action link pointing to the options page.
-	 * *****************************************************
-	 */
-	$plugin_basename = plugin_basename(plugin_dir_path(__DIR__) . $this->plugin_slug . '.php');
-	add_filter('plugin_action_links_' . $plugin_basename, array(
-	    $this,
-	    'add_action_links'
-	));
+        /**
+         * ******************************************************
+         * Add an action link pointing to the options page.
+         * *****************************************************
+         */
+        $plugin_basename = plugin_basename(plugin_dir_path(__DIR__) . $this->plugin_slug . '.php');
+        add_filter('plugin_action_links_' . $plugin_basename, array(
+            $this,
+            'add_action_links'
+        ));
 
-	/**
-	 * ******************************************************
-	 * Save options
-	 * *****************************************************
-	 */
-	add_action('admin_post_save_' . EPR_MAIN_OPTIONS_ARRAY_NAME, array(
-	    $this,
-	    'saveOptions'
-	));
+        /**
+         * ******************************************************
+         * Save options
+         * *****************************************************
+         */
+        add_action('admin_post_save_' . EPR_MAIN_OPTIONS_ARRAY_NAME, array(
+            $this,
+            'saveOptions'
+        ));
 
-	/**
-	 * ******************************************************
-	 * Ajax hooks
-	 * *****************************************************
-	 */
-	add_action('wp_ajax_loadTemplateOptions', array(
-	    $this,
-	    'loadTemplateOptions'
-	));
+        /**
+         * ******************************************************
+         * Ajax hooks
+         * *****************************************************
+         */
+        add_action('wp_ajax_loadTemplateOptions', array(
+            $this,
+            'loadTemplateOptions'
+        ));
     }
 
     /**
@@ -128,19 +128,19 @@ class easyRelatedPostsAdmin {
      */
     public static function get_instance() {
 
-	/*
-	 * admin class should only be available for super admins
-	 */
-	if (!is_super_admin()) {
-	    return;
-	}
+        /*
+         * admin class should only be available for super admins
+         */
+        if (!is_super_admin()) {
+            return;
+        }
 
-	// If the single instance hasn't been set, set it now.
-	if (null == self::$instance) {
-	    self::$instance = new self();
-	}
+        // If the single instance hasn't been set, set it now.
+        if (null == self::$instance) {
+            self::$instance = new self();
+        }
 
-	return self::$instance;
+        return self::$instance;
     }
 
     /**
@@ -150,15 +150,15 @@ class easyRelatedPostsAdmin {
      * @return null Return early if no settings page is registered.
      */
     public function enqueue_admin_styles() {
-	if (!isset($this->plugin_screen_hook_suffix)) {
-	    return;
-	}
+        if (!isset($this->plugin_screen_hook_suffix)) {
+            return;
+        }
 
-	$screen = get_current_screen();
-	if ($this->plugin_screen_hook_suffix == $screen->id || 'widgets' == $screen->id) {
-	    wp_enqueue_style('wp-color-picker');
-	    wp_enqueue_style($this->plugin_slug . '-admin-styles', plugins_url('assets/css/admin.min.css', __FILE__), array(), easyRelatedPosts::VERSION);
-	}
+        $screen = get_current_screen();
+        if ($this->plugin_screen_hook_suffix == $screen->id || 'widgets' == $screen->id) {
+            wp_enqueue_style('wp-color-picker');
+            wp_enqueue_style($this->plugin_slug . '-admin-styles', plugins_url('assets/css/admin.min.css', __FILE__), array(), easyRelatedPosts::VERSION);
+        }
     }
 
     /**
@@ -168,38 +168,38 @@ class easyRelatedPostsAdmin {
      * @return null Return early if no settings page is registered.
      */
     public function enqueue_admin_scripts() {
-	if (!isset($this->plugin_screen_hook_suffix)) {
-	    return;
-	}
+        if (!isset($this->plugin_screen_hook_suffix)) {
+            return;
+        }
 
-	$screen = get_current_screen();
+        $screen = get_current_screen();
 
-	if ($this->plugin_screen_hook_suffix == $screen->id || 'widgets' == $screen->id) {
-	    wp_enqueue_script('jquery');
-	    wp_enqueue_script('jquery-ui-core');
-	    wp_enqueue_script('wp-color-picker');
-	    wp_enqueue_script('jquery-effects-fade');
-	    wp_enqueue_script('jquery-ui-tabs');
-	    wp_enqueue_script('jquery-ui-tooltip');
-	    wp_enqueue_script('jquery-ui-accordion');
-	    wp_enqueue_script('jquery-ui-slider');
+        if ($this->plugin_screen_hook_suffix == $screen->id || 'widgets' == $screen->id) {
+            wp_enqueue_script('jquery');
+            wp_enqueue_script('jquery-ui-core');
+            wp_enqueue_script('wp-color-picker');
+            wp_enqueue_script('jquery-effects-fade');
+            wp_enqueue_script('jquery-ui-tabs');
+            wp_enqueue_script('jquery-ui-tooltip');
+            wp_enqueue_script('jquery-ui-accordion');
+            wp_enqueue_script('jquery-ui-slider');
 
-	    wp_enqueue_script($this->plugin_slug . '-admin-script', plugins_url('assets/js/admin.min.js', __FILE__), array(
-		'jquery',
-		'jquery-ui-tabs'
-		    // $this->plugin_slug . '-qtip'
-		    ), easyRelatedPosts::VERSION);
-	}
-	if ($this->plugin_screen_hook_suffix == $screen->id) {
-	    wp_enqueue_script($this->plugin_slug . '-main-settings', plugins_url('assets/js/mainSettings.min.js', __FILE__), array(
-		$this->plugin_slug . '-admin-script'
-		    ), easyRelatedPosts::VERSION);
-	}
-	if ('widgets' == $screen->id) {
-	    wp_enqueue_script($this->plugin_slug . '-widget-settings', plugins_url('assets/js/widgetSettings.min.js', __FILE__), array(
-		$this->plugin_slug . '-admin-script'
-		    ), easyRelatedPosts::VERSION);
-	}
+            wp_enqueue_script($this->plugin_slug . '-admin-script', plugins_url('assets/js/admin.min.js', __FILE__), array(
+                'jquery',
+                'jquery-ui-tabs'
+                    // $this->plugin_slug . '-qtip'
+                    ), easyRelatedPosts::VERSION);
+        }
+        if ($this->plugin_screen_hook_suffix == $screen->id) {
+            wp_enqueue_script($this->plugin_slug . '-main-settings', plugins_url('assets/js/mainSettings.min.js', __FILE__), array(
+                $this->plugin_slug . '-admin-script'
+                    ), easyRelatedPosts::VERSION);
+        }
+        if ('widgets' == $screen->id) {
+            wp_enqueue_script($this->plugin_slug . '-widget-settings', plugins_url('assets/js/widgetSettings.min.js', __FILE__), array(
+                $this->plugin_slug . '-admin-script'
+                    ), easyRelatedPosts::VERSION);
+        }
     }
 
     /**
@@ -208,10 +208,10 @@ class easyRelatedPostsAdmin {
      * @since 2.0.0
      */
     public function add_plugin_admin_menu() {
-	$this->plugin_screen_hook_suffix = add_options_page(__('Easy Related Posts Settings', $this->plugin_slug), __('Easy Related Posts Settings', $this->plugin_slug), 'manage_options', $this->plugin_slug . '_settings', array(
-	    $this,
-	    'display_plugin_admin_page'
-	));
+        $this->plugin_screen_hook_suffix = add_options_page(__('Easy Related Posts Settings', $this->plugin_slug), __('Easy Related Posts Settings', $this->plugin_slug), 'manage_options', $this->plugin_slug . '_settings', array(
+            $this,
+            'display_plugin_admin_page'
+        ));
     }
 
     /**
@@ -220,17 +220,17 @@ class easyRelatedPostsAdmin {
      * @since 2.0.0
      */
     public function display_plugin_admin_page() {
-	if (!class_exists('erpView')) {
-	    erpPaths::requireOnce(erpPaths::$erpView);
-	}
-	$defaultOptions = erpDefaults::$mainOpts + erpDefaults::$comOpts;
-	$optObj = new erpMainOpts();
-	$options = $optObj->getOptions();
+        if (!class_exists('erpView')) {
+            erpPaths::requireOnce(erpPaths::$erpView);
+        }
+        $defaultOptions = erpDefaults::$mainOpts + erpDefaults::$comOpts;
+        $optObj = new erpMainOpts();
+        $options = $optObj->getOptions();
 
-	$viewData ['erpOptions'] = is_array($options) ? array_merge($defaultOptions, $options) : $defaultOptions;
-	$viewData ['optObj'] = $optObj;
+        $viewData ['erpOptions'] = is_array($options) ? array_merge($defaultOptions, $options) : $defaultOptions;
+        $viewData ['optObj'] = $optObj;
 
-	erpView::render(plugin_dir_path(__FILE__) . 'views/admin.php', $viewData, TRUE);
+        erpView::render(plugin_dir_path(__FILE__) . 'views/admin.php', $viewData, TRUE);
     }
 
     /**
@@ -239,9 +239,9 @@ class easyRelatedPostsAdmin {
      * @since 2.0.0
      */
     public function add_action_links($links) {
-	return array_merge(array(
-	    'settings' => '<a href="' . admin_url('options-general.php?page=' . $this->plugin_slug) . '">' . __('Settings', $this->plugin_slug) . '</a>'
-		), $links);
+        return array_merge(array(
+            'settings' => '<a href="' . admin_url('options-general.php?page=' . $this->plugin_slug) . '">' . __('Settings', $this->plugin_slug) . '</a>'
+                ), $links);
     }
 
     /**
@@ -252,31 +252,31 @@ class easyRelatedPostsAdmin {
      * @since 2.0.0
      */
     public function saveOptions() {
-	if (!current_user_can('manage_options')) {
-	    wp_die('Not allowed');
-	}
-	erpPaths::requireOnce(erpPaths::$erpMainOpts);
-	erpPaths::requireOnce(erpPaths::$erpMainTemplates);
-	// Save template options
-	if (isset($_POST ['dsplLayout'])) {
-	    $templateObj = new erpMainTemplates();
-	    $templateObj->load($_POST ['dsplLayout']);
-	    if ($templateObj->isLoaded()) {
-		$templateObj->saveTemplateOptions($_POST);
-		$templateOptions = $templateObj->getOptions();
-		foreach ($templateOptions as $key => $value) {
-		    unset($_POST [$key]);
-		}
-	    }
-	}
-	// Save the rest of the options
-	$mainOptionsObj = new erpMainOpts();
-	$mainOptionsObj->saveOptions($_POST);
-	wp_redirect(add_query_arg(array(
-	    'page' => $this->plugin_slug . '_settings',
-	    'tab-spec' => wp_strip_all_tags($_POST ['tab-spec'])
-			), admin_url('options-general.php')));
-	exit();
+        if (!current_user_can('manage_options')) {
+            wp_die('Not allowed');
+        }
+        erpPaths::requireOnce(erpPaths::$erpMainOpts);
+        erpPaths::requireOnce(erpPaths::$erpMainTemplates);
+        // Save template options
+        if (isset($_POST ['dsplLayout'])) {
+            $templateObj = new erpMainTemplates();
+            $templateObj->load($_POST ['dsplLayout']);
+            if ($templateObj->isLoaded()) {
+                $templateObj->saveTemplateOptions($_POST);
+                $templateOptions = $templateObj->getOptions();
+                foreach ($templateOptions as $key => $value) {
+                    unset($_POST [$key]);
+                }
+            }
+        }
+        // Save the rest of the options
+        $mainOptionsObj = new erpMainOpts();
+        $mainOptionsObj->saveOptions($_POST);
+        wp_redirect(add_query_arg(array(
+            'page' => $this->plugin_slug . '_settings',
+            'tab-spec' => wp_strip_all_tags($_POST ['tab-spec'])
+                        ), admin_url('options-general.php')));
+        exit();
     }
 
     /**
@@ -286,22 +286,22 @@ class easyRelatedPostsAdmin {
      * @since 2.0.0
      */
     public function loadTemplateOptions() {
-	if (!isset($_POST ['template']) || !isset($_POST ['templateRoot'])) {
-	    echo json_encode(false);
-	    die();
-	}
-	erpPaths::requireOnce(erpPaths::$erpMainTemplates);
+        if (!isset($_POST ['template']) || !isset($_POST ['templateRoot'])) {
+            echo json_encode(false);
+            die();
+        }
+        erpPaths::requireOnce(erpPaths::$erpMainTemplates);
 
-	$templateObj = new erpMainTemplates();
-	$templateObj->load($_POST ['template']);
+        $templateObj = new erpMainTemplates();
+        $templateObj->load($_POST ['template']);
 
-	$data = array(
-	    'content' => $templateObj->renderSettings(false),
-	    'optionValues' => $templateObj->getOptions()
-	);
+        $data = array(
+            'content' => $templateObj->renderSettings(false),
+            'optionValues' => $templateObj->getOptions()
+        );
 
-	echo json_encode($data);
-	die();
+        echo json_encode($data);
+        die();
     }
 
 }

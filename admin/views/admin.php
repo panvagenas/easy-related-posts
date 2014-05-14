@@ -622,7 +622,7 @@ if ($tabSpec !== null && $tabSpec !== false) {
                         <option value="Silver sponsorship">Silver sponsorship €100.00 EUR</option>
                         <option value="Golden sponsorship">Golden sponsorship €150.00 EUR</option>
                     </select> </td></tr>
-            <tr><td><input type="hidden" name="on1" value="Your site URL">Your site URL</td></tr><tr><td><input type="text" name="os1" maxlength="200" value="<?php echo get_site_url();  ?>"></td></tr>
+            <tr><td><input type="hidden" name="on1" value="Your site URL">Your site URL</td></tr><tr><td><input type="text" name="os1" maxlength="200" value="<?php echo get_site_url(); ?>"></td></tr>
         </table>
         <input type="hidden" name="currency_code" value="EUR">
         <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">

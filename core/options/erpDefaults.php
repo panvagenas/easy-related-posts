@@ -29,7 +29,7 @@ class erpDefaults {
      * @since 2.0.0
      * @var int
      */
-    const erpVersion = 1;
+    const erpVersion = 2;
 
     /**
      * Plugin release.
@@ -37,7 +37,7 @@ class erpDefaults {
      * @since 2.0.0
      * @var int
      */
-    const erpRelease = 6;
+    const erpRelease = 0;
 
     /**
      * Plugin subrelease.
