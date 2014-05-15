@@ -85,6 +85,8 @@ class erpUninstall {
          * Del version numbers
          */
         self::deleteVersionNumbers();
+        
+        delete_option(ERP_SLUG.'AdminNotices');
     }
     
     private static function delMainOptions() {

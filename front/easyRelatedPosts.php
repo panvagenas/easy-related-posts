@@ -71,14 +71,6 @@ class easyRelatedPosts {
     protected $defOpts;
 
     /**
-     * If rating system is in use then this should be true
-     *
-     * @since 2.0.0
-     * @var boolean
-     */
-    // protected $ratingSystem;
-
-    /**
      * Initialize the plugin by setting localization and loading public scripts
      * and styles.
      *
@@ -380,7 +372,14 @@ class easyRelatedPosts {
                 delete_option('erpVersion');
                 delete_option('erpSubVersion');
                 $mainOpts = self::translateMainOptions();
-                // TODO Set a message to be displayed
+                
+                $notice = erpAdminNotices::getInstance();
+                
+                $notice->addMessage(new erpAdminMessage('Easy Related Posts updated from V 1.* to 2.*'
+                        . '<br>You must update all options of this plugin.', 'updated'));
+                
+                delete_option('widget_erp_widget');
+                delete_option('erpOpts');
             } else {
                 $mainOpts = erpDefaults::$comOpts + erpDefaults::$mainOpts;
             }

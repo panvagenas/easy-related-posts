@@ -12,9 +12,9 @@
  * Plugin Name:       Easy Related Posts 
  * Plugin URI:        http://erp.xdark.eu
  * Description:       A powerfull plugin to display related posts
- * Version:           1.6.0
+ * Version:           2.0.0
  * Author:            Panagiotis Vagenas <pan.vagenas@gmail.com>
- * Author URI:        http://xdark.eu
+ * Author URI:        http://erp.xdark.eu
  * Text Domain:       easy-related-posts-eng
  * Domain Path:       /languages
  */
@@ -83,5 +83,7 @@ add_action('widgets_init', function () {
  */
 if (is_admin()) {
     erpPaths::requireOnce(erpPaths::$easyRelatedPostsAdmin);
+    erpPaths::requireOnce(erpPaths::$erpAdminNotices);
+    add_action('plugins_loaded', array('erpAdminNotices', 'getInstance'));
     add_action('plugins_loaded', array('easyRelatedPostsAdmin', 'get_instance'));
 }

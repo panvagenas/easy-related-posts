@@ -638,5 +638,4 @@ if ($tabSpec !== null && $tabSpec !== false) {
             </a>
         </div>
     </div>
-
 </div>

@@ -21,6 +21,7 @@ This plugin has also a PRO version which you can purchase from [here](http://erp
 To see a full list of features and compare them to the PRO version please visit [this page](http://erp.xdark.eu/version-comparison/).
 **If you like this plugin please support the developers.** You can do so using the links inside  plugin settings page.
 
+[See the demo](http://erp.xdark.eu/demo/)
 
 Features:
 

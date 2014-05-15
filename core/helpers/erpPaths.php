@@ -8,6 +8,7 @@ class erpPaths {
 
     // Helpers
     public static $erpFileHelper = 'core/helpers/erpFileHelper.php';
+    public static $erpAdminNotices = 'core/helpers/erpAdminNotices.php';
     // Display
     public static $erpPostData = 'core/display/erpPostData.php';
     public static $erpView = 'core/display/erpView.php';
