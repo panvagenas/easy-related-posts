@@ -603,9 +603,9 @@ if ($tabSpec !== null && $tabSpec !== false) {
         </script>
     </form>
     <div style="margin: auto; display: table;">
-        <div class="get-template" style="">
-            <a href="http://erp.xdark.eu/need-a-template/" target="blank">
-                <img src="<?php echo EPR_BASE_URL . 'admin/assets/img/getTemplate.png'; ?>">
+        <div class="get-pro" style="">
+            <a href="http://erp.xdark.eu/downloads/easy-related-posts-pro/" target="blank">
+                <img src="<?php echo EPR_BASE_URL . 'admin/assets/img/getPRO.png'; ?>">
             </a>
         </div>
         <div class="paypal-support" style="">
@@ -615,7 +615,7 @@ if ($tabSpec !== null && $tabSpec !== false) {
                 <table>
                     <tr><td><input type="hidden" name="on0" value="Sponsorhip options"><strong>Support the development of this plugin</strong></td></tr><tr><td><select name="os0">
                                 <option value="My 2 cents">My 2 cents €2.00 EUR</option>
-                                <option value="Buy me a coffee">Buy me a coffee €5.00 EUR</option>
+                                <option value="Buy me a coffee" selected="">Buy me a coffee €5.00 EUR</option>
                                 <option value="Buy me a beer">Buy me a beer €8.00 EUR</option>
                                 <option value="Buy me a pizza">Buy me a pizza €10.00 EUR</option>
                                 <option value="Lets go to the movies tonight">Lets go to the movies tonight €15.00 EUR</option>
@@ -632,9 +632,9 @@ if ($tabSpec !== null && $tabSpec !== false) {
                 <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
             </form>
         </div>
-        <div class="get-pro" style="">
-            <a href="http://erp.xdark.eu/downloads/easy-related-posts-pro/" target="blank">
-                <img src="<?php echo EPR_BASE_URL . 'admin/assets/img/getPRO.png'; ?>">
+        <div class="get-template" style="">
+            <a href="http://erp.xdark.eu/need-a-template/" target="blank">
+                <img src="<?php echo EPR_BASE_URL . 'admin/assets/img/getTemplate.png'; ?>">
             </a>
         </div>
     </div>
