@@ -286,18 +286,6 @@
     ?>
 
 </p>
-<div style="margin: auto; display: table;">
-        <div class="get-pro" style="height: 100px;">
-            <a href="http://erp.xdark.eu/downloads/easy-related-posts-pro/" target="blank">
-                <img src="<?php echo EPR_BASE_URL . 'admin/assets/img/getPRO.png'; ?>" style="height: 100px;">
-            </a>
-        </div>
-        <div class="get-template" style="height: 100px;">
-            <a href="http://erp.xdark.eu/need-a-template/" target="blank">
-                <img src="<?php echo EPR_BASE_URL . 'admin/assets/img/getTemplate.png'; ?>" style="height: 100px;">
-            </a>
-        </div>
-    </div>
 <script type="text/javascript">
     var templateRoot = "<?php echo $temp->getTemplatesBasePath(); ?>";
     jQuery(document).ready(function($) {

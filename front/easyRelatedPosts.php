@@ -364,27 +364,33 @@ class easyRelatedPosts {
         erpPaths::requireOnce(erpPaths::$erpActivator);
 
         $compareVersions = erpDefaults::compareVersion(get_option(erpDefaults::versionNumOptName));
+        
         if ($compareVersions < 0) {
+            // New install
+            
             /**
              * If an old version is present translate options
              */
             if (get_option('erpVersion')) {
                 delete_option('erpVersion');
                 delete_option('erpSubVersion');
-                $mainOpts = self::translateMainOptions();
+                $mainOpts = self::migrateMainOptions();
+                $widOptions = self::migrateWidgetOptions();
                 
                 $notice = erpAdminNotices::getInstance();
                 
-                $notice->addMessage(new erpAdminMessage('Easy Related Posts updated from V 1.* to 2.*'
-                        . '<br>You must update all options of this plugin.', 'updated'));
-                
+                $notice->addMessage('<strong>Easy Related Posts updated from V1 to V2.</strong><br>'
+                        . 'Please review the options and make sure ERP widgets are'
+                        . 'in place.', 'updated');
+                // Delete old options
                 delete_option('widget_erp_widget');
                 delete_option('erpOpts');
             } else {
                 $mainOpts = erpDefaults::$comOpts + erpDefaults::$mainOpts;
+                $widOptions = erpDefaults::$comOpts + erpDefaults::$widOpts;
             }
             erpActivator::addNonExistingMainOptions($mainOpts, EPR_MAIN_OPTIONS_ARRAY_NAME);
-            erpActivator::addNonExistingWidgetOptions(erpDefaults::$comOpts + erpDefaults::$widOpts, 'widget_' . erpDefaults::erpWidgetOptionsArrayName);
+            erpActivator::addNonExistingWidgetOptions($widOptions, 'widget_' . erpDefaults::erpWidgetOptionsArrayName);
             erpDefaults::updateVersionNumbers();
         } elseif ($compareVersions === 0) {
             // Major update
@@ -395,7 +401,7 @@ class easyRelatedPosts {
         }
     }
 
-    private static function translateMainOptions() {
+    private static function migrateMainOptions() {
         $oldOptions = get_option('erpOpts');
         if (empty($oldOptions)) {
             return erpDefaults::$comOpts + erpDefaults::$mainOpts;
@@ -429,6 +435,10 @@ class easyRelatedPosts {
         $opt['postTypes'] = $oldOptions ['post_types'];
 
         return array_merge($defOptions, $opt);
+    }
+    // TODO
+    private static function migrateWidgetOptions(){
+        return erpDefaults::$comOpts + erpDefaults::$widOpts;
     }
 
     /**
