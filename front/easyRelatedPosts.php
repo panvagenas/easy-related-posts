@@ -377,8 +377,12 @@ class easyRelatedPosts {
                 
                 $notice = erpAdminNotices::getInstance();
                 
-                $message = new erpAdminMessage('<strong>Easy Related Posts updated from V1 to V2.</strong><br>'
-                        . 'You should review the main plugin and widget settings.', 'updated');
+                $message = new erpAdminMessage('<strong>Easy Related Posts updated from V1 to V2.</strong>'
+                        . 'You should review the main plugin and widget settings.<br>'
+                        . 'There are some major changes in this version so this affects options as well. '
+                        . 'We are  sorry for the inconvenience but this was necessary to move this plugin forward.<br>'
+                        . 'Specially if you were using the Easy Related Posts widget you will notice '
+                        . 'that now they are gone, please replace them imediatly.', 'updated');
                 $notice->addMessage($message);
                 // Delete old options
                 delete_option('erpVersion');
