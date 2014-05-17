@@ -156,13 +156,9 @@ class erpAdminNotices {
     
     /**
      * Adds a message to be displayed
-     * @param type $content The content of the messsage
-     * @param type $type The type of the message
-     * @param type $times How many times the message should be displayed. Default 1
-     * @param type $screen The screen that this message should appear in. Default anywhere
-     * @param type $users Array of users that this message should be displayed. Default empty, displays it to all users
+     * @param erpAdminMessage $message
      */
-    public function addMessage($content, $type, $times = 1, $screen = 'anywhere', $users = array()) {
+    public function addMessage(erpAdminMessage $message) {
         $this->options[] = $message;
         $this->storeOptions();
     }

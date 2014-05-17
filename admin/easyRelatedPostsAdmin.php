@@ -218,6 +218,7 @@ class easyRelatedPostsAdmin {
         if (!class_exists('erpView')) {
             erpPaths::requireOnce(erpPaths::$erpView);
         }
+
         $defaultOptions = erpDefaults::$mainOpts + erpDefaults::$comOpts;
         $optObj = new erpMainOpts();
         $options = $optObj->getOptions();
@@ -267,6 +268,10 @@ class easyRelatedPostsAdmin {
         // Save the rest of the options
         $mainOptionsObj = new erpMainOpts();
         $mainOptionsObj->saveOptions($_POST);
+        
+        $message = new erpAdminMessage('Options saved', 'updated', 1, 'settings_page_erp_settings');
+        erpAdminNotices::getInstance()->addMessage($message);
+        
         wp_redirect(add_query_arg(array(
             'page' => $this->plugin_slug . '_settings',
             'tab-spec' => wp_strip_all_tags($_POST ['tab-spec'])

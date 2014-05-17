@@ -372,17 +372,17 @@ class easyRelatedPosts {
              * If an old version is present translate options
              */
             if (get_option('erpVersion')) {
-                delete_option('erpVersion');
-                delete_option('erpSubVersion');
                 $mainOpts = self::migrateMainOptions();
                 $widOptions = self::migrateWidgetOptions();
                 
                 $notice = erpAdminNotices::getInstance();
                 
-                $notice->addMessage('<strong>Easy Related Posts updated from V1 to V2.</strong><br>'
-                        . 'Please review the options and make sure ERP widgets are'
-                        . 'in place.', 'updated');
+                $message = new erpAdminMessage('<strong>Easy Related Posts updated from V1 to V2.</strong><br>'
+                        . 'You should review the main plugin and widget settings.', 'updated');
+                $notice->addMessage($message);
                 // Delete old options
+                delete_option('erpVersion');
+                delete_option('erpSubVersion');
                 delete_option('widget_erp_widget');
                 delete_option('erpOpts');
             } else {

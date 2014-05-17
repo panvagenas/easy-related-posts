@@ -150,31 +150,6 @@ if (!function_exists('erpTaxGrouping')) {
                                 type="number">
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            <label for="sortRelatedBy">Sort related by :</label>
-                        </td>
-                        <td>
-                            <select 
-                                class="erp-optsel" 
-                                id="sortRelatedBy" 
-                                name="sortRelatedBy"
-                                disabled=""
-                                >
-                                    <?php
-                                    foreach (erpDefaults::$sortKeys as $key => $value) {
-                                        ?>
-                                    <option 
-                                        value="<?php echo $key; ?>" 
-                                        <?php selected($erpOptions['sortRelatedBy'], $key) ?>>
-                                            <?php echo ucwords(str_replace('_', ' ', $key)); ?>
-                                    </option>
-                                    <?php
-                                }
-                                ?>
-                            </select>
-                        </td>
-                    </tr>
                 </table>
             </div>
             <div id="tabs-3">

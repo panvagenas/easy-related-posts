@@ -67,29 +67,6 @@
         </td>
     </tr>
     <tr>
-        <td style="text-align: right;"><label for="<?php echo $widgetInstance->get_field_id('sortRelatedBy'); ?>"><?php echo 'Sort posts by: '; ?> </label></td>
-        <td><select class=""
-                    id="<?php echo $widgetInstance->get_field_id('sortRelatedBy'); ?>"
-                    name="<?php echo $widgetInstance->get_field_name('sortRelatedBy'); ?>"
-                    data-tooltip 
-                    title="This is another critical field in Easy Related Posts. It describes how related posts will be sorted in order to display them in the front-end. Options are very descriptive and you should be able to understand in a glance their scope.
-
-                    Keep in mind that Number of posts to display and Offset options may affect the sort order.">
-                        <?php
-                        foreach (erpDefaults::$sortKeys as $key => $value) {
-                            ?>
-                    <option 
-                        value="<?php echo $key; ?>" 
-                        <?php selected($erpOptions['sortRelatedBy'], $key) ?>>
-                            <?php echo ucwords(str_replace('_', ' ', $key)); ?>
-                    </option>
-                    <?php
-                }
-                ?>
-            </select>
-        </td>
-    </tr>
-    <tr>
         <td style="text-align: right;"><label for="<?php echo $widgetInstance->get_field_id('hideIfNoPosts'); ?>"><?php _e('Hide if no posts to show:'); ?></label></td>
         <td>
             <input class="erp_wid_opt5"
