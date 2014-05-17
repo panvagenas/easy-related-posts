@@ -422,7 +422,7 @@ class easyRelatedPosts {
         if ($oldOptions['display_thumbnail']) {
             array_push($opt['content'], 'thumbnail');
         }
-        $opt['excLength'] = $oldOptions ['exc_len'];
+        $opt['excLength'] = (int)ceil($oldOptions ['exc_len']/8)+1;
         $opt['postTitleFontSize'] = $oldOptions ['ttl_sz'];
         $opt['excFontSize'] = $oldOptions ['exc_sz'];
         $opt['moreTxt'] = $oldOptions ['more_txt'];

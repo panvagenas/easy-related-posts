@@ -11,7 +11,7 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Displays related posts in the end of each post or/and in sidebar through a widget
 
 == Description ==
-Easy Related Posts is a WordPress plugin that displays posts related to the one a user is reading.
+Easy Related Posts is a WordPress plugin that displays posts related to the one a user is currently reading.
 Easy Related Posts can display related posts in main content area or in sidebars through a widget.
 Equipped with 3 eye catching fully responsive themes, supports basic modifications on them from admin panel. It also has a theme system that let you modify or write your own themes to match you personal needs.
 Through an intuitive algorithm it creates “relations” between posts and rates them based on posts categories and/or tags in a way so these ratings are as much as accurate they can be.
@@ -20,6 +20,8 @@ Last but not least in any way, Easy Related Posts uses the best coding standards
 This plugin has also a PRO version which you can purchase from [here](http://erp.xdark.eu/downloads/easy-related-posts-pro/).
 To see a full list of features and compare them to the PRO version please visit [this page](http://erp.xdark.eu/version-comparison/).
 **If you like this plugin please support the developers.** You can do so using the links inside  plugin settings page.
+
+*Easy Related Posts wont spam your visitor with content from other sites, ads or in any other way.* 
 
 [See the demo](http://erp.xdark.eu/demo/)
 
@@ -117,5 +119,5 @@ Initial release
 == Upgrade Notice ==
 
 = 2.0.0 =
-This is a major release. You may have to review your settings after this
-update, specially if you are using the widget component.
+This is a major release. You have to review your settings after this
+update, specially if you are using the Easy Relate Posts widget.
