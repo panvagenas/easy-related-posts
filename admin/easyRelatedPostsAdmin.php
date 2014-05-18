@@ -88,7 +88,7 @@ class easyRelatedPostsAdmin {
          * Add an action link pointing to the options page.
          * *****************************************************
          */
-        $plugin_basename = plugin_basename(plugin_dir_path(__DIR__) . 'easy-related-posts.php');
+        $plugin_basename = plugin_basename(plugin_dir_path(__DIR__) . 'easy_related_posts.php');
         add_filter('plugin_action_links_'.$plugin_basename, array(
             $this,
             'add_action_links'

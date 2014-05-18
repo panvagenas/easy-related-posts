@@ -53,7 +53,7 @@ class erpDefaults {
      * @since 2.0.0
      * @var string
      */
-    const erpWidgetOptionsArrayName = 'erpwidget';
+    const erpWidgetOptionsArrayName = 'erp_widget';
 
     /**
      * Version number is stored in DB as a WP option. 

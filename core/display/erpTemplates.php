@@ -77,7 +77,7 @@ abstract class erpTemplates {
      * Absolute path to the css file as readen from xml
      *
      * @since 2.0.0
-     * @var string
+     * @var array
      */
     protected $cssFilePath;
 
@@ -85,7 +85,7 @@ abstract class erpTemplates {
      * Absolute path to the js file as readen from xml
      *
      * @since 2.0.0
-     * @var string
+     * @var array
      */
     protected $jsFilePath;
 

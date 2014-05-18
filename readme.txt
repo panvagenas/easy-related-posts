@@ -120,4 +120,5 @@ Initial release
 
 = 2.0.0 =
 This is a major release. You have to review your settings after this
-update, specially if you are using the Easy Relate Posts widget.
+update. Specially if you are using the Easy Related Posts widget you will 
+notice that all instances are gone, please replace them.

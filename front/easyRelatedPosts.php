@@ -364,37 +364,33 @@ class easyRelatedPosts {
         erpPaths::requireOnce(erpPaths::$erpActivator);
 
         $compareVersions = erpDefaults::compareVersion(get_option(erpDefaults::versionNumOptName));
-        
+
         if ($compareVersions < 0) {
             // New install
-            
+
             /**
              * If an old version is present translate options
              */
             if (get_option('erpVersion')) {
                 $mainOpts = self::migrateMainOptions();
-                $widOptions = self::migrateWidgetOptions();
-                
+
                 $notice = erpAdminNotices::getInstance();
-                
+
                 $message = new erpAdminMessage('<strong>Easy Related Posts updated from V1 to V2.</strong>'
                         . 'You should review the main plugin and widget settings.<br>'
                         . 'There are some major changes in this version so this affects options as well. '
-                        . 'We are  sorry for the inconvenience but this was necessary to move this plugin forward.<br>'
-                        . 'Specially if you were using the Easy Related Posts widget you will notice '
-                        . 'that now they are gone, please replace them imediatly.', 'updated');
+                        . 'We are  sorry for the inconvenience but this was necessary to move this plugin forward', 'updated');
                 $notice->addMessage($message);
                 // Delete old options
                 delete_option('erpVersion');
                 delete_option('erpSubVersion');
-                delete_option('widget_erp_widget');
                 delete_option('erpOpts');
+                delete_option('widget_erp_widget');
             } else {
                 $mainOpts = erpDefaults::$comOpts + erpDefaults::$mainOpts;
-                $widOptions = erpDefaults::$comOpts + erpDefaults::$widOpts;
             }
             erpActivator::addNonExistingMainOptions($mainOpts, EPR_MAIN_OPTIONS_ARRAY_NAME);
-            erpActivator::addNonExistingWidgetOptions($widOptions, 'widget_' . erpDefaults::erpWidgetOptionsArrayName);
+            erpActivator::addNonExistingWidgetOptions(erpDefaults::$comOpts + erpDefaults::$mainOpts, 'widget_' . erpDefaults::erpWidgetOptionsArrayName);
             erpDefaults::updateVersionNumbers();
         } elseif ($compareVersions === 0) {
             // Major update
@@ -407,7 +403,7 @@ class easyRelatedPosts {
 
     private static function migrateMainOptions() {
         $oldOptions = get_option('erpOpts');
-        if (empty($oldOptions)) {
+        if (empty($oldOptions) || $oldOptions === false) {
             return erpDefaults::$comOpts + erpDefaults::$mainOpts;
         }
         $defOptions = erpDefaults::$comOpts + erpDefaults::$mainOpts;
@@ -418,20 +414,22 @@ class easyRelatedPosts {
         $opt['activate'] = $opt ['activate_plugin'];
         $opt['numberOfPostsToDisplay'] = $oldOptions ['num_of_p_t_dspl'];
         $opt['fetchBy'] = $oldOptions ['getPostsBy'];
-        if ($oldOptions['erpcontent'] == 'post_title') {
-            $opt['content'] = array('title');
-        } else {
-            $opt['content'] = array('title', 'excerpt');
-        }
+        $opt['content'] = array();
         if ($oldOptions['display_thumbnail']) {
             array_push($opt['content'], 'thumbnail');
         }
-        $opt['excLength'] = (int)ceil($oldOptions ['exc_len']/8)+1;
+        if ($oldOptions['erpcontent'] == 'post_title') {
+            array_push($opt['content'], 'title');
+        } else {
+            array_push($opt['content'], 'title');
+            array_push($opt['content'], 'excerpt');
+        }
+        $opt['excLength'] = (int) ceil($oldOptions ['exc_len'] / 8) + 1;
         $opt['postTitleFontSize'] = $oldOptions ['ttl_sz'];
         $opt['excFontSize'] = $oldOptions ['exc_sz'];
         $opt['moreTxt'] = $oldOptions ['more_txt'];
         $opt['dsplLayout'] = 'grid';
-
+        $opt['cropThumbnail'] = $oldOptions['crop_thumbnail'] == 1;
         $opt['thumbnailHeight'] = $oldOptions ['thumbnail_height'];
         $opt['thumbnailWidth'] = $oldOptions ['thumbnail_width'];
         $opt ['categories'] = $oldOptions['categories'];
@@ -439,10 +437,6 @@ class easyRelatedPosts {
         $opt['postTypes'] = $oldOptions ['post_types'];
 
         return array_merge($defOptions, $opt);
-    }
-    // TODO
-    private static function migrateWidgetOptions(){
-        return erpDefaults::$comOpts + erpDefaults::$widOpts;
     }
 
     /**

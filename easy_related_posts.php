@@ -73,7 +73,7 @@ register_deactivation_hook(__FILE__, array('easyRelatedPosts', 'deactivate'));
  */
 add_action('plugins_loaded', array('easyRelatedPosts', 'get_instance'));
 add_action('widgets_init', function () {
-    register_widget("erpWidget");
+    register_widget("ERP_Widget");
 });
 
 /* ----------------------------------------------------------------------------*

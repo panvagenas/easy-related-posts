@@ -15,7 +15,7 @@
  * @package Easy_Related_Posts
  * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
  */
-class erpWidget extends WP_Widget {
+class ERP_Widget extends WP_Widget {
 
     /**
      * Register widget with WordPress.

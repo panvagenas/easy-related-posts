@@ -73,8 +73,15 @@ class erpActivator {
             return add_option($optsName, array(1 => $newOpts));
         }
         foreach ($oldOpts as $k => $v) {
-            if (is_array($v) && isset($v['title'])) {
-                $oldOpts[$k] = $oldOpts[$k] + $newOpts;
+            /**
+             * wid_erp_title is for backward compatability with version 1.*
+             */
+            if (is_array($v) && (isset($v['title']) || isset($v['wid_erp_title']))) {
+                if(isset($v['wid_erp_title'])){
+                    $oldOpts[$k] = $newOpts;
+                } else {
+                    $oldOpts[$k] = $oldOpts[$k] + $newOpts;
+                }
             }
         }
         return update_option($optsName, $oldOpts);

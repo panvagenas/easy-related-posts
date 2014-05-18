@@ -13,7 +13,7 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
     exit;
 }
 
-require_once plugin_dir_path( __FILE__ ) . 'easy-related-posts.php';
+require_once plugin_dir_path( __FILE__ ) . 'easy_related_posts.php';
 
 class erpUninstall {
 
