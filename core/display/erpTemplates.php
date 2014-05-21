@@ -423,7 +423,7 @@ abstract class erpTemplates {
      * @param string $echo
      * @return string|NULL
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
-     * @since
+     * @since 2.0.0
      */
     public function render($postData, $echo = FALSE) {
         if (isset($this->viewFilePath) && !empty($this->options) && !empty($postData)) {

@@ -214,7 +214,7 @@ class easyRelatedPostsAdmin {
      *
      * @since 2.0.0
      */
-    public function display_plugin_admin_page() {
+    public function display_plugin_admin_page() {        
         if (!class_exists('erpView')) {
             erpPaths::requireOnce(erpPaths::$erpView);
         }
@@ -269,8 +269,8 @@ class easyRelatedPostsAdmin {
         $mainOptionsObj = new erpMainOpts();
         $mainOptionsObj->saveOptions($_POST);
         
-        $message = new erpAdminMessage('Options saved', 'updated', 1, 'settings_page_erp_settings');
-        erpAdminNotices::getInstance()->addMessage($message);
+        $message = new WP_Updated_Notice('Options saved', 1, array('settings_page_erp_settings'));
+        WP_Admin_Notices::getInstance()->addNotice($message);
         
         wp_redirect(add_query_arg(array(
             'page' => $this->plugin_slug . '_settings',

@@ -373,14 +373,13 @@ class easyRelatedPosts {
              */
             if (get_option('erpVersion')) {
                 $mainOpts = self::migrateMainOptions();
-
-                $notice = erpAdminNotices::getInstance();
-
-                $message = new erpAdminMessage('<strong>Easy Related Posts updated from V1 to V2.</strong>'
+                
+                $notice = new WP_Updated_Notice('<strong>Easy Related Posts updated from V1 to V2.</strong>'
                         . 'You should review the main plugin and widget settings.<br>'
                         . 'There are some major changes in this version so this affects options as well. '
-                        . 'We are  sorry for the inconvenience but this was necessary to move this plugin forward', 'updated');
-                $notice->addMessage($message);
+                        . 'We are  sorry for the inconvenience but this was necessary to move this plugin forward');
+                WP_Admin_Notices::getInstance()->addNotice($notice);
+                
                 // Delete old options
                 delete_option('erpVersion');
                 delete_option('erpSubVersion');

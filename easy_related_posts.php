@@ -83,7 +83,6 @@ add_action('widgets_init', function () {
  */
 if (is_admin()) {
     erpPaths::requireOnce(erpPaths::$easyRelatedPostsAdmin);
-    erpPaths::requireOnce(erpPaths::$erpAdminNotices);
-    add_action('plugins_loaded', array('erpAdminNotices', 'getInstance'));
+    erpPaths::requireOnce(erpPaths::$WP_Admin_Notices);
     add_action('plugins_loaded', array('easyRelatedPostsAdmin', 'get_instance'));
 }
