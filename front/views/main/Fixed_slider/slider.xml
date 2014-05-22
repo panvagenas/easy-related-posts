@@ -8,8 +8,9 @@
 		<numOfPostsPerRow>3</numOfPostsPerRow>
 		<backgroundColor>#fefefe</backgroundColor>
 		<backgroundTransparency>0.8</backgroundTransparency>
-		<triggerAfter>0.8</triggerAfter></options>
+		<triggerAfter>0.8</triggerAfter>
 		<thumbCaption>false</thumbCaption>
+        </options>
 	<optionSaveValidation>
 		<file>optionSaveValidation.php</file>
 		<function>validateMainFixedSliderOptions</function>

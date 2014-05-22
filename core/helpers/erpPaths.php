@@ -11,10 +11,12 @@ class erpPaths {
     public static $WP_Admin_Notices = 'core/helpers/WP_Admin_Notices.php';
     // Display
     public static $erpPostData = 'core/display/erpPostData.php';
+    public static $erpTheme = 'core/display/erpTheme.php';
+    public static $VPluginThemeFactory = 'core/display/VPluginThemeFactory.php';
     public static $erpView = 'core/display/erpView.php';
-    public static $erpMainTemplates = 'core/display/erpMainTemplates.php';
-    public static $erpTemplates = 'core/display/erpTemplates.php';
-    public static $erpWidTemplates = 'core/display/erpWidTemplates.php';
+    public static $erpMainTemplates = 'core/display/erpMainTemplates.php'; // TODO
+    public static $erpTemplates = 'core/display/erpTemplates.php'; // TODO
+    public static $erpWidTemplates = 'core/display/erpWidTemplates.php'; // TODO
     // Admin
     public static $easyRelatedPostsAdmin = 'admin/easyRelatedPostsAdmin.php';
     public static $erpActivator = 'admin/erpActivator.php';
@@ -33,6 +35,9 @@ class erpPaths {
     public static $erpRatingSystem = 'core/related/erpRatingSystem.php';
     // Front
     public static $easyRelatedPosts = 'front/easyRelatedPosts.php';
+    // Themes
+    public static $mainThemesFolder = 'front/views/main';
+    public static $widgetThemesFolder = 'front/views/widget';
 
     public static function requireOnce($path) {
         require_once EPR_BASE_PATH . $path;

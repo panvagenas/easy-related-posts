@@ -131,8 +131,13 @@ class easyRelatedPosts {
          */
         if ($this->isShowTime($post) && !$this->isInExcludedPostTypes($post) && !$this->isInExcludedTaxonomies($post) && (bool) $this->mainOpts->getValue('activate')) {
 
-            erpPaths::requireOnce(erpPaths::$erpMainTemplates);
+            erpPaths::requireOnce(erpPaths::$erpMainTemplates); // TODO
             erpPaths::requireOnce(erpPaths::$erpRelated);
+            erpPaths::requireOnce(erpPaths::$VPluginThemeFactory);
+            
+            $theme = VPluginThemeFactory::registerThemeInPathRecursive(EPR_BASE_PATH . erpPaths::$mainThemesFolder, 'Fixed slider');
+            var_dump(VPluginThemeFactory::getThemesNames());
+            var_dump($theme->render('', array('title' =>  $this->mainOpts->getTitle()), false));
 
             $relatedObj = erpRelated::get_instance($this->mainOpts);
             $result = $relatedObj->getRelated($post->ID);
