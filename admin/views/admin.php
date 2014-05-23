@@ -380,7 +380,6 @@ if (!function_exists('erpTaxGrouping')) {
                                 >
                                     <?php
                                     erpPaths::requireOnce(erpPaths::$VPluginThemeFactory);
-                                    
                                     VPluginThemeFactory::registerThemeInPathRecursive(erpPaths::getAbsPath(erpPaths::$mainThemesFolder));
                                     $templates = VPluginThemeFactory::getThemesNames();
                                     foreach ($templates as $key => $val) {

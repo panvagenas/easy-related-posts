@@ -372,4 +372,7 @@ abstract class erpTheme extends VPluginTheme {
         return $this;
     }
 
+    public function setOptions($options) {
+        $this->options = array_merge($this->options, $options);
+    }
 }

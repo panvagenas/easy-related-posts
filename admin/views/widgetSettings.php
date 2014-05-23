@@ -227,9 +227,9 @@
     </tr>
     <tr>
         <?php
-        erpPaths::requireOnce(erpPaths::$erpWidTemplates);
-        $temp = new erpWidTemplates();
-        $templates = $temp->getTemplateNames();
+        erpPaths::requireOnce(erpPaths::$VPluginThemeFactory);
+        VPluginThemeFactory::registerThemeInPathRecursive(erpPaths::getAbsPath(erpPaths::$widgetThemesFolder));
+        $templates = VPluginThemeFactory::getThemesNames();
         ?>
         <td><label for="<?php echo $widgetInstance->get_field_id('dsplLayout'); ?>">Theme :</label></td>
         <td>
@@ -241,8 +241,7 @@
                     title="From the dropdown you can define the appearance of the plugin in the widget area. When a theme is selected the additional options will show up bellow theme selection dropdown">
                         <?php
                         foreach ($templates as $key => $val) {
-                            $valLow = strtolower(str_replace(' ', '_', $val));
-                            echo '<option value="' . $valLow . '"' . selected($options['dsplLayout'], $valLow, FALSE) . '>' . $val . '</option>';
+                            echo '<option value="' . $val . '"' . selected($erpOptions['dsplLayout'], $val, FALSE) . '>' . $val . '</option>';
                         }
                         ?>
             </select>
@@ -253,9 +252,8 @@
     <span style="position: relative; top: -21px; float: left; background-color: white;"> Theme options </span><br>
     <?php
     foreach ($templates as $key => $value) {
-        $temp->load($value);
-        $valLow = strtolower(str_replace(' ', '_', $value));
-        echo '<span class="templateSettings" data-template="' . $valLow . '" hidden="hidden">';
+        $temp = VPluginThemeFactory::getThemeByName($value);
+        echo '<span class="templateSettings" data-template="' . $value . '" hidden="hidden">';
         $temp->setOptions($options);
         echo $temp->renderSettings($widgetInstance);
         echo '</span>';
@@ -264,7 +262,7 @@
 
 </p>
 <script type="text/javascript">
-    var templateRoot = "<?php echo $temp->getTemplatesBasePath(); ?>";
+    var templateRoot = "<?php echo erpPaths::getAbsPath(erpPaths::$widgetThemesFolder); ?>";
     jQuery(document).ready(function($) {
 
         jQuery('#<?php echo $widgetInstance->get_field_id("postTitleColor"); ?>').wpColorPicker();

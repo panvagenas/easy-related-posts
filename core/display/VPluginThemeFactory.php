@@ -131,10 +131,10 @@ if (!class_exists('VPluginThemeFactory')) {
          * @param type $name
          * @return null|VPluginTheme
          */
-        public static function getThemeByName($name) {
+        public static function getThemeByName($name, $type = null) {
             if (is_string($name)) {
                 foreach (self::$registeredThemes as $key => $value) {
-                    if ($value->getName() == $name) {
+                    if ($value->getName() == $name && (empty($type) || $value->getType == $type)) {
                         return $value;
                     }
                 }

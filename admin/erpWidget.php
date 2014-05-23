@@ -74,18 +74,22 @@ class ERP_Widget extends WP_Widget {
             // If we have some posts to show
             if ($wpQ->have_posts()) {
                 // Get template instance for the specific widget number
-                erpPaths::requireOnce(erpPaths::$erpWidTemplates);
-                $template = new erpWidTemplates($this->number);
-                // load template
-                $template->load($instance ['dsplLayout']);
-                // If template isn't found display empty widget
-                if (!$template->isLoaded()) {
-                    return $this->displayEmptyWidget($args, $instance);
+                
+                erpPaths::requireOnce(erpPaths::$VPluginThemeFactory);
+                VPluginThemeFactory::registerThemeInPathRecursive(erpPaths::getAbsPath(erpPaths::$widgetThemesFolder), $instance ['dsplLayout']);
+                $theme = VPluginThemeFactory::getThemeByName($instance ['dsplLayout']);
+                
+                if(!$theme){
+                    $this->displayEmptyWidget($args, $instance);
                 }
-                // else display rel content
+                
+                $theme->setOptions($instance);
+                $theme->formPostData($wpQ, $widOpts, $relatedObj->getRatingsFromRelDataObj());
+                $content = $theme->renderW($this->number);
+                
                 echo $args ['before_widget'];
                 echo $args ['before_title'] . $instance ['title'] . $args ['after_title'];
-                echo $template->display($wpQ, $widOpts, $relatedObj->getRatingsFromRelDataObj());
+                echo $content;
                 echo $args ['after_widget'];
             } else {
                 // else diplay empty widget
@@ -149,16 +153,23 @@ class ERP_Widget extends WP_Widget {
         // validate wid options
         $widOptsValidated = $widOpts->saveOptions($new_instance, $old_instance);
         // validate template options
-        $template = new erpWidTemplates();
-        $template->load($new_instance ['dsplLayout']);
-
-        if ($template->isLoaded()) {
-            $tempalteOptionsValidated = $template->saveTemplateOptions($new_instance);
-        } else {
-            $tempalteOptionsValidated = array();
+        if (isset($new_instance ['dsplLayout'])) {
+            erpPaths::requireOnce(erpPaths::$VPluginThemeFactory);
+            VPluginThemeFactory::registerThemeInPathRecursive(erpPaths::getAbsPath(erpPaths::$widgetThemesFolder), $new_instance ['dsplLayout']);
+            
+            $theme = VPluginThemeFactory::getThemeByName($new_instance ['dsplLayout']);
+            if($theme){
+                $themeValidated = $theme->saveSettings($new_instance);
+                foreach ($theme->getDefOptions() as $key => $value) {
+                    unset($new_instance [$key]);
+                }
+            } else {
+                $message = new WP_Error_Notice('Theme '.$new_instance ['dsplLayout'].' not found. Theme options discarded');
+                WP_Admin_Notices::getInstance()->addNotice($message);
+            }
         }
         // save updated options
-        return array_merge($widOptsValidated, $tempalteOptionsValidated);
+        return $widOptsValidated+$themeValidated;
     }
 
     /**
