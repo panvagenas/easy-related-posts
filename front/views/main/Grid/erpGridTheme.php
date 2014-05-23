@@ -106,7 +106,7 @@ class erpGridTheme extends erpTheme{
         return parent::render(plugin_dir_path(__FILE__).'grid.php', $data, $echo);
     }
     
-    public function renderSettings($filePath = '', $echo = true, $echo = true) {
+    public function renderSettings($filePath = '', $echo = false) {
         return parent::renderSettings(plugin_dir_path(__FILE__).'settings.php', $echo);
     }
 }

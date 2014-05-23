@@ -40,7 +40,7 @@
 	    <label for="backgroundTransparency">Background transparency: </label>
 	</td>
 	<td>
-            <input class="erp-opttxt" id="backgroundTransparency" name="backgroundTransparency" type="number" value="<?php echo $backgroundTransparency; ?>"/>
+            <input class="erp-opttxt" id="backgroundTransparency" max="1.00" min="0.00" step="0.01" name="backgroundTransparency" type="number" value="<?php echo $backgroundTransparency; ?>"/>
             <div id="backgroundTransparencySlider"></div>
         </td>
     </tr>
@@ -49,7 +49,7 @@
 	    <label for="triggerAfter">Trigger after: </label>
 	</td>
 	<td>
-	    <input class="erp-opttxt" id="triggerAfter" name="triggerAfter" type="number" value="<?php echo $triggerAfter; ?>"/>
+	    <input class="erp-opttxt" id="triggerAfter" name="triggerAfter" max="0.90" min="0.10" step="0.01"  type="number" value="<?php echo $triggerAfter; ?>"/>
             <div id="triggerAfterSlider"></div>
 	</td>
     </tr>

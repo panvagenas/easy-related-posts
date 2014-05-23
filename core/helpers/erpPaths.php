@@ -40,8 +40,8 @@ class erpPaths {
     public static $widgetThemesFolder = 'front/views/widget';
 
     public static function requireOnce($path) {
-        $fields = self::getClassFieldNames();
-        if(isset($fields[$path])){
+        $fields = get_class_vars(__CLASS__);
+        if(in_array($path, $fields)){
             require_once EPR_BASE_PATH . $path;
         } else {
             return new WP_Error('error', 'File '.EPR_BASE_PATH . $path.' is not found in class fields');
@@ -49,8 +49,8 @@ class erpPaths {
     }
     
     public static function getAbsPath($path) {
-        $fields = self::getClassFieldNames();
-        if(isset($fields[$path])){
+        $fields = get_class_vars(__CLASS__);
+        if(in_array($path, $fields)){
             return EPR_BASE_PATH . $path;
         } else {
             return new WP_Error('error', 'File '. EPR_BASE_PATH . $path.' is not found in class fields');

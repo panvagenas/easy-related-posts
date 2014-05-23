@@ -379,12 +379,12 @@ if (!function_exists('erpTaxGrouping')) {
                                 title="From the dropdown you can define the appearance of the plugin in the main content area. When a theme is selected the additional options will show up bellow theme selection dropdown"
                                 >
                                     <?php
-                                    erpPaths::requireOnce(erpPaths::$erpMainTemplates);
-                                    $temp = new erpMainTemplates();
-                                    $templates = $temp->getTemplateNames();
+                                    erpPaths::requireOnce(erpPaths::$VPluginThemeFactory);
+                                    
+                                    VPluginThemeFactory::registerThemeInPathRecursive(erpPaths::getAbsPath(erpPaths::$mainThemesFolder));
+                                    $templates = VPluginThemeFactory::getThemesNames();
                                     foreach ($templates as $key => $val) {
-                                        $valLow = strtolower(str_replace(' ', '_', $val));
-                                        echo '<option value="' . $valLow . '"' . selected($erpOptions['dsplLayout'], $valLow, FALSE) . '>' . $val . '</option>';
+                                        echo '<option value="' . $val . '"' . selected($erpOptions['dsplLayout'], $val, FALSE) . '>' . $val . '</option>';
                                     }
                                     ?>
                             </select>
@@ -567,7 +567,7 @@ if (!function_exists('erpTaxGrouping')) {
         <?php echo get_submit_button('Update options', 'primary large', 'Save'); ?>
         <input id="tab-spec" type="hidden" name="tab-spec" value="0">
         <script type="text/javascript">
-            var templateRoot = "<?php echo $temp->getTemplatesBasePath(); ?>";
+            var templateRoot = "<?php echo erpPaths::getAbsPath(erpPaths::$mainThemesFolder); ?>";
             var options = {};
 <?php
 $tabSpec = filter_input(INPUT_GET, 'tab-spec');

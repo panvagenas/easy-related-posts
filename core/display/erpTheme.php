@@ -150,7 +150,7 @@ if (!class_exists('VPluginTheme')) {
          * @param bool $echo If we should echo the result or just return it
          * @return string
          */
-        public function renderSettings($filePath, $echo = true) {
+        public function renderSettings($filePath, $echo = false) {
             return self::view($filePath, $this->options, $echo);
         }
 
@@ -308,11 +308,11 @@ abstract class erpTheme extends VPluginTheme {
     }
 
     
-    public function render($filePath, Array $data = array(), $echo = true) {
+    public function render($filePath, Array $data = array(), $echo = false) {
         $this->enqPreregScripts();
         $this->enqueCSS();
         $this->enqueJS();
-        parent::render($filePath, $data, $echo);
+        return parent::render($filePath, $data, $echo);
     }
 
     /**
@@ -347,7 +347,7 @@ abstract class erpTheme extends VPluginTheme {
             'optionsObj' => $optionsObj,
             'posts' => array()
         );
-
+        
         while ($wpq->have_posts()) {
             $wpq->the_post();
 

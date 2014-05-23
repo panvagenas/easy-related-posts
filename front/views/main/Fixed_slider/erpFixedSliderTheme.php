@@ -113,15 +113,15 @@ class erpFixedSliderTheme extends erpTheme{
 	if (isset( $options [ 'numOfPostsPerRow' ] ) && $options [ 'numOfPostsPerRow' ] > 0) {
 		$newOptions['numOfPostsPerRow'] = (int)$options['numOfPostsPerRow'];
 	}
-	$newOptions['thumbCaption'] = isset( $options [ 'thumbCaption' ] ) ? true : false;
-	return $newOptions;
+	$newOptions['thumbCaption'] = isset( $options [ 'thumbCaption' ] );
+	return array_merge($this->defOptions, $newOptions);
     }
 
     public function render($path = '', Array $data = array(), $echo = false) {
         return parent::render(plugin_dir_path(__FILE__).'slider.php', $data, $echo);
     }
     
-    public function renderSettings($filePath = '', $echo = true, $echo = false) {
+    public function renderSettings($filePath = '', $echo = false) {
         return parent::renderSettings(plugin_dir_path(__FILE__).'settings.php', $echo);
     }
 }

@@ -252,17 +252,21 @@ class easyRelatedPostsAdmin {
             wp_die('Not allowed');
         }
         erpPaths::requireOnce(erpPaths::$erpMainOpts);
-        erpPaths::requireOnce(erpPaths::$erpMainTemplates);
         // Save template options
         if (isset($_POST ['dsplLayout'])) {
-            $templateObj = new erpMainTemplates();
-            $templateObj->load($_POST ['dsplLayout']);
-            if ($templateObj->isLoaded()) {
-                $templateObj->saveTemplateOptions($_POST);
-                $templateOptions = $templateObj->getOptions();
-                foreach ($templateOptions as $key => $value) {
+            erpPaths::requireOnce(erpPaths::$VPluginThemeFactory);
+            VPluginThemeFactory::registerThemeInPathRecursive(erpPaths::getAbsPath(erpPaths::$mainThemesFolder), $_POST ['dsplLayout']);
+            
+            $theme = VPluginThemeFactory::getThemeByName($_POST ['dsplLayout']);
+            
+            if($theme){
+                $theme->saveSettings($_POST);
+                foreach ($theme->getDefOptions() as $key => $value) {
                     unset($_POST [$key]);
                 }
+            } else {
+                $message = new WP_Error_Notice('Theme '.$_POST ['dsplLayout'].' not found. Theme options discarded', 1, array('settings_page_erp_settings'));
+                WP_Admin_Notices::getInstance()->addNotice($message);
             }
         }
         // Save the rest of the options
@@ -290,15 +294,20 @@ class easyRelatedPostsAdmin {
             echo json_encode(false);
             die();
         }
-        erpPaths::requireOnce(erpPaths::$erpMainTemplates);
-
-        $templateObj = new erpMainTemplates();
-        $templateObj->load($_POST ['template']);
-
-        $data = array(
-            'content' => $templateObj->renderSettings(false),
-            'optionValues' => $templateObj->getOptions()
-        );
+        erpPaths::requireOnce(erpPaths::$VPluginThemeFactory);
+        
+        VPluginThemeFactory::registerThemeInPathRecursive(erpPaths::getAbsPath(erpPaths::$mainThemesFolder), $_POST ['template']);
+        
+        $theme = VPluginThemeFactory::getThemeByName($_POST ['template']);
+        
+        $data = array();
+        
+        if($theme){
+            $data = array(
+                'content' => $theme->renderSettings('', false),
+                'optionValues' => $theme->getOptions()
+            );
+        }
 
         echo json_encode($data);
         die();

@@ -59,7 +59,7 @@ $excClass = $uniqueID . 'Exc';
         $(function() {
             $(window).load(function() {
 <?php
-if ($options['thumbCaption'] && in_array('thumbnail', $options['content'])) {
+if ($options['thumbCaption'] && in_array('thumbnail', $optionsObj->getContentPositioning())) {
     ?>
                     $('.<?php echo $thumbClass; ?>').captionjs({
                         'class_name': 'erpProcaptionjs', // Class name assigned to each <figure>

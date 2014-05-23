@@ -131,7 +131,6 @@ class easyRelatedPosts {
          */
         if ($this->isShowTime($post) && !$this->isInExcludedPostTypes($post) && !$this->isInExcludedTaxonomies($post) && (bool) $this->mainOpts->getValue('activate')) {
 
-            erpPaths::requireOnce(erpPaths::$erpMainTemplates); // TODO
             erpPaths::requireOnce(erpPaths::$erpRelated);
             erpPaths::requireOnce(erpPaths::$VPluginThemeFactory);
             
@@ -142,12 +141,14 @@ class easyRelatedPosts {
                 return $content;
             }
 
-            $template = new erpMainTemplates();
-            $template->load($this->mainOpts->getDsplLayout());
-            if (!$template->isLoaded()) {
+            VPluginThemeFactory::registerThemeInPathRecursive(erpPaths::getAbsPath(erpPaths::$mainThemesFolder), $this->mainOpts->getDsplLayout());
+            $theme = VPluginThemeFactory::getThemeByName($this->mainOpts->getDsplLayout());
+            if(!$theme){
                 return $content;
             }
-            $relContent = $template->display($result, $this->mainOpts, $ratings, false);
+            $theme->formPostData($result, $this->mainOpts, $ratings);
+            
+            $relContent = $theme->render();
             
             return $content . $relContent;
         }
