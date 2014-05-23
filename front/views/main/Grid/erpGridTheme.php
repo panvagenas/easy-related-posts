@@ -33,19 +33,19 @@ erpPaths::requireOnce(erpPaths::$erpTheme);
  * @package @todo
  * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
  */
-class erpFixedSliderTheme extends erpTheme{
+class erpGridTheme extends erpTheme{
 
     /**
      * The name of the theme
      * @var string 
      */
-    protected $name = 'Fixed slider';
+    protected $name = 'Grid';
 
     /**
      * A description for theme
      * @var string
      */
-    protected $description = 'Display related as a fixed slider';
+    protected $description = 'Display related in a grid';
 
     /**
      * An array name if you are going  to save options to DB
@@ -53,33 +53,27 @@ class erpFixedSliderTheme extends erpTheme{
      * Instead they are validated and returned as an assoc array.
      * @var string Default is null 
      */
-    protected $optionsArrayName = 'erpFixedSliderOptions';
+    protected $optionsArrayName = 'erpGridOptions';
 
     /**
      * An assoc array containing default theme options if any
      * @var array
      */
     protected $defOptions = array(
-        'position' => 'bottom',
+        'thumbCaption' => false,
         'numOfPostsPerRow' => 3,
-        'backgroundColor' => '#fefefe',
-        'backgroundTransparency' => 0.8,
-        'triggerAfter' => 0.8,
-        'thumbCaption' => false
+        'backgroundColor' => '#ffffff',
+        'borderColor' => '#ffffff',
+        'borderRadius' => 0,
+        'borderWeight' => 0
     );
-    
-    protected $css = array(
-        'sliderCSS' => 'assets/css/slider.css'
-    );
-    protected $js = array(
-        'sliderJS' => array(
-            'path' => 'assets/js/slider.js',
-            'deps' => array('jquery')
-        )
-    );
+    // TODO admin scripts should not be hooked here
+    protected $css = array();
+    protected $js = array();
+    // TODO Preregistered admin scripts should not be hooked here
     protected $preregScripts = array(
-        'css' => array('erp-bootstrap', 'erp-bootstrap-text', 'erp-erpCaptionCSS'),
-        'js' => array('erp-erpCaptionJS')
+        'css' => array('erp-bootstrap', 'erp-bootstrap-text', 'erp-erpCaptionCSS', 'wp-color-picker'),
+        'js' => array('erp-erpCaptionJS', 'wp-color-picker')
     );
     
     /**
@@ -97,31 +91,22 @@ class erpFixedSliderTheme extends erpTheme{
     }
 
     public function validateSettings($options){
-        $newOptions = array ();
-	if (isset($options [ 'position' ])) {
-		$newOptions['position'] = strip_tags($options [ 'position' ]);
-	}
-	if (isset($options [ 'backgroundColor' ])) {
-		$newOptions['backgroundColor'] = strip_tags($options [ 'backgroundColor' ]);
-	}
-	if (isset($options [ 'backgroundTransparency' ]) && $options [ 'backgroundTransparency' ] > 0 &&  $options [ 'backgroundTransparency' ] <= 1) {
-		$newOptions['backgroundTransparency'] = (float)$options [ 'backgroundTransparency' ];
-	}
-	if (isset( $options [ 'triggerAfter' ] ) && $options [ 'triggerAfter' ] > 0 &&  $options [ 'triggerAfter' ] <= 1) {
-		$newOptions['triggerAfter'] = (float)$options['triggerAfter'];
-	}
-	if (isset( $options [ 'numOfPostsPerRow' ] ) && $options [ 'numOfPostsPerRow' ] > 0) {
-		$newOptions['numOfPostsPerRow'] = (int)$options['numOfPostsPerRow'];
-	}
-	$newOptions['thumbCaption'] = isset( $options [ 'thumbCaption' ] ) ? true : false;
-	return $newOptions;
+        $newOptions = array(
+            'numOfPostsPerRow' => isset($options ['numOfPostsPerRow']) ? (int) $options ['numOfPostsPerRow'] : 3,
+            'thumbCaption' => isset($options ['thumbCaption']),
+            'backgroundColor' => isset($options['backgroundColor']) ? wp_strip_all_tags($options['backgroundColor']) : '#ffffff',
+            'borderColor' => isset($options['borderColor']) ? wp_strip_all_tags($options['borderColor']) : '#ffffff',
+            'borderRadius' => isset($options ['borderRadius']) && (int)$options['borderRadius'] >= 0 ? (int) $options ['borderRadius'] : 0,
+            'borderWeight' => isset($options ['borderWeight']) && (int)$options['borderWeight'] >= 0 ? (int) $options ['borderWeight'] : 0,
+        );
+        return $newOptions;
     }
 
     public function render($path = '', Array $data = array(), $echo = false) {
-        return parent::render(plugin_dir_path(__FILE__).'slider.php', $data, $echo);
+        return parent::render(plugin_dir_path(__FILE__).'grid.php', $data, $echo);
     }
     
-    public function renderSettings($filePath = '', $echo = true, $echo = false) {
+    public function renderSettings($filePath = '', $echo = true, $echo = true) {
         return parent::renderSettings(plugin_dir_path(__FILE__).'settings.php', $echo);
     }
 }

@@ -100,11 +100,10 @@ class erpPostData {
      * @param WP_Post $post
      * @param array $options
      * @param float $rating
-     * @param int $hostPost
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
      * @since 2.0.0
      */
-    public function __construct(WP_Post $post, erpOptions $options, $rating, $hostPost) {
+    public function __construct(WP_Post $post, erpOptions $options, $rating) {
         $this->options = $options;
         $this->post = $post;
         $this->ID = $post->ID;

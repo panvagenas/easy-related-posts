@@ -389,7 +389,6 @@ abstract class erpTemplates {
      */
     protected function enqueJS() {
         if (isset($this->jsFilePath) && is_array($this->jsFilePath) && is_admin_bar_showing() && !is_admin() || !is_admin()) {
-            $plugin = easyRelatedPosts::get_instance();
             foreach ($this->jsFilePath as $key => $value) {
                 if (is_array($value)) {
                     wp_enqueue_script(

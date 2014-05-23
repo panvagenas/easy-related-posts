@@ -135,9 +135,8 @@ class easyRelatedPosts {
             erpPaths::requireOnce(erpPaths::$erpRelated);
             erpPaths::requireOnce(erpPaths::$VPluginThemeFactory);
             
-            $theme = VPluginThemeFactory::registerThemeInPathRecursive(EPR_BASE_PATH . erpPaths::$mainThemesFolder, 'Fixed slider');
+            VPluginThemeFactory::registerThemeInPathRecursive(EPR_BASE_PATH.'front/views/main');
             var_dump(VPluginThemeFactory::getThemesNames());
-            var_dump($theme->render('', array('title' =>  $this->mainOpts->getTitle()), false));
 
             $relatedObj = erpRelated::get_instance($this->mainOpts);
             $result = $relatedObj->getRelated($post->ID);
@@ -152,7 +151,7 @@ class easyRelatedPosts {
                 return $content;
             }
             $relContent = $template->display($result, $this->mainOpts, $ratings, false);
-
+            
             return $content . $relContent;
         }
         return $content;

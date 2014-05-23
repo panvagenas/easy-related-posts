@@ -97,7 +97,7 @@ if (!class_exists('VPluginThemeFactory')) {
                 if (is_array($value)) {
                     self::registerThemeInPathRecursive($absPath . $key, $name);
                 } else {
-                    return self::registerThemeInPath($absPath . $value, $name);
+                    self::registerThemeInPath($absPath . $value, $name);
                 }
             }
         }
