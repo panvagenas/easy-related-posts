@@ -135,9 +135,6 @@ class easyRelatedPosts {
             erpPaths::requireOnce(erpPaths::$erpRelated);
             erpPaths::requireOnce(erpPaths::$VPluginThemeFactory);
             
-            VPluginThemeFactory::registerThemeInPathRecursive(EPR_BASE_PATH.'front/views/main');
-            var_dump(VPluginThemeFactory::getThemesNames());
-
             $relatedObj = erpRelated::get_instance($this->mainOpts);
             $result = $relatedObj->getRelated($post->ID);
             $ratings = $relatedObj->getRatingsFromRelDataObj();

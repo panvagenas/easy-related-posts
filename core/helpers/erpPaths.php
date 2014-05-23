@@ -40,7 +40,24 @@ class erpPaths {
     public static $widgetThemesFolder = 'front/views/widget';
 
     public static function requireOnce($path) {
-        require_once EPR_BASE_PATH . $path;
+        $fields = self::getClassFieldNames();
+        if(isset($fields[$path])){
+            require_once EPR_BASE_PATH . $path;
+        } else {
+            return new WP_Error('error', 'File '.EPR_BASE_PATH . $path.' is not found in class fields');
+        }
+    }
+    
+    public static function getAbsPath($path) {
+        $fields = self::getClassFieldNames();
+        if(isset($fields[$path])){
+            return EPR_BASE_PATH . $path;
+        } else {
+            return new WP_Error('error', 'File '. EPR_BASE_PATH . $path.' is not found in class fields');
+        }
     }
 
+    public static function getClassFieldNames(){
+        return array_keys((array)get_class_vars(__CLASS__));
+    }
 }

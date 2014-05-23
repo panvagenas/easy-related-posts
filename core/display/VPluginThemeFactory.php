@@ -126,6 +126,11 @@ if (!class_exists('VPluginThemeFactory')) {
             return $out;
         }
 
+        /**
+         * 
+         * @param type $name
+         * @return null|VPluginTheme
+         */
         public static function getThemeByName($name) {
             if (is_string($name)) {
                 foreach (self::$registeredThemes as $key => $value) {
