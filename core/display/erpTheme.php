@@ -257,7 +257,6 @@ abstract class erpTheme extends VPluginTheme {
     }
 
     protected function enqPreregScripts() {
-        $this->basePath = $this->getBasePath();
         if (is_array($this->preregScripts) && !empty($this->preregScripts)) {
             if (isset($this->preregScripts['css']) && is_array($this->preregScripts['css'])) {
                 foreach ($this->preregScripts['css'] as $key => $value) {
@@ -289,11 +288,11 @@ abstract class erpTheme extends VPluginTheme {
     protected function enqueCSS() {
         // TODO Check this conditions 
         if (isset($this->css) && is_array($this->css) && is_admin_bar_showing() && !is_admin() || !is_admin()) {
-            $plugin = easyRelatedPosts::get_instance();
             foreach ($this->css as $key => $value) {
                 if (is_array($value)) {
                     wp_enqueue_style($key, $this->getUrl($value['path']), $value['deps'], easyRelatedPosts::VERSION);
                 } else {
+                    var_dump($this->getUrl($value));
                     wp_enqueue_style($key, $this->getUrl($value), array(), easyRelatedPosts::VERSION);
                 }
             }
