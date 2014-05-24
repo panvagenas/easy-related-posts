@@ -251,8 +251,13 @@ abstract class erpTheme extends VPluginTheme {
     function __construct() {
         parent::__construct();
     }
+    
+    public function getNewInstance() {
+        return new $this;
+    }
 
     protected function enqPreregScripts() {
+        $this->basePath = $this->getBasePath();
         if (is_array($this->preregScripts) && !empty($this->preregScripts)) {
             if (isset($this->preregScripts['css']) && is_array($this->preregScripts['css'])) {
                 foreach ($this->preregScripts['css'] as $key => $value) {
@@ -265,6 +270,14 @@ abstract class erpTheme extends VPluginTheme {
                 }
             }
         }
+    }
+    
+    public function getBasePath() {
+        if(!$this->basePath){
+            $reflector = new ReflectionClass(get_class($this));
+            $this->basePath = dirname($reflector->getFileName());
+        }
+        return $this->basePath;
     }
 
     /**

@@ -241,7 +241,7 @@
                     title="From the dropdown you can define the appearance of the plugin in the widget area. When a theme is selected the additional options will show up bellow theme selection dropdown">
                         <?php
                         foreach ($templates as $key => $val) {
-                            echo '<option value="' . $val . '"' . selected($erpOptions['dsplLayout'], $val, FALSE) . '>' . $val . '</option>';
+                            echo '<option value="' . $val . '"' . selected($options['dsplLayout'], $val, FALSE) . '>' . $val . '</option>';
                         }
                         ?>
             </select>

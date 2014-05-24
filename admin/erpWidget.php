@@ -78,7 +78,6 @@ class ERP_Widget extends WP_Widget {
                 erpPaths::requireOnce(erpPaths::$VPluginThemeFactory);
                 VPluginThemeFactory::registerThemeInPathRecursive(erpPaths::getAbsPath(erpPaths::$widgetThemesFolder), $instance ['dsplLayout']);
                 $theme = VPluginThemeFactory::getThemeByName($instance ['dsplLayout']);
-                
                 if(!$theme){
                     $this->displayEmptyWidget($args, $instance);
                 }

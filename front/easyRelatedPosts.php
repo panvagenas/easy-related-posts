@@ -147,7 +147,7 @@ class easyRelatedPosts {
                 return $content;
             }
             $theme->formPostData($result, $this->mainOpts, $ratings);
-            
+                        
             $relContent = $theme->render();
             
             return $content . $relContent;

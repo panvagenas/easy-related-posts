@@ -41,11 +41,27 @@ if (!class_exists('VPluginThemeFactory')) {
          */
         public static $registeredThemes = array();
 
-        public static function registerTheme(VPluginTheme $theme) {
-            $exists = self::getThemeByName($theme->getName());
-            if (empty($exists)) {
+        public static function registerTheme(erpTheme $theme) {
+            if (!self::isRegistered($theme)) {
                 self::$registeredThemes[$theme->getUniqueID()] = $theme;
             }
+        }
+        
+        public static function isRegistered($theme) {
+            if(is_string($theme)){
+                foreach (self::$registeredThemes as $key => $value) {
+                    if($value->getName() == $theme){
+                        return true;
+                    }
+                }
+            } elseif(self::isValidTheme($theme)){
+                foreach (self::$registeredThemes as $key => $value) {
+                    if($value->getName() == $theme->getName()){
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         public static function registerThemeInPath($path, $name = null) {
@@ -53,9 +69,8 @@ if (!class_exists('VPluginThemeFactory')) {
              * Check if we allready have this theme by name
              */
             if (!empty($name) && is_string($name)) {
-                $found = self::getThemeByName($name);
-                if ($found !== null) {
-                    return $found;
+                if (self::isRegistered($name)) {
+                    return;
                 }
             }
             /**
@@ -63,27 +78,30 @@ if (!class_exists('VPluginThemeFactory')) {
              */
             // If path is pointing to file
             if (is_file($path)) {
-                $classesInFile = VPluginFileHelper::file_get_php_classes($path);
-                if (is_array($classesInFile) && !empty($classesInFile)) {
-                    require_once $path;
-                    foreach ($classesInFile as $key => $value) {
-                        if (class_exists($value)) {
-                            $theme = new $value;
-                            if ($theme instanceof VPluginTheme && (empty($name) || $theme->getName() == $name)) {
-                                self::registerTheme($theme);
-                                return $theme;
-                            }
-                        }
-                    }
+                $theme = self::getThemeFromFile($path, $name);
+                if($theme){
+                    self::registerTheme($theme);
                 }
             } else {
                 $files = VPluginFileHelper::filesToArray($path);
                 foreach ($files as $key => $value) {
                     $absPathToFile = rtrim($path, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $value;
-                    $theme = self::registerThemeInPath($absPathToFile, $name);
-                    if ($theme instanceof VPluginTheme && (empty($name) || $theme->getName() == $name)) {
-                        self::registerTheme($theme);
-                        return $theme;
+                    self::registerThemeInPath($absPathToFile, $name);
+                }
+            }
+        }
+        
+        private static function getThemeFromFile($filePath, $themeName = null) {
+            $classesInFile = self::getClassesOfFile($filePath);
+            if (is_array($classesInFile) && !empty($classesInFile)) {
+                // TODO Check if this can work with ob_start
+                require_once $filePath;
+                foreach ($classesInFile as $key => $value) {
+                    if (class_exists($value)) {
+                        $theme = new $value;
+                        if (self::isValidTheme($theme) && (empty($themeName) || $theme->getName() == $themeName)) {
+                            return $theme;
+                        }
                     }
                 }
             }
@@ -105,16 +123,16 @@ if (!class_exists('VPluginThemeFactory')) {
         /**
          * Get all themes of a given type
          * @param string $type
-         * @return \VPluginTheme
+         * @return \erpTheme
          */
         public static function getAllOfType($type) {
             $out = array();
             foreach (self::$registeredThemes as $key => $value) {
-                if ($value instanceof VPluginTheme && $value->getType() == $type) {
+                if (self::isValidTheme($value) && $value->getType() == $type) {
                     array_push($out, $value);
                 }
             }
-            return $value;
+            return $out;
         }
 
         public static function getThemesNames($type = false) {
@@ -129,13 +147,13 @@ if (!class_exists('VPluginThemeFactory')) {
         /**
          * 
          * @param type $name
-         * @return null|VPluginTheme
+         * @return null|erpTheme
          */
         public static function getThemeByName($name, $type = null) {
             if (is_string($name)) {
                 foreach (self::$registeredThemes as $key => $value) {
                     if ($value->getName() == $name && (empty($type) || $value->getType == $type)) {
-                        return $value;
+                        return $value->getNewInstance();
                     }
                 }
             }
@@ -161,12 +179,12 @@ if (!class_exists('VPluginThemeFactory')) {
             return $type ? self::getAllOfType($type) : self::$registeredThemes;
         }
 
-        private static function isValidTheme(Object $object) {
-            return $object instanceof VPluginTheme;
+        private static function isValidTheme($object) {
+            return $object instanceof erpTheme;
         }
 
         private static function getClassesOfFile($filePath) {
-            if (is_string($filePath) && !is_file($filePath)) {
+            if (is_string($filePath) && is_file($filePath)) {
                 return VPluginFileHelper::file_get_php_classes($filePath);
             }
             return array();
