@@ -18,11 +18,6 @@
  */
 
 /**
- * erpTheme.php
- *
- * @package   @todo
- * @author    Panagiotis Vagenas <pan.vagenas@gmail.com>
- * @link      @todo
  * @copyright 2014 Panagiotis Vagenas <pan.vagenas@gmail.com>
  */
 erpPaths::requireOnce(erpPaths::$erpTheme);
@@ -30,7 +25,6 @@ erpPaths::requireOnce(erpPaths::$erpTheme);
 /**
  * Description of erpTheme
  * 
- * @package @todo
  * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
  */
 class erpBasicWidTheme extends erpTheme{
@@ -62,10 +56,8 @@ class erpBasicWidTheme extends erpTheme{
     protected $defOptions = array(
         'thumbCaption' => false
     );
-    // TODO admin scripts should not be hooked here
     protected $css = array();
     protected $js = array();
-    // TODO Preregistered admin scripts should not be hooked here
     protected $preregScripts = array(
         'css' => array('erp-bootstrap', 'erp-bootstrap-text', 'erp-erpCaptionCSS'),
         'js' => array('erp-erpCaptionJS')

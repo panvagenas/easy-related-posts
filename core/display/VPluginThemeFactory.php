@@ -20,9 +20,8 @@
 /**
  * VPluginThemeFactory.php
  *
- * @package   @todo
+ * @package   Easy_Related_Posts_Core_display
  * @author    Panagiotis Vagenas <pan.vagenas@gmail.com>
- * @link      @todo
  * @copyright 2014 Panagiotis Vagenas <pan.vagenas@gmail.com>
  */
 if (!class_exists('VPluginThemeFactory')) {
@@ -30,7 +29,7 @@ if (!class_exists('VPluginThemeFactory')) {
     /**
      * Description of VPluginThemeFactory
      * 
-     * @package @todo
+     * @package Easy_Related_Posts_Core_display
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
      */
     class VPluginThemeFactory {

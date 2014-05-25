@@ -14,9 +14,6 @@ class erpPaths {
     public static $erpTheme = 'core/display/erpTheme.php';
     public static $VPluginThemeFactory = 'core/display/VPluginThemeFactory.php';
     public static $erpView = 'core/display/erpView.php';
-    public static $erpMainTemplates = 'core/display/erpMainTemplates.php'; // TODO
-    public static $erpTemplates = 'core/display/erpTemplates.php'; // TODO
-    public static $erpWidTemplates = 'core/display/erpWidTemplates.php'; // TODO
     // Admin
     public static $easyRelatedPostsAdmin = 'admin/easyRelatedPostsAdmin.php';
     public static $erpActivator = 'admin/erpActivator.php';

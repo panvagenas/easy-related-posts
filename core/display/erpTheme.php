@@ -20,9 +20,8 @@
 /**
  * VPluginTheme.php
  *
- * @package   @todo
+ * @package   Easy_Related_Posts_Core_display
  * @author    Panagiotis Vagenas <pan.vagenas@gmail.com>
- * @link      @todo
  * @copyright 2014 Panagiotis Vagenas <pan.vagenas@gmail.com>
  */
 if (!class_exists('VPluginTheme')) {
@@ -30,7 +29,7 @@ if (!class_exists('VPluginTheme')) {
     /**
      * Description of VPluginTheme
      * 
-     * @package @todo
+     * @package Easy_Related_Posts_Core_display
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
      */
     abstract class VPluginTheme {
@@ -286,7 +285,6 @@ abstract class erpTheme extends VPluginTheme {
      * @since 2.0.0
      */
     protected function enqueCSS() {
-        // TODO Check this conditions 
         if (isset($this->css) && is_array($this->css) && is_admin_bar_showing() && !is_admin() || !is_admin()) {
             foreach ($this->css as $key => $value) {
                 if (is_array($value)) {

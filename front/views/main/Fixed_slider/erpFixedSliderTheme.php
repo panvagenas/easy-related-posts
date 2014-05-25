@@ -18,11 +18,6 @@
  */
 
 /**
- * erpTheme.php
- *
- * @package   @todo
- * @author    Panagiotis Vagenas <pan.vagenas@gmail.com>
- * @link      @todo
  * @copyright 2014 Panagiotis Vagenas <pan.vagenas@gmail.com>
  */
 erpPaths::requireOnce(erpPaths::$erpTheme);
@@ -30,7 +25,6 @@ erpPaths::requireOnce(erpPaths::$erpTheme);
 /**
  * Description of erpTheme
  * 
- * @package @todo
  * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
  */
 class erpFixedSliderTheme extends erpTheme{
