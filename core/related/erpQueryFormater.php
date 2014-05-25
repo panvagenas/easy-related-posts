@@ -133,6 +133,16 @@ class erpQueryFormater {
 
         return $this;
     }
+    
+    public function getPostsAfterDate($year, $month, $day) {
+        $this->argsArray ['date_query'] = array(
+            'after' => array(
+                'year' => $year,
+                'month' => $month,
+                'day' => $day
+            )
+        );
+    }
 
     /**
      * Resets class arguments to default values

@@ -93,19 +93,22 @@ if (!class_exists('VPluginThemeFactory')) {
         
         private static function getThemeFromFile($filePath, $themeName = null) {
             $classesInFile = self::getClassesOfFile($filePath);
+            $out = null;
             if (is_array($classesInFile) && !empty($classesInFile)) {
-                // TODO Check if this can work with ob_start
+                ob_start();
                 require_once $filePath;
                 foreach ($classesInFile as $key => $value) {
                     if (class_exists($value)) {
                         $theme = new $value;
                         if (self::isValidTheme($theme) && (empty($themeName) || $theme->getName() == $themeName)) {
-                            return $theme;
+                            $out = $theme;
+                            break;
                         }
                     }
                 }
+                ob_end_clean();
             }
-            return null;
+            return $out;
         }
 
         public static function registerThemeInPathRecursive($path, $name = null) {

@@ -123,9 +123,10 @@ class erpRelated {
         }
 
         /**
-         * If reltable is still empty return an empty wp_query obj
+         * If reltable is still empty or not enough posts in it
+         * return an empty wp_query obj
          */
-        if (empty($relTable)) {
+        if (empty($relTable) || (count($relTable) - $this->options->getOffset()) < 1) {
             // Normally this should return an empty wp_query
             return $this->relData->getResult();
         }

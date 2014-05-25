@@ -292,7 +292,6 @@ abstract class erpTheme extends VPluginTheme {
                 if (is_array($value)) {
                     wp_enqueue_style($key, $this->getUrl($value['path']), $value['deps'], easyRelatedPosts::VERSION);
                 } else {
-                    var_dump($this->getUrl($value));
                     wp_enqueue_style($key, $this->getUrl($value), array(), easyRelatedPosts::VERSION);
                 }
             }
