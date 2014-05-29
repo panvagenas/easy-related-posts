@@ -586,18 +586,18 @@ if ($tabSpec !== null && $tabSpec !== false) {
             <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                 <input type="hidden" name="cmd" value="_s-xclick">
                 <input type="hidden" name="hosted_button_id" value="WLGJ8L3ZJTFQQ">
-                <table>
+                <table style="width: 100%;">
                     <tr><td><input type="hidden" name="on0" value="Sponsorhip options"><strong>Support the development of this plugin</strong></td></tr><tr><td><select name="os0">
-                                <option value="My 2 cents">My 2 cents €2.00 EUR</option>
-                                <option value="Buy me a coffee" selected="">Buy me a coffee €5.00 EUR</option>
-                                <option value="Buy me a beer">Buy me a beer €8.00 EUR</option>
-                                <option value="Buy me a pizza">Buy me a pizza €10.00 EUR</option>
-                                <option value="Lets go to the movies tonight">Lets go to the movies tonight €15.00 EUR</option>
-                                <option value="We will get some popcorn too">We will get some popcorn too €20.00 EUR</option>
-                                <option value="A brand new game for my kids">A brand new game for my kids €30.00 EUR</option>
-                                <option value="We're all going to the movies tonight">We're all going to the movies tonight €40.00 EUR</option>
-                                <option value="Hall of fame silver badge">Hall of fame silver badge €60.00 EUR</option>
-                                <option value="Hall of fame gold badge">Hall of fame gold badge €100.00 EUR</option>
+                                <option value="2">€2.00 EUR</option>
+                                <option value="5" selected="">€5.00 EUR</option>
+                                <option value="8">€8.00 EUR</option>
+                                <option value="10">€10.00 EUR</option>
+                                <option value="15">€15.00 EUR</option>
+                                <option value="20">€20.00 EUR</option>
+                                <option value="30">€30.00 EUR</option>
+                                <option value="40">€40.00 EUR</option>
+                                <option value="60">€60.00 EUR</option>
+                                <option value="100">€100.00 EUR</option>
                             </select> </td></tr>
                     <tr><td><input type="hidden" name="on1" value="Your site URL">Your site URL</td></tr><tr><td><input type="text" name="os1" maxlength="200" value="<?php echo get_site_url(); ?>"></td></tr>
                 </table>

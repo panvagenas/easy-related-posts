@@ -195,7 +195,7 @@ class erpDefaults {
      */
     public static $mainOpts = array(
         'activate' => true,
-        'dsplLayout' => 'grid',
+        'dsplLayout' => 'Grid',
         'categories' => array(),
         'tags' => array(),
         'postTypes' => array(
@@ -227,7 +227,7 @@ class erpDefaults {
      * @var array
      */
     public static $widOpts = array(
-        'dsplLayout' => 'basic',
+        'dsplLayout' => 'Basic',
         'hideIfNoPosts' => false,
     );
 
