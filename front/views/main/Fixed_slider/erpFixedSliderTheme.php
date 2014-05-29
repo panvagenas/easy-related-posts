@@ -56,7 +56,7 @@ class erpFixedSliderTheme extends erpTheme{
     protected $defOptions = array(
         'position' => 'bottom',
         'numOfPostsPerRow' => 3,
-        'backgroundColor' => '#fefefe',
+        'backgroundColor' => '#ffffff',
         'backgroundTransparency' => 0.8,
         'triggerAfter' => 0.8,
         'thumbCaption' => false

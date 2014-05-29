@@ -78,7 +78,7 @@ class erpActivator {
              */
             if (is_array($v) && (isset($v['title']) || isset($v['wid_erp_title']))) {
                 if(isset($v['wid_erp_title'])){
-                    $oldOpts[$k] = $newOpts;
+                    $oldOpts[$k] = array_merge($newOpts, self::translateOldWidOptions($oldOpts[$k]));
                 } else {
                     $oldOpts[$k] = $oldOpts[$k] + $newOpts;
                 }
@@ -86,5 +86,54 @@ class erpActivator {
         }
         return update_option($optsName, $oldOpts);
     }
-
+    
+    private static function translateOldWidOptions($instance) {
+        $opt = array();
+        if(isset($instance['wid_erp_title'])){
+            $opt['title'] = $instance['wid_erp_title'];
+        }
+        if(isset($instance['wid_getPostsBy'])){
+            $opt['fetchBy']  = $instance['wid_getPostsBy'];
+        }
+        if(isset($instance['wid_num_of_p_t_dspl'])){
+            $opt['numberOfPostsToDisplay']  = $instance['wid_num_of_p_t_dspl'];
+        }
+        
+        $opt['content'] = array();
+        if (isset($instance['wid_erp_thumb']) && $instance['wid_erp_thumb']) {
+            array_push($opt['content'], 'thumbnail');
+        }
+        if (isset($instance['wid_erp_exc_or_tit']) && $instance['wid_erp_exc_or_tit'] == 'post_title') {
+            array_push($opt['content'], 'title');
+        } else {
+            array_push($opt['content'], 'title');
+            array_push($opt['content'], 'excerpt');
+        }
+        if(isset($instance ['wid_erp_pt_s'])){
+            $opt['postTitleFontSize'] = $instance ['wid_erp_pt_s'];
+        }
+        if(isset($instance ['wid_erp_exc_s'])){
+            $opt['excFontSize'] = $instance ['wid_erp_exc_s'];
+        }
+        
+        $opt['dsplLayout'] = 'Basic';
+        $opt['thumbCaption'] = false;
+        
+        if(isset($instance['wid_erp_thumb_crop'])){
+            $opt['cropThumbnail'] = $instance['wid_erp_thumb_crop'] == 1;
+        }
+        if(isset($instance ['wid_erp_thumb_h'])){
+            $opt['thumbnailHeight'] = $instance ['wid_erp_thumb_h'];
+        }
+        if(isset($instance ['wid_erp_thumb_w'])){
+            $opt['thumbnailWidth'] = $instance ['wid_erp_thumb_w'];
+        }
+        if(isset($instance['wid_erp_pt_c'])){
+            $opt['postTitleColor'] = isset($instance['wid_erp_pt_c_u']) && $instance['wid_erp_pt_c_u'] ? $instance['wid_erp_pt_c'] : '#ffffff';
+        }
+        if(isset($instance['wid_erp_exc_c'])){
+            $opt['excColor'] = isset($instance['wid_erp_exc_c_u']) && $instance['wid_erp_exc_c_u'] ? $instance['wid_erp_exc_c'] : '#ffffff';
+        }
+        return $opt;
+    }
 }

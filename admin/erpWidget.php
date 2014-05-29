@@ -74,18 +74,18 @@ class ERP_Widget extends WP_Widget {
             // If we have some posts to show
             if ($wpQ->have_posts()) {
                 // Get template instance for the specific widget number
-                
+
                 erpPaths::requireOnce(erpPaths::$VPluginThemeFactory);
                 VPluginThemeFactory::registerThemeInPathRecursive(erpPaths::getAbsPath(erpPaths::$widgetThemesFolder), $instance ['dsplLayout']);
                 $theme = VPluginThemeFactory::getThemeByName($instance ['dsplLayout']);
-                if(!$theme){
-                    $this->displayEmptyWidget($args, $instance);
+                if (!$theme) {
+                    return $this->displayEmptyWidget($args, $instance);
                 }
-                
+
                 $theme->setOptions($instance);
                 $theme->formPostData($wpQ, $widOpts, $relatedObj->getRatingsFromRelDataObj());
                 $content = $theme->renderW($this->number);
-                
+
                 echo $args ['before_widget'];
                 echo $args ['before_title'] . $instance ['title'] . $args ['after_title'];
                 echo $content;
@@ -145,7 +145,6 @@ class ERP_Widget extends WP_Widget {
             return;
         }
         erpPaths::requireOnce(erpPaths::$erpWidOpts);
-        erpPaths::requireOnce(erpPaths::$erpWidTemplates);
 
         // get an instance to validate options
         $widOpts = new erpWidOpts($old_instance);
@@ -155,20 +154,20 @@ class ERP_Widget extends WP_Widget {
         if (isset($new_instance ['dsplLayout'])) {
             erpPaths::requireOnce(erpPaths::$VPluginThemeFactory);
             VPluginThemeFactory::registerThemeInPathRecursive(erpPaths::getAbsPath(erpPaths::$widgetThemesFolder), $new_instance ['dsplLayout']);
-            
+
             $theme = VPluginThemeFactory::getThemeByName($new_instance ['dsplLayout']);
-            if($theme){
+            if ($theme) {
                 $themeValidated = $theme->saveSettings($new_instance);
                 foreach ($theme->getDefOptions() as $key => $value) {
                     unset($new_instance [$key]);
                 }
             } else {
-                $message = new WP_Error_Notice('Theme '.$new_instance ['dsplLayout'].' not found. Theme options discarded');
+                $message = new WP_Error_Notice('Theme ' . $new_instance ['dsplLayout'] . ' not found. Theme options discarded');
                 WP_Admin_Notices::getInstance()->addNotice($message);
             }
         }
         // save updated options
-        return $widOptsValidated+$themeValidated;
+        return $widOptsValidated + $themeValidated;
     }
 
     /**

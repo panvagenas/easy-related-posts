@@ -386,7 +386,6 @@ class easyRelatedPosts {
                 delete_option('erpVersion');
                 delete_option('erpSubVersion');
                 delete_option('erpOpts');
-                delete_option('widget_erp_widget');
             } else {
                 $mainOpts = erpDefaults::$comOpts + erpDefaults::$mainOpts;
             }
@@ -412,9 +411,18 @@ class easyRelatedPosts {
         $opt = array();
 
         $opt['title'] = $oldOptions ['titletd'];
-        $opt['activate'] = $opt ['activate_plugin'];
-        $opt['numberOfPostsToDisplay'] = $oldOptions ['num_of_p_t_dspl'];
-        $opt['fetchBy'] = $oldOptions ['getPostsBy'];
+        if(isset($opt ['activate_plugin'])){
+            $opt['activate'] = $oldOptions ['activate_plugin'];
+        }
+        if(isset($oldOptions ['num_of_p_t_dspl'])){
+            $opt['numberOfPostsToDisplay'] = $oldOptions ['num_of_p_t_dspl'];
+        }
+        
+        if(isset($oldOptions ['getPostsBy'])){
+            $opt['fetchBy'] = $oldOptions ['getPostsBy'];
+        }
+        
+        
         $opt['content'] = array();
         if ($oldOptions['display_thumbnail']) {
             array_push($opt['content'], 'thumbnail');
@@ -425,17 +433,47 @@ class easyRelatedPosts {
             array_push($opt['content'], 'title');
             array_push($opt['content'], 'excerpt');
         }
-        $opt['excLength'] = (int) ceil($oldOptions ['exc_len'] / 8) + 1;
-        $opt['postTitleFontSize'] = $oldOptions ['ttl_sz'];
-        $opt['excFontSize'] = $oldOptions ['exc_sz'];
-        $opt['moreTxt'] = $oldOptions ['more_txt'];
-        $opt['dsplLayout'] = 'grid';
-        $opt['cropThumbnail'] = $oldOptions['crop_thumbnail'] == 1;
-        $opt['thumbnailHeight'] = $oldOptions ['thumbnail_height'];
-        $opt['thumbnailWidth'] = $oldOptions ['thumbnail_width'];
-        $opt ['categories'] = $oldOptions['categories'];
-        $opt ['tags'] = $oldOptions['tags'];
-        $opt['postTypes'] = $oldOptions ['post_types'];
+        if(isset($oldOptions ['exc_len'])){
+            $opt['excLength'] = (int) ceil($oldOptions ['exc_len'] / 8) + 1;
+        }
+        
+        if(isset($oldOptions ['ttl_sz'])){
+            $opt['postTitleFontSize'] = $oldOptions ['ttl_sz'];
+        }
+        
+        if(isset($oldOptions ['exc_sz'])){
+            $opt['excFontSize'] = $oldOptions ['exc_sz'];
+        }
+        
+        if(isset($oldOptions ['more_txt'])){
+            $opt['moreTxt'] = $oldOptions ['more_txt'];
+        }
+        
+        $opt['dsplLayout'] = 'Grid';
+        if(isset($oldOptions['crop_thumbnail'])){
+            $opt['cropThumbnail'] = $oldOptions['crop_thumbnail'] == 1;
+        }
+        
+        if(isset($oldOptions ['thumbnail_height'])){
+            $opt['thumbnailHeight'] = $oldOptions ['thumbnail_height'];
+        }
+        
+        if(isset($oldOptions ['thumbnail_width'])){
+            $opt['thumbnailWidth'] = $oldOptions ['thumbnail_width'];
+        }
+        
+        if(isset($oldOptions['categories'])){
+            $opt ['categories'] = $oldOptions['categories'];
+        }
+        
+        if(isset($oldOptions['tags'])){
+            $opt ['tags'] = $oldOptions['tags'];
+        }
+        
+        if(isset($oldOptions ['post_types'])){
+            $opt['postTypes'] = $oldOptions ['post_types'];
+        }
+        
 
         return array_merge($defOptions, $opt);
     }
