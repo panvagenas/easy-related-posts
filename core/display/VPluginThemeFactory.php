@@ -46,16 +46,16 @@ if (!class_exists('VPluginThemeFactory')) {
             }
         }
         
-        public static function isRegistered($theme) {
-            if(is_string($theme)){
+        public static function isRegistered($theme, $type = null) {
+            if(is_string($theme) && is_string($type)){
                 foreach (self::$registeredThemes as $key => $value) {
-                    if($value->getName() == $theme){
+                    if($value->getName() == $theme && $value->getType() == $type){
                         return true;
                     }
                 }
             } elseif(self::isValidTheme($theme)){
                 foreach (self::$registeredThemes as $key => $value) {
-                    if($value->getName() == $theme->getName()){
+                    if($value->getName() == $theme->getName() && $theme->getType() == $value->getType()){
                         return true;
                     }
                 }
@@ -174,11 +174,8 @@ if (!class_exists('VPluginThemeFactory')) {
             return isset(self::$registeredThemes[$id]) ? self::$registeredThemes[$id] : null;
         }
 
-        public static function getRegisteredThemes($type = false, $names = false) {
-            if ($names) {
-                return self::getThemesNames($type);
-            }
-            return $type ? self::getAllOfType($type) : self::$registeredThemes;
+        public static function getRegisteredThemes() {
+            return self::$registeredThemes;
         }
 
         private static function isValidTheme($object) {

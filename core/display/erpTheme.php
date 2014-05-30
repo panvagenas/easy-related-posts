@@ -288,9 +288,9 @@ abstract class erpTheme extends VPluginTheme {
         if (isset($this->css) && is_array($this->css) && is_admin_bar_showing() && !is_admin() || !is_admin()) {
             foreach ($this->css as $key => $value) {
                 if (is_array($value)) {
-                    wp_enqueue_style($key, $this->getUrl($value['path']), $value['deps'], easyRelatedPosts::VERSION);
+                    wp_enqueue_style($key.'-'.$this->uniqueID, $this->getUrl($value['path']), $value['deps'], easyRelatedPosts::VERSION);
                 } else {
-                    wp_enqueue_style($key, $this->getUrl($value), array(), easyRelatedPosts::VERSION);
+                    wp_enqueue_style($key.'-'.$this->uniqueID, $this->getUrl($value), array(), easyRelatedPosts::VERSION);
                 }
             }
         }
@@ -307,9 +307,9 @@ abstract class erpTheme extends VPluginTheme {
         if (isset($this->js) && is_array($this->js) && is_admin_bar_showing() && !is_admin() || !is_admin()) {
             foreach ($this->js as $key => $value) {
                 if (is_array($value)) {
-                    wp_enqueue_script($key, $this->getUrl($value['path']), $value['deps'], easyRelatedPosts::VERSION, false);
+                    wp_enqueue_script($key.'-'.$this->uniqueID, $this->getUrl($value['path']), $value['deps'], easyRelatedPosts::VERSION, false);
                 } else {
-                    wp_enqueue_script($key, $this->getUrl($value), array(), easyRelatedPosts::VERSION, false);
+                    wp_enqueue_script($key.'-'.$this->uniqueID, $this->getUrl($value), array(), easyRelatedPosts::VERSION, false);
                 }
             }
         }
