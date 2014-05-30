@@ -271,9 +271,9 @@ abstract class erpTheme extends VPluginTheme {
     }
     
     public function getBasePath() {
-        if(!$this->basePath){
+        if (!$this->basePath) {
             $reflector = new ReflectionClass(get_class($this));
-            $this->basePath = dirname($reflector->getFileName());
+            $this->basePath = dirname($reflector->getFileName()).DIRECTORY_SEPARATOR;
         }
         return $this->basePath;
     }
@@ -332,18 +332,7 @@ abstract class erpTheme extends VPluginTheme {
      * @since 2.0.0
      */
     protected function getUrl($templateFileRelativePath) {
-        // Convert to absolute path
-        $fullPath = $this->basePath . $templateFileRelativePath;
-        // Split to parts
-        $templateParts = explode(DIRECTORY_SEPARATOR, $fullPath);
-        // Get base parts
-        $baseParts = explode(DIRECTORY_SEPARATOR, rtrim(EPR_BASE_PATH, '/ '));
-        // Remove ..
-        array_pop($baseParts);
-        // Get the matching elements
-        $relativeToPluginBase = array_diff($templateParts, $baseParts);
-        // Since we found the path relative to blog base path we ready to return
-        return plugins_url(implode(DIRECTORY_SEPARATOR, $relativeToPluginBase));
+        return plugins_url($templateFileRelativePath, $this->basePath.'*.php');
     }
 
     public function formPostData(WP_Query $wpq, erpOptions $optionsObj, $ratings = array()) {
