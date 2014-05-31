@@ -17,9 +17,10 @@ Equipped with 3 eye catching fully responsive themes, supports basic modificatio
 Through an intuitive algorithm it creates “relations” between posts and rates them based on posts categories and/or tags in a way so these ratings are as much as accurate they can be.
 Last but not least in any way, Easy Related Posts uses the best coding standards and practices with mind in security. 
 
+**If you like this plugin please support the developers.** You can do so using the links inside  plugin settings page.
+
 This plugin has also a PRO version which you can purchase from [here](http://erp.xdark.eu/downloads/easy-related-posts-pro/).
 To see a full list of features and compare them to the PRO version please visit [this page](http://erp.xdark.eu/version-comparison/).
-**If you like this plugin please support the developers.** You can do so using the links inside  plugin settings page.
 
 *Easy Related Posts wont spam your visitor with content from other sites, ads or in any other way.* 
 
@@ -119,6 +120,5 @@ Initial release
 == Upgrade Notice ==
 
 = 2.0.0 =
-This is a major release. You have to review your settings after this
-update. Specially if you are using the Easy Related Posts widget you will 
-notice that all instances are gone, please replace them.
+This is a major release. You must review plugin settings after this
+update.
