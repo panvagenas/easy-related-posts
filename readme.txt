@@ -57,10 +57,11 @@ Not at all! But you are free to send any donations to my PayPal account yotisvag
 
 == Screenshots ==
 
-1. Plugin frontend 1
-2. Plugin frontend 2
+1. General options
+2. Layout options
 3. Widget options
-4. Settings pannel
+4. Grid theme
+5. Widget in sidebar
 
 == Changelog ==
 
