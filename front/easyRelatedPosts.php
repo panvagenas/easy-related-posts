@@ -394,10 +394,13 @@ class easyRelatedPosts {
             erpDefaults::updateVersionNumbers();
         } elseif ($compareVersions === 0) {
             // Major update
+            erpDefaults::updateVersionNumbers();
         } elseif ($compareVersions === 1) {
             // Release update
+            erpDefaults::updateVersionNumbers();
         } elseif ($compareVersions === 2) {
             // Minor update
+            erpDefaults::updateVersionNumbers();
         }
     }
 
