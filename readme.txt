@@ -4,7 +4,7 @@ Donate link:
 Tags: related, related posts, similar posts, widget, responsive, shortcode, tags, categories, custom post types, carousel, list, thumpnail, title, excerpt, taxonomies
 Requires at least: 3.0.1
 Tested up to: 3.9.1
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv3 (license.txt in plugin dir)
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -65,6 +65,11 @@ Not at all! But you are free to send any donations to my PayPal account yotisvag
 
 == Changelog ==
 
+= 2.0.1 =
+
+* Fixed bug [0000010](https://erp.xdark.eu/bugs/view.php?id=10)
+* Fixed bug [0000011](https://erp.xdark.eu/bugs/view.php?id=11)
+
 = 2.0.0 =
 
 * New related posts algorithm, fast and accurate
@@ -119,6 +124,9 @@ Initial release
 
 
 == Upgrade Notice ==
+
+= 2.0.1 =
+This version resolves a major bug described [here](https://erp.xdark.eu/bugs/view.php?id=11)
 
 = 2.0.0 =
 This is a major release. You must review plugin settings after this
