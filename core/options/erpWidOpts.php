@@ -19,13 +19,16 @@ erpPaths::requireOnce(erpPaths::$erpOptions);
 class erpWidOpts extends erpOptions {
 
     public function __construct(Array $instance = NULL) {
+        parent::__construct();
         $this->optionsArrayName = 'widget_' . erpDefaults::erpWidgetOptionsArrayName;
 
+        $this->defaults = erpDefaults::$widOpts + erpDefaults::$comOpts;
+        
         if ($instance !== NULL && !empty($instance)) {
             $this->options = $instance;
+        } else {
+            $this->options = $this->defaults;
         }
-
-        $this->defaults = erpDefaults::$widOpts + erpDefaults::$comOpts;
     }
 
     /**
