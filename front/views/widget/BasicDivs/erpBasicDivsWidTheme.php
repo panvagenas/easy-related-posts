@@ -27,7 +27,7 @@ erpPaths::requireOnce(erpPaths::$erpTheme);
  * 
  * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
  */
-class erpBasicWidTheme extends erpTheme{
+class erpBasicDivsWidTheme extends erpTheme{
 
     /**
      * The name of the theme
@@ -39,7 +39,7 @@ class erpBasicWidTheme extends erpTheme{
      * A description for theme
      * @var string
      */
-    protected $description = 'Basic widget theme, displays related posts as a list';
+    protected $description = 'Basic widget theme using div tags';
 
     /**
      * An array name if you are going  to save options to DB
