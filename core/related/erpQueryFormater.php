@@ -356,7 +356,7 @@ class erpQueryFormater {
      * @since 2.0.0
      */
     public function setPostInArg(Array $postsIds) {
-        $this->argsArray ['post__in'] = $postsIds;
+        $this->argsArray ['post__in'] = empty($postsIds) ? array(0) : $postsIds;
         $this->postIn = $postsIds;
         return $this;
     }
