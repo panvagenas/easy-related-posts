@@ -72,10 +72,12 @@ register_deactivation_hook(__FILE__, array('easyRelatedPosts', 'deactivate'));
  * Register plugin and widget
  */
 add_action('plugins_loaded', array('easyRelatedPosts', 'get_instance'));
-add_action('widgets_init', function () {
-    register_widget("ERP_Widget");
-});
 
+function regERPWidget() {
+    register_widget("ERP_Widget");
+}
+
+add_action('widgets_init', 'regERPWidget');
 /* ----------------------------------------------------------------------------*
  * Dashboard and Administrative Functionality
  * ---------------------------------------------------------------------------- */
