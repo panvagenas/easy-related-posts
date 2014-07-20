@@ -321,9 +321,11 @@ class erpPostData {
         } else {
         	$image_url = '';
         	$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $this->post->post_content, $matches);
-        	$image_url = $matches [1] [0];
-        	if(empty($image_url)){
+        	
+        	if(empty($matches [1] [0])){
         		$image_url = $defaultThumbnail;
+        	} else {
+        		$image_url = $matches [1] [0];
         	}
         }
         $this->thumbnail = $image_url;
