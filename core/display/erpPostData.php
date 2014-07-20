@@ -314,9 +314,19 @@ class erpPostData {
      * @author Panagiotis Vagenas <pan.vagenas@gmail.com>
      * @since 2.0.0
      */
-    public function setThumbnail($defaultThumbnail, $size = 'single-post-thumbnail') {
-        $thumbnail = wp_get_attachment_image_src(get_post_thumbnail_id($this->ID), $size);
-        $this->thumbnail = isset($thumbnail [0]) && !empty($thumbnail [0]) ? $thumbnail [0] : $defaultThumbnail;
+    public function setThumbnail($defaultThumbnail, $size = 'single-post-thumbnail') {        
+        if (has_post_thumbnail($this->ID)) {
+        	$image_url = wp_get_attachment_image_src(get_post_thumbnail_id($this->ID), $size);
+        	$image_url = $image_url[0];
+        } else {
+        	$image_url = '';
+        	$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $this->post->post_content, $matches);
+        	$image_url = $matches [1] [0];
+        	if(empty($image_url)){
+        		$image_url = $defaultThumbnail;
+        	}
+        }
+        $this->thumbnail = $image_url;
         return $this;
     }
 
