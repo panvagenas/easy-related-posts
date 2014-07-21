@@ -26,7 +26,17 @@
             <label for="thumbCaption">Use thumbnail captions: </label>
         </td>
         <td>
-            <input class="erp-optchbx" id="thumbCaption" name="thumbCaption" type="checkbox" <?php checked((bool) $thumbCaption); ?> />
+        <?php 
+        if (class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'photon' ) ){
+        	?>
+        	<input class="erp-optchbx" id="thumbCaption" name="thumbCaption" type="checkbox" disabled="disabled" /> <small><i>Disable Jetpack Photon plugin to use this option</i></small>
+        	<?php 
+        } else {
+        	?>
+        	<input class="erp-optchbx" id="thumbCaption" name="thumbCaption" type="checkbox" <?php checked((bool) $thumbCaption); ?> />
+        	<?php 
+        }
+        ?>
         </td>
     </tr>
     <tr>

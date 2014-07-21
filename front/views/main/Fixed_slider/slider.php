@@ -11,6 +11,11 @@ $containerClass = $uniqueID . 'Container';
 $thumbClass = $uniqueID . 'Thumbnail';
 $titleClass = $uniqueID . 'PostTitle';
 $excClass = $uniqueID . 'Exc';
+if ($options['thumbCaption'] && in_array('thumbnail', $optionsObj->getContentPositioning()) && !( class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'photon' ) )){
+	$showThumbCaptions = true;
+} else {
+	$showThumbCaptions = false;
+}
 ?>
 <div class="metroW" style="width: 100%; z-index:100; "></div>
 <div class="erpProContainer <?php echo $containerClass; ?>">
@@ -59,7 +64,7 @@ $excClass = $uniqueID . 'Exc';
         $(function() {
             $(window).load(function() {
 <?php
-if ($options['thumbCaption'] && in_array('thumbnail', $optionsObj->getContentPositioning())) {
+if ($showThumbCaptions) {
     ?>
                     $('.<?php echo $thumbClass; ?>').captionjs({
                         'class_name': 'erpProcaptionjs', // Class name assigned to each <figure>
