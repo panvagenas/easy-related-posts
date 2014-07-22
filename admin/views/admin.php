@@ -357,7 +357,7 @@ if (!function_exists('erpTaxGrouping')) {
                                 class="erp-opttxt" 
                                 id="moreTxt" 
                                 name="moreTxt" 
-                                tile="The text that will apear after each post excerpt, if you choose to display it" 
+                                title="The text that will apear after each post excerpt, if you choose to display it" 
                                 value="<?php echo $erpOptions['moreTxt']; ?>" 
                                 type="text">
                         </td>
@@ -589,7 +589,7 @@ if ($tabSpec !== null && $tabSpec !== false) {
                 <table style="width: 100%;">
                     <tr><td><input type="hidden" name="on0" value="Sponsorhip options"><strong>Support the development of this plugin</strong></td></tr><tr><td><select name="os0">
                                 <option value="2">€2.00 EUR</option>
-                                <option value="5" selected="">€5.00 EUR</option>
+                                <option value="5" selected="selected">€5.00 EUR</option>
                                 <option value="8">€8.00 EUR</option>
                                 <option value="10">€10.00 EUR</option>
                                 <option value="15">€15.00 EUR</option>
