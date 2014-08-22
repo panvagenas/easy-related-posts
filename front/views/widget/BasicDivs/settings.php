@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Basic widget template settings.
  *
@@ -13,14 +12,4 @@
  */
 ?>
 <label for="<?php echo $widgetInstance->get_field_id('thumbCaption'); ?>">Use thumbnail captions: </label>
-<?php 
-        if (class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'photon' ) ){
-        	?>
-			<input class="erp-optchbx" id="<?php echo $widgetInstance->get_field_id('thumbCaption'); ?>" name="<?php echo $widgetInstance->get_field_name('thumbCaption'); ?>" type="checkbox" readonly="readonly" /> <small><i>Disable Jetpack Photon plugin to use this option</i></small>
-        	<?php 
-        } else {
-        	?>
-        	<input class="erp-optchbx" id="<?php echo $widgetInstance->get_field_id('thumbCaption'); ?>" name="<?php echo $widgetInstance->get_field_name('thumbCaption'); ?>" type="checkbox" <?php checked( (bool)$thumbCaption ); ?> />
-        	<?php 
-        }
-        ?>
+<input class="erp-optchbx" id="<?php echo $widgetInstance->get_field_id('thumbCaption'); ?>" name="<?php echo $widgetInstance->get_field_name('thumbCaption'); ?>" type="checkbox" <?php checked((bool) $thumbCaption); ?> />

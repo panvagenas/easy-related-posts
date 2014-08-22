@@ -117,8 +117,8 @@ abstract class erpOptions {
     }
 
     protected function validString($value) {
-        if (is_array((string) unserialize($value))) {
-            return (string) $value;
+        if (is_serialized($value)) {
+            return $value;
         }
         if (filter_var($value, FILTER_VALIDATE_URL)) {
             $s = preg_replace('(https?://)', '', $value);
@@ -136,9 +136,11 @@ abstract class erpOptions {
 
     protected function validArray($value) {
         if (is_string($value)) {
-            $unser = unserialize($value);
-            if (is_array($unser)) {
-                return $unser;
+            if (is_serialized($value)) {
+                $unser = unserialize($value);
+                if(is_array($unser)){
+                    return $unser;
+                }
             }
             return explode('-', strip_tags($value));
         }

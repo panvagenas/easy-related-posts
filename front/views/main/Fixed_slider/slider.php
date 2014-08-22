@@ -11,7 +11,7 @@ $containerClass = $uniqueID . 'Container';
 $thumbClass = $uniqueID . 'Thumbnail';
 $titleClass = $uniqueID . 'PostTitle';
 $excClass = $uniqueID . 'Exc';
-if ($options['thumbCaption'] && in_array('thumbnail', $optionsObj->getContentPositioning()) && !( class_exists( 'Jetpack' ) && Jetpack::is_module_active( 'photon' ) )){
+if ($options['thumbCaption'] && in_array('thumbnail', $optionsObj->getContentPositioning()) ){
 	$showThumbCaptions = true;
 } else {
 	$showThumbCaptions = false;
