@@ -45,7 +45,7 @@ class erpDefaults {
      * @since 2.0.0
      * @var int
      */
-    const erpSubRelease = 1;
+    const erpSubRelease = 2;
 
     /**
      * This should be upddated if widget class name change

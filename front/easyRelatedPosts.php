@@ -23,7 +23,7 @@ class easyRelatedPosts {
      * @since 2.0.0
      * @var string
      */
-    const VERSION = '2.0.0';
+    const VERSION = '2.0.2';
 
     /**
      * Unique identifier for your plugin.

@@ -3,8 +3,8 @@ Contributors: xdark.eu
 Donate link: 
 Tags: related, related posts, similar posts, widget, responsive, shortcode, tags, categories, custom post types, carousel, list, thumpnail, title, excerpt, taxonomies
 Requires at least: 3.0.1
-Tested up to: 3.9.1
-Stable tag: 2.0.1
+Tested up to: 3.9.2
+Stable tag: 2.0.2
 License: GPLv3 (license.txt in plugin dir)
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -17,14 +17,16 @@ Equipped with 3 eye catching fully responsive themes, supports basic modificatio
 Through an intuitive algorithm it creates “relations” between posts and rates them based on posts categories and/or tags in a way so these ratings are as much as accurate they can be.
 Last but not least in any way, Easy Related Posts uses the best coding standards and practices with mind in security. 
 
-**If you like this plugin please support the developers.** You can do so using the links inside  plugin settings page.
+**If you like this plugin please support the developers.** You can do so using the links inside  plugin settings page or by purchasing the PRO version.
 
-This plugin has also a PRO version which you can purchase from [here](http://erp.xdark.eu/downloads/easy-related-posts-pro/).
+PRO version can be purchased from [here](http://erp.xdark.eu/downloads/easy-related-posts-pro/).
 To see a full list of features and compare them to the PRO version please visit [this page](http://erp.xdark.eu/version-comparison/).
 
-*Easy Related Posts wont spam your visitor with content from other sites, ads or in any other way.* 
+*Easy Related Posts wont spam your visitors with content from other sites, ads or in any other way.* 
 
 [See the demo](http://erp.xdark.eu/demo/)
+
+**This plugin requires PHP version 5.3 and above.**
 
 Features:
 
@@ -64,6 +66,14 @@ Not at all! But you are free to send any donations to my PayPal account yotisvag
 5. Widget in sidebar
 
 == Changelog ==
+
+= 2.0.2 =
+
+* For now on if no featured image is set searches post content to pick the first.
+* Fixed bug [0000014](https://erp.xdark.eu/bugs/view.php?id=14). No conflicts with Jetpack Photon plugin anymore.
+* Fixed bug [0000022](https://erp.xdark.eu/bugs/view.php?id=22)
+* Fixed bug [0000023](https://erp.xdark.eu/bugs/view.php?id=23)
+* Support for PHP version < 5.3 dropped. This was affecting bugs 15,16 and 18
 
 = 2.0.1 =
 
@@ -124,6 +134,9 @@ Initial release
 
 
 == Upgrade Notice ==
+
+= 2.0.2 =
+This version among other bug fixes, resolves conflicts with Jetpack Photon plugin
 
 = 2.0.1 =
 This version resolves a major bug described [here](https://erp.xdark.eu/bugs/view.php?id=11)
